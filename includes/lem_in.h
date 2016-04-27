@@ -22,6 +22,7 @@ struct s_vert
   bool end;
   bool occ;
   int wt;
+  char *name;
   struct s_vert *edges;
   struct s_vert *orig;
   struct s_vert *next;
@@ -30,5 +31,7 @@ struct s_vert
 };
 
 int parse_map(t_map *graph);
+int init_vert(t_vert *vert);
+void print_vertice(t_vert *vert);
 
 #endif
