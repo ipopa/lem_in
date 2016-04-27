@@ -1,0 +1,6 @@
+lem_in
+libft/*.o
+libft/libft.a
+srcs/*.o
+*~
+*/*~
