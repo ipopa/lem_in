@@ -1,9 +1,8 @@
 #include "lem_in.h"
 
-
 int parse_map(char *line, t_map *graph)
 {
-
+  printf("%s\n", line);
 
   return 1;
 }
@@ -21,7 +20,7 @@ int main(int ac, char **av)
   if (get_next_line(fd, &line) == -1)
     return 0;
   //get_ants(line);
-  while(get_next_line(fd, &line) == 1)
+  while (get_next_line(fd, &line) == 1)
     {
       if (parse_map(line, graph) == -1)
 	return 0;     
