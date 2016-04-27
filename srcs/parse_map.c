@@ -1,13 +1,39 @@
 #include "lem_in.h"
 
 
-int add_to_map(t_map *map, t_vert *vertice)
+void print_map(t_map *map)
 {
+  t_map *tmp;
   
+  tmp = map;
+  while (tmp->vertices != NULL)
+    {
+      print_vertice(tmp->vertices);
+      tmp->vertices = tmp->vertices->next;
+    }
+}
+
+int add_to_map(t_map **map, t_vert *new)
+{
+  t_map *tmp;
+  
+  tmp = *map;
+  if ((*map)->vertices == NULL)
+    {
+      (*map)->vertices = new;
+      return 1;
+    }
+  while (tmp->vertices != NULL)
+    {
+      printf("+1\n");
+      print_vertice(tmp->vertices);
+      tmp->vertices = tmp->vertices->next;
+    }
+  tmp->vertices = new;
   return 1;
 }
 
-int add_vert(t_map *graph, char *line, bool start, bool end)
+int add_vert(t_map **graph, char *line, bool start, bool end)
 {
   t_vert *new;
   char **tab;
@@ -28,12 +54,11 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
     new->end = true;
   if (add_to_map(graph, new) == -1)
       return -1;
-  print_vertice(new);
   return 1;
 
 }
 
-int add_edge(t_map *graph, char *line)
+int add_edge(t_map **graph, char *line)
 {
   char **tab;
   
@@ -42,7 +67,7 @@ int add_edge(t_map *graph, char *line)
 }
 
 
-int parse_line(t_map *graph, char *line, bool start, bool end)
+int parse_line(t_map **graph, char *line, bool start, bool end)
 {
   if (add_vert(graph, line, start, end) == -1)
     return -1;
@@ -52,7 +77,7 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
 }
 
 
-int parse_map(t_map *graph)
+int parse_map(t_map **graph)
 {
   char *line;
   int ret;
@@ -66,11 +91,10 @@ int parse_map(t_map *graph)
 
   while ((ret = get_next_line(0, &line)) >= 0)
     {
-      printf("%s\n", line);
       if (ft_strequ(line, "##start"))
 	  start = true;
       else if (ft_strequ(line, "##end"))
-	  printf("end\n");
+	end = true;
       else if(line[0] == '#')
 	continue ;
       else
@@ -83,5 +107,6 @@ int parse_map(t_map *graph)
       if (ret == 0)
         break;
     }
+  print_map(*graph);
   return 1;
 }

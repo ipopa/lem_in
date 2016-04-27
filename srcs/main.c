@@ -48,7 +48,7 @@ int main(int ac, char **av)
   if ((graph->ants = ft_atoi(line)) == 0 && !ft_strequ(line, "0"))
        return 0;
   printf("nb ants = %d\n", graph->ants);
-  if (parse_map(graph) == -1)
+  if (parse_map(&graph) == -1)
 	return 0;
   return 0;
 }
