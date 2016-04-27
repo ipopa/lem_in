@@ -7,15 +7,15 @@ int init_vert(t_vert *vert)
   vert->end = false;
   vert->occ = false;
   vert->wt = 100000;
-  if ((vert->edges = (t_vert *)malloc(sizeof(t_vert))) == null)
+  if ((vert->edges = (t_vert *)malloc(sizeof(t_vert))) == NULL)
     return 0;
-  vert->edges = null;
-  if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == null)
+  vert->edges = NULL;
+  if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == NULL)
     return 0;
-  vert->orig = null;
-  if ((vert->next = (t_vert *)malloc(sizeof(t_vert))) == null)
+  vert->orig = NULL;
+  if ((vert->next = (t_vert *)malloc(sizeof(t_vert))) == NULL)
     return 0;
-  vert->next = null;
+  vert->next = NULL;
   vert->x = 0;
   vert->y = 0;
   return 1;
@@ -23,9 +23,9 @@ int init_vert(t_vert *vert)
 
 int init_map(t_map *graph)
 {
-  if ((graph->vertices = (t_map *)malloc(sizeof(t_map))) == null)
+  if ((graph->vertices = (t_vert *)malloc(sizeof(t_map))) == NULL)
     return 0;
-  graph->vertices = null;
+    graph->vertices = NULL;
   graph->ants = 0;
   return 1;
 }

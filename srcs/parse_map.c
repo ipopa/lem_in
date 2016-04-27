@@ -10,6 +10,8 @@ int parse_map(t_map *graph)
   start = false;
   end = false;
 
+  printf("%f\n", INFINITY);
+
   while ((ret = get_next_line(0, &line)) >= 0)
     {
       printf("%s\n", line);
@@ -17,13 +19,11 @@ int parse_map(t_map *graph)
 	{
 	  printf("start\n");
 	  start = true;
-	  continue;
 	}
       else if (ft_strequ(line, "##end"))
 	{
 	  printf("end\n");
 	  end = true;
-	  continue;
 	}
       else {
       }
