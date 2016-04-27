@@ -1,9 +1,16 @@
 #include "lem_in.h"
  
-int parse_map(char *line, t_map *graph)
+int parse_map(t_map *graph)
 {
-  printf("%s\n", line);
-
+  char *line;
+  int ret;
+  
+  while ((ret = get_next_line(0, &line)) >= 0)
+    {
+      printf("%s\n", line);
+      if (ret == 0)
+	break;
+    }
   return 1;
 }
 
@@ -24,12 +31,7 @@ int main(int ac, char **av)
   if ((graph->ants = ft_atoi(line)) == 0 && !ft_strequ(line, "0"))
        return 0;
   printf("nb ants = %d\n", graph->ants);
-  while ((ret = get_next_line(fd, &line)) >= 0)
-    {
-      if (parse_map(line, graph) == -1)
+  if (parse_map(graph) == -1)
 	return 0;
-      if (ret == 0)
-	break;
-    }
   return 0;
 }
