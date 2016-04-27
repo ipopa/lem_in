@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "get_next_line.h"
 #include <stdbool.h>
-
+#include "../libft/libft.h"
 typedef struct s_map t_map;
 typedef struct s_vert t_vert;
 
