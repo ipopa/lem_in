@@ -22,6 +22,7 @@ struct s_vert
   int wt;
   struct s_vert *edge;
   struct s_vert *orig;
+  struct s_vert *next;
   int x;
   int y;
 };
