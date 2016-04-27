@@ -27,4 +27,6 @@ struct s_vert
   int y;
 };
 
+int parse_map(t_map *graph);
+
 #endif
