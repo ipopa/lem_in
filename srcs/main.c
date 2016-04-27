@@ -13,20 +13,19 @@ int main(int ac, char **av)
   t_map *graph;
   int fd;
   int i;
+  int ret;
 
   i = 0;
-  fd = 1;
 
-  if (get_next_line(fd, &line) == -1)
-    return 0;
+  fd = 0;
   //get_ants(line);
-  while (get_next_line(fd, &line) == 1)
+  while ((ret = get_next_line(fd, &line)) >= 0)
     {
       if (parse_map(line, graph) == -1)
-	return 0;     
+	return 0;
+      if (ret == 0)
+	break;
     }
-
-  printf("%s\n", "hello world");
 
   return 0;
 }

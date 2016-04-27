@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 18:13:03 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/01/12 18:21:06 by sbeaufil         ###   ########.fr       */
+/*   Created: 2014/11/11 18:31:05 by sbeaufil          #+#    #+#             */
+/*   Updated: 2014/11/14 22:31:39 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	if (!s1 || !s2)
-		return (0);
-	if (!n || (!*s1 && !*s2))
-		return (1);
-	else if (*s1 == *s2)
-		return (ft_strnequ(s1 + 1, s2 + 1, n - 1));
+	unsigned int i;
+
+	i = 0;
+	if (s1 != 0 && s2 != 0)
+	{
+		while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i] && i < (n - 1))
+			i++;
+		if (s1[i] == s2[i])
+			return (1);
+	}
 	return (0);
 }

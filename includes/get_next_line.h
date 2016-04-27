@@ -6,7 +6,7 @@
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/17 16:06:47 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/02/05 20:34:50 by sbeaufil         ###   ########.fr       */
+/*   Updated: 2015/02/11 12:56:42 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-
 # define BUFF_SIZE 8
 
 typedef struct s_get	t_get;

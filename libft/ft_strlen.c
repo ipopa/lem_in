@@ -6,13 +6,13 @@
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 18:30:20 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/01/25 19:36:40 by sbeaufil         ###   ########.fr       */
+/*   Updated: 2014/11/13 21:34:54 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *str)
+int		ft_strlen(const char *str)
 {
 	int i;
 
