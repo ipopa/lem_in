@@ -13,15 +13,12 @@ void print_map(t_map *map)
     }
 }
 
-int add_to_map(t_vert **vert, t_vert *new)
+int add_vert_to_map(t_vert **vert, t_vert *new)
 {
   int i;
   t_vert *tmpvert;
   
-
-  printf("ADD TO MAP\n");
   i = 0;
-  //tmpvert = (t_vert *)malloc(sizeof(t_vert));
   tmpvert = *vert;
   if (*vert == NULL)
     {
@@ -29,15 +26,20 @@ int add_to_map(t_vert **vert, t_vert *new)
       return 1;
      }
   while (tmpvert->next != NULL)
-  {
-    printf("+%d\n", i);
-    tmpvert = tmpvert->next;
-    i++;
-  }
+    {
+      if (check_vert(tmpvert, new) == -1)
+	return -1;
+      tmpvert = tmpvert->next;
+      i++;
+    }
   tmpvert->next = new;
-  print_vertice(*vert);
-  print_vertice((*vert)->next);
-  printf("FIN ADD\n");
+  return 1;
+}
+
+int add_edge_to_map(t_map **graph, t_vert *newegde)
+{
+  
+
   return 1;
 }
 
@@ -46,34 +48,31 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
   t_vert *new;
   char **tab;
 
-  printf("ADD VERT\n");
   new = (t_vert *)malloc(sizeof(t_vert));
   init_vert(new);
+
   tab = ft_strsplit(line, ' ');
 
   if (tab[0] != 0) 
     new->name = ft_strdup(tab[0]);
-
   if (tab[1])
     {
       new->x = ft_atoi(tab[1]);
       if (tab[2])
 	new->y = ft_atoi(tab[2]);
     }
-
-
  if (start)
     new->start = true;
   if (end)
     new->end = true;
 
-  if (add_to_map(&(graph->vertices), new) == -1)
+  if (add_vert_to_map(&(graph->vertices), new) == -1)
       return -1;
   return 1;
 
 }
 
-int add_edge(t_map **graph, char *line)
+int add_edge(t_map *graph, char *line)
 {
   char **tab;
   
@@ -84,11 +83,13 @@ int add_edge(t_map **graph, char *line)
 
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
-  printf("PARSE LINE\n");
-  if (add_vert(graph, line, start, end) == -1)
-    return -1;
-  //else if (add_edge(&graph, line) == -1)
-  //return -1;
+  if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
+    {
+      if (add_edge(graph, line) == -1)
+	return -1;
+    }
+  else
+    add_vert(graph, line, start, end);
   return 1;
 }
 
