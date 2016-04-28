@@ -37,7 +37,6 @@ int add_to_map(t_vert **vert, t_vert *new)
   tmpvert->next = new;
   print_vertice(*vert);
   print_vertice((*vert)->next);
-  //print_vertice(tmpvert);
   printf("FIN ADD\n");
   return 1;
 }
@@ -124,6 +123,7 @@ int parse_map(t_map *graph)
       if (ret == 0)
         break;
     }
+  print_map(graph);
   if (end || start)
     error("manque le vertice start ou end\n");
   return 1;
