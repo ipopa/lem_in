@@ -18,6 +18,7 @@ int add_to_map(t_vert **vert, t_vert *new)
   int i;
   t_vert *tmpvert;
   
+  printf("ADD TO MAP\n");
   i = 0;
   tmpvert = *vert;
   print_vertice(new);
@@ -44,20 +45,26 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
   t_vert *new;
   char **tab;
 
+  printf("ADD VERT\n");
   new = (t_vert *)malloc(sizeof(t_vert));
   init_vert(new);
   tab = ft_strsplit(line, ' ');
   
+  printf("tab[0] = %s\n", tab[0]);
   if (tab[0])
     new->name = ft_strdup(tab[0]);
+  printf("TEST");
   if (tab[1])
     new->x = ft_atoi(tab[1]);
+  printf("TEST");
   if (tab[2])
     new->y = ft_atoi(tab[2]);
-  if (start)
+  printf("TEST"); 
+ if (start)
     new->start = true;
   if (end)
     new->end = true;
+  printf("TEST2");
   if (add_to_map(&(graph->vertices), new) == -1)
       return -1;
   return 1;
@@ -75,6 +82,7 @@ int add_edge(t_map **graph, char *line)
 
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
+  printf("PARSE LINE\n");
   if (add_vert(graph, line, start, end) == -1)
     return -1;
   //else if (add_edge(&graph, line) == -1)
