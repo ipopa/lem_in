@@ -25,24 +25,19 @@ int add_to_map(t_vert **vert, t_vert *new)
   tmpvert = *vert;
   if (*vert == NULL)
     {
-      //printf("first elem\n");
       *vert = new;
       return 1;
      }
-  while (tmpvert != NULL)
+  while (tmpvert->next != NULL)
   {
     printf("+%d\n", i);
     tmpvert = tmpvert->next;
     i++;
   }
-  if (tmpvert == NULL)
-    {
-      printf("ADD VERTICE\n");
-      tmpvert = new;
-    }
+  tmpvert->next = new;
   print_vertice(*vert);
-  //  print_vertice((*vert)->next);
-  print_vertice(tmpvert);
+  print_vertice((*vert)->next);
+  //print_vertice(tmpvert);
   printf("FIN ADD\n");
   return 1;
 }

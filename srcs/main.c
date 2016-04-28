@@ -13,8 +13,8 @@ int init_vert(t_vert *vert)
   if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == NULL)
     return 0;
    vert->orig = NULL;
-   if ((vert->next = (t_vert *)malloc(sizeof(t_vert))) == NULL)
-     return 0;
+   //   if ((vert->next = (t_vert *)malloc(sizeof(t_vert))) == NULL)
+   //return 0;
   vert->next = NULL;
   vert->x = 0;
   vert->y = 0;
