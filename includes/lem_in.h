@@ -7,8 +7,10 @@
 #include <stdbool.h>
 #include <math.h>
 #include "../libft/libft.h"
+
 typedef struct s_map t_map;
 typedef struct s_vert t_vert;
+typedef struct s_env t_env;
 
 struct s_map
 {
@@ -30,8 +32,17 @@ struct s_vert
   int y;
 };
 
+struct s_env
+{
+
+  bool start;
+  bool end;
+  bool err;
+};
+
 int parse_map(t_map *graph);
 int init_vert(t_vert *vert);
 void print_vertice(t_vert *vert);
+int error(char *err);
 
 #endif

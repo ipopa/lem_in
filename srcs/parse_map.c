@@ -112,5 +112,7 @@ int parse_map(t_map *graph)
       if (ret == 0)
         break;
     }
+  if (end || start)
+    error("manque le vertice start ou end\n");
   return 1;
 }
