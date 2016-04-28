@@ -13,27 +13,32 @@ void print_map(t_map *map)
     }
 }
 
-int add_to_map(t_map **map, t_vert *new)
+int add_to_map(t_vert **vert, t_vert *new)
 {
-  t_map *tmp;
+  int i;
+  t_vert *tmpvert;
   
-  tmp = *map;
-  if ((*map)->vertices == NULL)
+  i = 0;
+  tmpvert = *vert;
+  if (*vert == NULL)
     {
-      (*map)->vertices = new;
+      printf("first elem\n");
+      *vert = new;
       return 1;
-    }
-  while (tmp->vertices != NULL)
-    {
-      printf("+1\n");
-      print_vertice(tmp->vertices);
-      tmp->vertices = tmp->vertices->next;
-    }
-  tmp->vertices = new;
+     }
+  while (tmpvert != NULL)
+  {
+    printf("+%d\n", i);
+    tmpvert = tmpvert->next;
+    i++;
+  }
+  tmpvert = new;
+  //print_map(*map);
+  //printf("\n\n");
   return 1;
 }
 
-int add_vert(t_map **graph, char *line, bool start, bool end)
+int add_vert(t_map *graph, char *line, bool start, bool end)
 {
   t_vert *new;
   char **tab;
@@ -52,7 +57,7 @@ int add_vert(t_map **graph, char *line, bool start, bool end)
     new->start = true;
   if (end)
     new->end = true;
-  if (add_to_map(graph, new) == -1)
+  if (add_to_map(&(graph->vertices), new) == -1)
       return -1;
   return 1;
 
@@ -67,17 +72,17 @@ int add_edge(t_map **graph, char *line)
 }
 
 
-int parse_line(t_map **graph, char *line, bool start, bool end)
+int parse_line(t_map *graph, char *line, bool start, bool end)
 {
   if (add_vert(graph, line, start, end) == -1)
     return -1;
-  else if (add_edge(graph, line) == -1)
-    return -1;
+  //else if (add_edge(&graph, line) == -1)
+  //return -1;
   return 1;
 }
 
 
-int parse_map(t_map **graph)
+int parse_map(t_map *graph)
 {
   char *line;
   int ret;
@@ -107,6 +112,5 @@ int parse_map(t_map **graph)
       if (ret == 0)
         break;
     }
-  print_map(*graph);
   return 1;
 }

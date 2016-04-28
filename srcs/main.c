@@ -25,7 +25,7 @@ int init_map(t_map *graph)
 {
   if ((graph->vertices = (t_vert *)malloc(sizeof(t_map))) == NULL)
     return 0;
-    graph->vertices = NULL;
+  graph->vertices = NULL;
   graph->ants = 0;
   return 1;
 }
@@ -48,7 +48,7 @@ int main(int ac, char **av)
   if ((graph->ants = ft_atoi(line)) == 0 && !ft_strequ(line, "0"))
        return 0;
   printf("nb ants = %d\n", graph->ants);
-  if (parse_map(&graph) == -1)
+  if (parse_map(graph) == -1)
 	return 0;
   return 0;
 }

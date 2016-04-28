@@ -30,7 +30,7 @@ struct s_vert
   int y;
 };
 
-int parse_map(t_map **graph);
+int parse_map(t_map *graph);
 int init_vert(t_vert *vert);
 void print_vertice(t_vert *vert);
 
