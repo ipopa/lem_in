@@ -20,6 +20,7 @@ int add_to_map(t_vert **vert, t_vert *new)
   
   i = 0;
   tmpvert = *vert;
+  print_vertice(new);
   if (*vert == NULL)
     {
       printf("first elem\n");
@@ -34,7 +35,7 @@ int add_to_map(t_vert **vert, t_vert *new)
   }
   tmpvert = new;
   //print_map(*map);
-  //printf("\n\n");
+  printf("FIN ADD\n");
   return 1;
 }
 
