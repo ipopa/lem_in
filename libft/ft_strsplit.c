@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ipopa <ipopa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/10 17:51:29 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/01/10 17:51:40 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/01/07 15:47:18 by ipopa             #+#    #+#             */
+/*   Updated: 2015/05/05 15:08:56 by ipopa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ char			**ft_strsplit(char const *s, char c)
 			tab[size++] = ft_strsub(s, start, i - start);
 		}
 	}
-	tab[size] = '\0';
+	tab[size] = 0;
 	return (tab);
 }
