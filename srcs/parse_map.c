@@ -21,30 +21,28 @@ int add_to_map(t_vert **vert, t_vert *new)
 
   printf("ADD TO MAP\n");
   i = 0;
-  tmpvert = (t_vert *)malloc(sizeof(t_vert));
+  //tmpvert = (t_vert *)malloc(sizeof(t_vert));
   tmpvert = *vert;
   if (*vert == NULL)
     {
-      printf("first elem\n");
+      //printf("first elem\n");
       *vert = new;
       return 1;
      }
-  while ((*vert) != NULL)
+  while (tmpvert != NULL)
   {
     printf("+%d\n", i);
-    (*vert) = (*vert)->next;
+    tmpvert = tmpvert->next;
     i++;
   }
-  if ((*vert) == NULL)
+  if (tmpvert == NULL)
     {
       printf("ADD VERTICE\n");
-      (*vert) = new;
+      tmpvert = new;
     }
-  print_vertice(tmpvert);
   print_vertice(*vert);
-  if ((*vert)->next != NULL)
-    print_vertice((*vert)->next);
-  *vert = tmpvert;
+  //  print_vertice((*vert)->next);
+  print_vertice(tmpvert);
   printf("FIN ADD\n");
   return 1;
 }
