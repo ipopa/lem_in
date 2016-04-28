@@ -58,17 +58,6 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
   new = (t_vert *)malloc(sizeof(t_vert));
   init_vert(new);
   tab = ft_strsplit(line, ' ');
-<<<<<<< HEAD
-  
-  if (tab[0])
-    new->name = strdup(tab[0]);
-  if (tab[1])
-    new->x = ft_atoi(tab[1]);
-  if (tab[2])
-    new->y = ft_atoi(tab[2]);
-=======
-
-  printf("tab[0] = %s\n", tab[0]);
 
   if (tab[0] != 0) 
     new->name = ft_strdup(tab[0]);
@@ -80,15 +69,12 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
 	new->y = ft_atoi(tab[2]);
     }
 
->>>>>>> c0613e08eae84f94d48367f2ea4413afa721547e
+
  if (start)
     new->start = true;
   if (end)
     new->end = true;
-<<<<<<< HEAD
-=======
 
->>>>>>> c0613e08eae84f94d48367f2ea4413afa721547e
   if (add_to_map(&(graph->vertices), new) == -1)
       return -1;
   return 1;
