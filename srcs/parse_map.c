@@ -4,13 +4,15 @@
 void print_map(t_map *map)
 {
   t_map *tmp;
+  int i = 0;
   
   tmp = map;
   printf("\n- MAP -\n");
-  while (tmp->vertices != NULL)
+  while (tmp->vertices->next != NULL && i < 5)
     {
       print_vertice(tmp->vertices);
       tmp->vertices = tmp->vertices->next;
+      i++;
     }
 }
 
@@ -70,7 +72,7 @@ t_vert *find_vert(t_vert *vert, char *name)
     {
       if (ft_strequ(tmp->name, name))
         return (tmp);
-      tmp = vert->next;
+      tmp = tmp->next;
     }
   return NULL;
 }
@@ -112,9 +114,9 @@ int add_edge(t_map *graph, char *line)
 
   
   tab = ft_strsplit(line, '-');
+  printf("add egde\n");
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
-  printf("add egde\n");
   print_vertice(v1);
   print_vertice(v2);
   if (add_edge_to_map(&(v1->edges), v2) == -1)
