@@ -37,26 +37,26 @@ int add_vert_to_map(t_vert **vert, t_vert *new)
   return 1;
 }
 
-int add_edge_to_map(t_vert **vert, t_vert *new)
+int add_edge_to_map(t_vert **edge, t_vert *new)
 {
   int i;
-  t_vert *tmpvert;
+  t_vert *tmpedge;
   
   i = 0;
-  tmpvert = *vert;
-  if (*vert == NULL)
+  tmpedge = *edge;
+  if (*edge == NULL)
     {
-      *vert = new;
+      *edge = new;
       return 1;
      }
-  while (tmpvert->next != NULL)
+  while (tmpedge->next != NULL)
     {
-      if (check_vert(tmpvert, new) == -1)
+      if (check_vert(tmpedge, new) == -1)
 	return -1;
-      tmpvert = tmpvert->next;
+      tmpedge = tmpedge->next;
       i++;
     }
-  tmpvert->next = new;
+  tmpedge->next = new;
   return 1;
 }
 
@@ -117,6 +117,10 @@ int add_edge(t_map *graph, char *line)
   printf("add egde\n");
   print_vertice(v1);
   print_vertice(v2);
+  if (add_edge_to_map(&(v1->edges), v2) == -1)
+      return -1;
+  if (add_edge_to_map(&(v2->edges), v1) == -1)
+    return -1;
   printf("fin egde\n");
   
   return 1;
