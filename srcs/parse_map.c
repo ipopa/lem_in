@@ -4,15 +4,13 @@
 void print_map(t_map *map)
 {
   t_map *tmp;
-  int i = 0;
   
   tmp = map;
   printf("\n- MAP -\n");
-  while (tmp->vertices->next != NULL && i < 5)
+  while (tmp->vertices != NULL)
     {
       print_vertice(tmp->vertices);
       tmp->vertices = tmp->vertices->next;
-      i++;
     }
 }
 
@@ -133,8 +131,8 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
 {
   if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
     {
-      if (add_edge(graph, line) == -1)
-	return -1;
+      ;//if (add_edge(graph, line) == -1)
+      //return -1;
     }
   else
     add_vert(graph, line, start, end);
