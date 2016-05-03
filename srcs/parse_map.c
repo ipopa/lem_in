@@ -6,6 +6,7 @@ void print_map(t_map *map)
   t_map *tmp;
   
   tmp = map;
+  printf("\n- MAP -\n");
   while (tmp->vertices != NULL)
     {
       print_vertice(tmp->vertices);
@@ -36,11 +37,42 @@ int add_vert_to_map(t_vert **vert, t_vert *new)
   return 1;
 }
 
-int add_edge_to_map(t_map **graph, t_vert *newegde)
+int add_edge_to_map(t_vert **vert, t_vert *new)
 {
+  int i;
+  t_vert *tmpvert;
   
-
+  i = 0;
+  tmpvert = *vert;
+  if (*vert == NULL)
+    {
+      *vert = new;
+      return 1;
+     }
+  while (tmpvert->next != NULL)
+    {
+      if (check_vert(tmpvert, new) == -1)
+	return -1;
+      tmpvert = tmpvert->next;
+      i++;
+    }
+  tmpvert->next = new;
   return 1;
+}
+
+t_vert *find_vert(t_vert *vert, char *name)
+{
+  t_vert *tmp;
+
+  tmp = vert;
+
+  while (tmp != NULL)
+    {
+      if (ft_strequ(tmp->name, name))
+        return (tmp);
+      tmp = vert->next;
+    }
+  return NULL;
 }
 
 int add_vert(t_map *graph, char *line, bool start, bool end)
@@ -75,8 +107,18 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
 int add_edge(t_map *graph, char *line)
 {
   char **tab;
+  t_vert *v1;
+  t_vert *v2;
+
   
-  tab = ft_strsplit(line, ' ');
+  tab = ft_strsplit(line, '-');
+  v1 = find_vert(graph->vertices, tab[0]);
+  v2 = find_vert(graph->vertices, tab[1]);
+  printf("add egde\n");
+  print_vertice(v1);
+  print_vertice(v2);
+  printf("fin egde\n");
+  
   return 1;
 }
 
