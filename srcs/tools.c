@@ -22,3 +22,20 @@ size_t	ft_words(char const *s, char c)
     }
   return (size);
 }
+
+void destroy_map(t_map *graph)
+{
+  while(graph->vertices != NULL)
+    {
+      while(graph->vertices->edges != NULL)
+	{
+	  free(graph->vertices->edges);
+	  graph->vertices->edges = graph->vertices->edges->next;
+	}
+      free(graph->vertices);
+      graph->vertices = graph->vertices->next;
+    }
+  free(graph);
+  // while(42) {
+  // }
+}

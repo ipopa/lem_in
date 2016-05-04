@@ -41,6 +41,7 @@ struct s_vert
   struct s_vert *next;
   int x;
   int y;
+  bool visited;
 };
 
 struct s_env
@@ -59,5 +60,6 @@ void print_vertice(t_vert *vert);
 int error(char *err);
 int check_vert(t_vert *vert, t_vert *new);
 size_t	ft_words(char const *s, char c);
+void destroy_map(t_map *graph);
 
 #endif

@@ -10,9 +10,9 @@ int init_vert(t_vert *vert)
   if ((vert->edges = (t_edge *)malloc(sizeof(t_edge))) == NULL)
     return 0;
   vert->edges = NULL;
-  if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == NULL)
-    return 0;
-  vert->orig = NULL;
+  //  if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == NULL)
+  //  return 0;
+  // vert->orig = NULL;
   vert->next = NULL;
   vert->x = 0;
   vert->y = 0;
@@ -50,6 +50,6 @@ int main(int ac, char **av)
   graph->ants = ants;
   printf("nb ants = %d\n", graph->ants);
   parse_map(graph);
-  //destroy_graph(graph);
+  destroy_map(graph);
   return 0;
 }
