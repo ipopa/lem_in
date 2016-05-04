@@ -4,6 +4,7 @@ int	ft_searchchr(char const *str, char c)
 {
   int i;
 
+  i = 0;
   while(str[i] != '\0')
     {
       if (str[i] == c)

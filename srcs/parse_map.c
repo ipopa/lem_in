@@ -44,11 +44,15 @@ int add_edge_to_map(t_vert **edge, t_vert *new)
   
   i = 0;
   tmpedge = *edge;
+
   if (*edge == NULL)
     {
       *edge = new;
       return 1;
      }
+  if (tmpedge->next == NULL) {
+    printf("next null\n");
+  }
   while (tmpedge->next != NULL)
     {
       if (check_vert(tmpedge, new) == -1)
@@ -131,11 +135,13 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
 {
   if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
     {
-      ;//if (add_edge(graph, line) == -1)
-      //return -1;
+      if (add_edge(graph, line) == -1)
+	return -1;
     }
-  else
+  else {
     add_vert(graph, line, start, end);
+   
+  }
   return 1;
 }
 

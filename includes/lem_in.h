@@ -17,6 +17,7 @@ struct s_map
 {
   t_vert *vertices;
   int ants;
+  char **edges;
 };
 
 struct s_vert
