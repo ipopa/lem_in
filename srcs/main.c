@@ -16,6 +16,7 @@ int init_vert(t_vert *vert)
   vert->next = NULL;
   vert->x = 0;
   vert->y = 0;
+  vert->visited = false;
   return 1;
 }
 

@@ -6,7 +6,7 @@
 #    By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/10 19:36:45 by sbeaufil          #+#    #+#              #
-#    Updated: 2015/03/11 20:14:34 by sbeaufil         ###   ########.fr        #
+#    Updated: 2016/05/04 18:08:11 by sbeaufil         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -15,7 +15,7 @@ FLAGS = -g -Wall -Werror -Wextra
 IDIR = includes/
 SDIR = srcs/
 ODIR = objects/
-SRC = $(SDIR)main.c $(SDIR)get_next_line.c $(SDIR)parse_map.c $(SDIR)error.c $(SDIR)check.c $(SDIR)tools.c
+SRC = $(SDIR)main.c $(SDIR)get_next_line.c $(SDIR)parse_map.c $(SDIR)error.c $(SDIR)check.c $(SDIR)tools.c $(SDIR)algo.c
 LIB = libft/
 OBJ = $(SRC:.c=.o)
 LFILES = $(addprefix $(LIB), $(shell ls $(LIB) | grep .c))
