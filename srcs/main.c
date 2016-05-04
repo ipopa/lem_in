@@ -7,14 +7,12 @@ int init_vert(t_vert *vert)
   vert->end = false;
   vert->occ = false;
   vert->wt = 100000;
-  if ((vert->edges = (t_vert *)malloc(sizeof(t_vert))) == NULL)
+  if ((vert->edges = (t_edge *)malloc(sizeof(t_edge))) == NULL)
     return 0;
-     vert->edges = NULL;
+  vert->edges = NULL;
   if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == NULL)
     return 0;
-   vert->orig = NULL;
-   //   if ((vert->next = (t_vert *)malloc(sizeof(t_vert))) == NULL)
-   //return 0;
+  vert->orig = NULL;
   vert->next = NULL;
   vert->x = 0;
   vert->y = 0;
