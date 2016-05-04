@@ -6,8 +6,6 @@ int isRe(t_vert *startP, int nb)
 	int tmpNb;
 
 	
-	startP->wt = nb++;
-
 	if (startP->start) {
 		startP->wt = 0;
 	}
@@ -25,11 +23,11 @@ int isRe(t_vert *startP, int nb)
 
 	edgeP = startP->edges;
 
-	//if (edgeP != NULL)
-	//tmpNb = nb + 1;
+	tmpNb = nb + 1;
 	while (edgeP != NULL)
 	{
 		edgeP->connectTo->wt = tmpNb; 
+		printf("%s with wt = %d \n", edgeP->connectTo->name, edgeP->connectTo->wt);
 		if ((!edgeP->connectTo->visited || edgeP->connectTo->wt > tmpNb) && isRe(edgeP->connectTo, tmpNb)) {
 			return 1;
 		}
