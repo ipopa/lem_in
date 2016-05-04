@@ -10,12 +10,14 @@ void print_map(t_map *map)
   while (tmp->vertices != NULL)
     {
       print_vertice(tmp->vertices);
-      tmp->vertices = tmp->vertices->next;
-      while (tmp->vertices->edges != NULL)
+       while (tmp->vertices->edges != NULL)
 	{
 	  printf("\t Connect To %s\n", tmp->vertices->edges->connectTo->name);
 	  tmp->vertices->edges = tmp->vertices->edges->next;
+
 	}
+       tmp->vertices = tmp->vertices->next;
+
     }
 }
 
