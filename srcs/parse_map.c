@@ -37,30 +37,40 @@ int add_vert_to_map(t_vert **vert, t_vert *new)
   return 1;
 }
 
-int add_edge_to_map(t_vert **edge, t_vert *new)
+t_edge *init_edge(t_vert *new)
+{
+  t_edge *newedge;
+
+  if ((newedge = (t_edge *)malloc(sizeof(t_edge))) == NULL)
+    return NULL;
+  newedge->connectTo = new;
+  newedge->next = NULL;
+  return newedge;
+
+}
+
+int add_edge_to_map(t_edge **edge, t_vert *new)
 {
   int i;
-  t_vert *tmpedge;
+  t_edge *tmpedge;
+  t_edge *newedge;
   
   i = 0;
   tmpedge = *edge;
-
+  newedge = init_edge(new);
   if (*edge == NULL)
     {
-      *edge = new;
+      *edge = newedge;
       return 1;
      }
-  if (tmpedge->next == NULL) {
-    printf("next null\n");
-  }
   while (tmpedge->next != NULL)
     {
-      if (check_vert(tmpedge, new) == -1)
-	return -1;
+      //if (check_vert(tmpedge, new) == -1)
+      //return -1;
       tmpedge = tmpedge->next;
       i++;
     }
-  tmpedge->next = new;
+  tmpedge->next = newedge;
   return 1;
 }
 
