@@ -12,12 +12,20 @@
 typedef struct s_map t_map;
 typedef struct s_vert t_vert;
 typedef struct s_env t_env;
+typedef struct s_edge t_edge;
 
 struct s_map
 {
   t_vert *vertices;
   int ants;
   char **edges;
+};
+
+struct s_edge
+{
+
+  struct s_vert *connectTo;
+  struct s_edge *next;
 };
 
 struct s_vert
@@ -27,7 +35,7 @@ struct s_vert
   bool occ;
   int wt;
   char *name;
-  struct s_vert *edges;
+  struct s_edge *edges;
   struct s_vert *orig;
   struct s_vert *next;
   int x;
@@ -41,6 +49,8 @@ struct s_env
   bool end;
   bool err;
 };
+
+
 
 int parse_map(t_map *graph);
 int init_vert(t_vert *vert);
