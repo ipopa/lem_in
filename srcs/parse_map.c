@@ -206,12 +206,12 @@ int parse_map(t_map *graph)
 		if (ret == 0)
 			break;
     }
-	print_map(graph);
 	if (end || start)
 		error("manque le vertice start ou end\n");
 
-	if (isRe("9", find_start(graph->vertices))) {
-		printf("Hello Sander\n");
+	if (isRe(find_start(graph->vertices), 0)) {
+		printf("ok\n");
 	}
+	print_map(graph);
 	return 1;
 }

@@ -61,6 +61,6 @@ int error(char *err);
 int check_vert(t_vert *vert, t_vert *new);
 size_t	ft_words(char const *s, char c);
 void destroy_map(t_map *graph);
-int isRe(char *dest, t_vert *startP);
+int isRe(t_vert *startP, int nb);
 
 #endif
