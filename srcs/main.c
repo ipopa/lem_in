@@ -35,18 +35,21 @@ int main(int ac, char **av)
   int fd;
   int i;
   int ret;
+  int ants;
 
   i = 0;
 
   fd = 0;
-  graph = (t_map *)malloc(sizeof(t_map));
-  init_map(graph);
+
   if ((ret = get_next_line(fd, &line)) == -1)
     return 0;
-  if ((graph->ants = ft_atoi(line)) == 0 && !ft_strequ(line, "0"))
-       return 0;
+  if ((ants = ft_atoi(line)) == 0 && !ft_strequ(line, "0"))
+    return 0;
+  graph = (t_map *)malloc(sizeof(t_map));
+  init_map(graph);
+  graph->ants = ants;
   printf("nb ants = %d\n", graph->ants);
-  if (parse_map(graph) == -1)
-	return 0;
+  parse_map(graph);
+  //destroy_graph(graph);
   return 0;
 }
