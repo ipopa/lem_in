@@ -11,6 +11,11 @@ void print_map(t_map *map)
     {
       print_vertice(tmp->vertices);
       tmp->vertices = tmp->vertices->next;
+      while (tmp->vertices->edges != NULL)
+	{
+	  printf("\t Connect To %s\n", tmp->vertices->edges->connectTo->name);
+	  tmp->vertices->edges = tmp->vertices->edges->next;
+	}
     }
 }
 
@@ -126,17 +131,13 @@ int add_edge(t_map *graph, char *line)
 
   
   tab = ft_strsplit(line, '-');
-  printf("add egde\n");
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
-  print_vertice(v1);
-  print_vertice(v2);
-  if (add_edge_to_map(&(v1->edges), v2) == -1)
+   if (add_edge_to_map(&(v1->edges), v2) == -1)
       return -1;
   if (add_edge_to_map(&(v2->edges), v1) == -1)
     return -1;
-  printf("fin egde\n");
-  
+    
   return 1;
 }
 
