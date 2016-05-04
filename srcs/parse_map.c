@@ -167,7 +167,7 @@ int parse_map(t_map *graph)
   start = false;
   end = false;
 
-  printf("%f\n", INFINITY);
+  printf("%d\n", INT_MAX);
 
   while ((ret = get_next_line(0, &line)) >= 0)
     {

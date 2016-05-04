@@ -1,18 +1,19 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "get_next_line.h"
-#include <stdbool.h>
-#include <string.h>
-#include <math.h>
-#include "../libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include "get_next_line.h"
+# include <stdbool.h>
+# include <string.h>
+# include "../libft/libft.h"
 
 typedef struct s_map t_map;
 typedef struct s_vert t_vert;
 typedef struct s_env t_env;
 typedef struct s_edge t_edge;
+
+# define INT_MAX 0x7FFFFFFF
 
 struct s_map
 {
