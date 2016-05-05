@@ -33,6 +33,7 @@ void destroy_map(t_map *graph)
 	  graph->vertices->edges = graph->vertices->edges->next;
 	}
       free(graph->vertices->name);
+      free(graph->vertices->wt);
       free(graph->vertices);
       graph->vertices = graph->vertices->next;
     }

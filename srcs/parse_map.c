@@ -97,7 +97,7 @@ t_vert *find_vert(t_vert *vert, char *name)
   return NULL;
 }
 
-t_vert *find_start(t_vert *vert)
+t_vert *find_end(t_vert *vert)
 {
   t_vert *tmp;
 
@@ -105,7 +105,7 @@ t_vert *find_start(t_vert *vert)
 
   while (tmp != NULL)
     {
-      if (tmp->start) {
+      if (tmp->end) {
 	return (tmp);
       }
       tmp = tmp->next;
@@ -221,8 +221,17 @@ int parse_map(t_map *graph)
   if (ft_dijkstra(graph->vertices, find_small_vertice(graph->vertices), 1)) 
     {
       printf("ok\n");
+      print_path(find_end(graph->vertices));
     }
 
-  print_map(graph);
+  clean_vertices(graph->vertices);
+
+  if (ft_dijkstra(graph->vertices, find_small_vertice(graph->vertices), 1)) 
+    {
+      printf("ok\n");
+      print_path(find_end(graph->vertices));
+    }
+
+  //print_map(graph);
   return 1;
 }

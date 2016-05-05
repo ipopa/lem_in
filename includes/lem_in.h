@@ -64,5 +64,7 @@ void destroy_map(t_map *graph);
 int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb);
 void free_tab(char **tab);
 t_vert *find_small_vertice(t_vert *vertice);
+void print_path(t_vert *vertices);
+void clean_vertices(t_vert *vertices);
 
 #endif
