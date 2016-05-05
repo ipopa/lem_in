@@ -218,18 +218,11 @@ int parse_map(t_map *graph)
       error("manque le vertice start ou end\n");
     }
 
-  if (ft_dijkstra(graph->vertices, find_small_vertice(graph->vertices), 1)) 
+  while (ft_dijkstra(graph->vertices, find_small_vertice(graph->vertices), 1) != 0) 
     {
       printf("ok\n");
       print_path(find_end(graph->vertices));
-    }
-
-  clean_vertices(graph->vertices);
-
-  if (ft_dijkstra(graph->vertices, find_small_vertice(graph->vertices), 1)) 
-    {
-      printf("ok\n");
-      print_path(find_end(graph->vertices));
+      clean_vertices(graph->vertices);
     }
 
   //print_map(graph);

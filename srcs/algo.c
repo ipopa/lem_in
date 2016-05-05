@@ -9,8 +9,6 @@ t_vert *find_small_vertice(t_vert *vertice)
   ret = NULL;
   nb = INT_MAX;
   tmp = vertice;
-  if (tmp == NULL)
-    printf("hello\n");
   while (tmp != NULL)
     {
       if (!tmp->visited && *(tmp->wt) < nb && !tmp->occ)
@@ -20,8 +18,6 @@ t_vert *find_small_vertice(t_vert *vertice)
 	}
       tmp = tmp->next;
     }
-  if (ret == NULL)
-    printf("hello\n");
   return ret;
 }
 
