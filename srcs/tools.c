@@ -32,10 +32,25 @@ void destroy_map(t_map *graph)
 	  free(graph->vertices->edges);
 	  graph->vertices->edges = graph->vertices->edges->next;
 	}
+      free(graph->vertices->name);
       free(graph->vertices);
       graph->vertices = graph->vertices->next;
     }
   free(graph);
-  // while(42) {
+  //  while(42) {
   // }
+}
+
+void free_tab(char **tab) {
+  int j;
+
+  j = 0;
+
+  if (tab) {
+    while (tab[j]) {
+      free(tab[j]);
+      j++;
+    }
+    free(tab);
+  }
 }

@@ -99,46 +99,50 @@ t_vert *find_vert(t_vert *vert, char *name)
 
 t_vert *find_start(t_vert *vert)
 {
-	t_vert *tmp;
+  t_vert *tmp;
 
-	tmp = vert;
+  tmp = vert;
 
-	while (tmp != NULL)
+  while (tmp != NULL)
     {
-		if (tmp->start) {
-			return (tmp);
-		}
-		tmp = tmp->next;
+      if (tmp->start) {
+	return (tmp);
+      }
+      tmp = tmp->next;
     }
-	return NULL;
+  return NULL;
 }
 
 int add_vert(t_map *graph, char *line, bool start, bool end)
 {
-	t_vert *new;
-	char **tab;
+  t_vert *new;
+  char **tab;
+  int j;
 
-	new = (t_vert *)malloc(sizeof(t_vert));
-	init_vert(new);
+  new = (t_vert *)malloc(sizeof(t_vert));
+  init_vert(new);
 
-	tab = ft_strsplit(line, ' ');
+  tab = ft_strsplit(line, ' ');
 
-	if (tab[0] != 0) 
-		new->name = ft_strdup(tab[0]);
-	if (tab[1])
+  if (tab[0] != 0) 
+    new->name = ft_strdup(tab[0]);
+  if (tab[1])
     {
-		new->x = ft_atoi(tab[1]);
-		if (tab[2])
-			new->y = ft_atoi(tab[2]);
+      new->x = ft_atoi(tab[1]);
+      if (tab[2])
+	new->y = ft_atoi(tab[2]);
     }
-	if (start)
-		new->start = true;
-	if (end)
-		new->end = true;
 
-	if (add_vert_to_map(&(graph->vertices), new) == -1)
-		return -1;
-	return 1;
+  free_tab(tab);
+ 
+  if (start)
+    new->start = true;
+  if (end)
+    new->end = true;
+
+  if (add_vert_to_map(&(graph->vertices), new) == -1)
+    return -1;
+  return 1;
 
 }
 
@@ -152,8 +156,10 @@ int add_edge(t_map *graph, char *line)
   tab = ft_strsplit(line, '-');
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
-   if (add_edge_to_map(&(v1->edges), v2) == -1)
-      return -1;
+ 
+  free(tab);
+  if (add_edge_to_map(&(v1->edges), v2) == -1)
+    return -1;
   if (add_edge_to_map(&(v2->edges), v1) == -1)
     return -1;
     

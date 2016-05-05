@@ -62,5 +62,6 @@ int check_vert(t_vert *vert, t_vert *new);
 size_t	ft_words(char const *s, char c);
 void destroy_map(t_map *graph);
 int isRe(t_vert *startP, int nb);
+void free_tab(char **tab);
 
 #endif
