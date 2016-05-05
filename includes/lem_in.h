@@ -34,7 +34,7 @@ struct s_vert
   bool start;
   bool end;
   bool occ;
-  int wt;
+  int *wt;
   char *name;
   struct s_edge *edges;
   struct s_vert *orig;
@@ -61,7 +61,8 @@ int error(char *err);
 int check_vert(t_vert *vert, t_vert *new);
 size_t	ft_words(char const *s, char c);
 void destroy_map(t_map *graph);
-int isRe(t_vert *startP, int nb);
+int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb);
 void free_tab(char **tab);
+t_vert *find_small_vertice(t_vert *vertice);
 
 #endif

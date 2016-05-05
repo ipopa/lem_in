@@ -3,83 +3,83 @@
 
 void print_map(t_map *map)
 {
-	t_vert *tmp;
-	t_edge *tmpE;
+  t_vert *tmp;
+  t_edge *tmpE;
   
-	tmp = map->vertices;
-	printf("\n- MAP -\n");
-	while (tmp != NULL)
+  tmp = map->vertices;
+  printf("\n- MAP -\n");
+  while (tmp != NULL)
     {
-		print_vertice(tmp);
-		tmpE = tmp->edges;
-		while (tmpE != NULL)
-		{
-			printf("\t Connect To %s\n", tmpE->connectTo->name);
-			tmpE = tmpE->next;
+      print_vertice(tmp);
+      tmpE = tmp->edges;
+      while (tmpE != NULL)
+	{
+	  printf("\t Connect To %s\n", tmpE->connectTo->name);
+	  tmpE = tmpE->next;
 
-		}
-		tmp = tmp->next;
+	}
+      tmp = tmp->next;
     }
 }
 
 int add_vert_to_map(t_vert **vert, t_vert *new)
 {
-	int i;
-	t_vert *tmpvert;
+  int i;
+  t_vert *tmpvert;
   
-	i = 0;
-	tmpvert = *vert;
-	if (*vert == NULL)
+  i = 0;
+  tmpvert = *vert;
+  if (*vert == NULL)
     {
-		*vert = new;
-		return 1;
-	}
-	while (tmpvert->next != NULL)
-    {
-		if (check_vert(tmpvert, new) == -1)
-			return -1;
-		tmpvert = tmpvert->next;
-		i++;
+      *vert = new;
+      return 1;
     }
-	tmpvert->next = new;
-	return 1;
+  while (tmpvert->next != NULL)
+    {
+      if (check_vert(tmpvert, new) == -1)
+	return -1;
+      tmpvert = tmpvert->next;
+      i++;
+    }
+  tmpvert->next = new;
+  return 1;
 }
 
 t_edge *init_edge(t_vert *new)
 {
-	t_edge *newedge;
+  t_edge *newedge;
 
-	if ((newedge = (t_edge *)malloc(sizeof(t_edge))) == NULL)
-		return NULL;
-	newedge->connectTo = new;
-	newedge->next = NULL;
-	return newedge;
+  if ((newedge = (t_edge *)malloc(sizeof(t_edge))) == NULL)
+    return NULL;
+  newedge->connectTo = new;
+  newedge->next = NULL;
+  return newedge;
 
 }
 
 int add_edge_to_map(t_edge **edge, t_vert *new)
 {
-	int i;
-	t_edge *tmpedge;
-	t_edge *newedge;
+  int i;
+  t_edge *tmpedge;
+  t_edge *newedge;
   
-	i = 0;
-	tmpedge = *edge;
-	newedge = init_edge(new);
-	if (*edge == NULL)
+  i = 0;
+  tmpedge = *edge;
+  newedge = init_edge(new);
+  if (*edge == NULL)
     {
-		*edge = newedge;
-		return 1;
-	}
-	while (tmpedge->next != NULL)
-    {
-		//if (check_vert(tmpedge, new) == -1)
-		//return -1;
-		tmpedge = tmpedge->next;
-		i++;
+      *edge = newedge;
+      return 1;
     }
-	tmpedge->next = newedge;
-	return 1;
+  while (tmpedge->next != NULL)
+    {
+      //if (check_vert(tmpedge, new) == -1)
+      //return -1;
+      tmpedge = tmpedge->next;
+      i++;
+    }
+  tmpedge->next = newedge;
+  return 1;
 }
 
 t_vert *find_vert(t_vert *vert, char *name)
@@ -135,8 +135,10 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
 
   free_tab(tab);
  
-  if (start)
+  if (start) {
     new->start = true;
+    *(new->wt) = 0;
+  }
   if (end)
     new->end = true;
 
@@ -169,55 +171,58 @@ int add_edge(t_map *graph, char *line)
 
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
-	if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
+  if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
     {
-		if (add_edge(graph, line) == -1)
-			return -1;
+      if (add_edge(graph, line) == -1)
+	return -1;
     }
-	else {
-		add_vert(graph, line, start, end);
-   
-	}
-	return 1;
+  else {
+    add_vert(graph, line, start, end);   
+  }
+  return 1;
 }
 
 
 int parse_map(t_map *graph)
 {
-	char *line;
-	int ret;
-	bool start;
-	bool end;
+  char *line;
+  int ret;
+  bool start;
+  bool end;
 
-	start = false;
-	end = false;
+  start = false;
+  end = false;
 
-	printf("%d\n", INT_MAX);
+  printf("%d\n", INT_MAX);
 
-	while ((ret = get_next_line(0, &line)) >= 0)
+  while ((ret = get_next_line(0, &line)) >= 0) 
     {
-		if (ft_strequ(line, "##start"))
-			start = true;
-		else if (ft_strequ(line, "##end"))
-			end = true;
-		else if(line[0] == '#')
-			continue ;
-		else
-		{
-			if (parse_line(graph, line, start, end) == -1)
-				return -1;
-			start = false;
-			end = false;
-		}
-		if (ret == 0)
-			break;
-    }
-	if (end || start)
-		error("manque le vertice start ou end\n");
-
-	if (isRe(find_start(graph->vertices), 0)) {
-		printf("ok\n");
+      if (ft_strequ(line, "##start"))
+	start = true;
+      else if (ft_strequ(line, "##end"))
+	end = true;
+      else if(line[0] == '#')
+	continue ;
+      else
+	{
+	  if (parse_line(graph, line, start, end) == -1)
+	    return -1;
+	  start = false;
+	  end = false;
 	}
-	print_map(graph);
-	return 1;
+      if (ret == 0)
+	break;
+    }
+  if (end || start) 
+    {
+      error("manque le vertice start ou end\n");
+    }
+
+  if (ft_dijkstra(graph->vertices, find_small_vertice(graph->vertices), 1)) 
+    {
+      printf("ok\n");
+    }
+
+  print_map(graph);
+  return 1;
 }

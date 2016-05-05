@@ -1,37 +1,63 @@
 #include "lem_in.h"
 
-int isRe(t_vert *startP, int nb)
+t_vert *find_small_vertice(t_vert *vertice) 
 {
-	t_edge *edgeP;
-	int tmpNb;
+  t_vert *tmp;
+  t_vert *ret;
+  int nb;
 
+  ret = NULL;
+  nb = INT_MAX;
+  tmp = vertice;
+  while (tmp != NULL)
+    {
+      if (!tmp->visited && *(tmp->wt) < nb)
+	{
+	  nb = *(tmp->wt);
+	  ret = tmp;
+	}
+      tmp = tmp->next;
+    }
+
+  return ret;
+}
+
+int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb)
+{
+  t_edge *edgeP;
+  int tmpNb;
+
+       
+ 
+  if (startP == NULL) 
+    {
+      return 0;
+    }
+
+  printf("name = [%s] with wt = [%d]\n", startP->name, *(startP->wt));
+
+  startP->visited = true;
+
+  if (startP->end)
+    {
+      printf("end : %s\n", startP->name);
+      return 1;
+    }
+
+  edgeP = startP->edges;
+
+  while (edgeP != NULL)
+    {
+      if (!edgeP->connectTo->visited && (*(edgeP->connectTo->wt) > (nb + *(startP->wt))))
+	{
+	  *(edgeP->connectTo->wt) = *(startP->wt) + nb;
+	  edgeP->connectTo->orig = startP;
 	
-	if (startP->start) {
-		startP->wt = 0;
 	}
-	printf("%s with wt = %d \n", startP->name, startP->wt);
-	if (startP->visited)
-		return 0;
-
-	startP->visited = true;
-
-	if (startP->end)
-	{
-		printf("end : %s\n", startP->name);
-		return 1;
-	}
-
-	edgeP = startP->edges;
-
-	tmpNb = nb + 1;
-	while (edgeP != NULL)
-	{
-		edgeP->connectTo->wt = tmpNb; 
-		printf("%s with wt = %d \n", edgeP->connectTo->name, edgeP->connectTo->wt);
-		if ((!edgeP->connectTo->visited || edgeP->connectTo->wt > tmpNb) && isRe(edgeP->connectTo, tmpNb)) {
-			return 1;
-		}
-		edgeP = edgeP->next;
-	}
-	return 0;
+      edgeP = edgeP->next;
+    } 
+  if (ft_dijkstra(vertices, find_small_vertice(vertices), nb)) {
+    return 1;
+  }
+  return 0;
 }

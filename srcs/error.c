@@ -13,7 +13,7 @@ void print_vertice(t_vert *vert)
     printf("- vertice end -\n");
   if (vert->start)
     printf("- vertice start -\n");
-  printf("name = %s; wt = %d; x = %d; y = %d\n", vert->name, vert->wt, vert->x, vert->y);
+  printf("name = %s; wt = %d; x = %d; y = %d\n", vert->name, *(vert->wt), vert->x, vert->y);
   if (vert->occ)
     printf("- vertice occuped -\n");
 }

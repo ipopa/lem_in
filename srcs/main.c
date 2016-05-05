@@ -6,7 +6,8 @@ int init_vert(t_vert *vert)
   vert->start = false;
   vert->end = false;
   vert->occ = false;
-  vert->wt = 100000;
+  vert->wt = (int *)malloc(sizeof(int));
+  *(vert->wt) = INT_MAX; 
   if ((vert->edges = (t_edge *)malloc(sizeof(t_edge))) == NULL)
     return 0;
   vert->edges = NULL;
