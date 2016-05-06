@@ -97,21 +97,6 @@ t_vert *find_vert(t_vert *vert, char *name)
   return NULL;
 }
 
-t_vert *find_end(t_vert *vert)
-{
-  t_vert *tmp;
-
-  tmp = vert;
-
-  while (tmp != NULL)
-    {
-      if (tmp->end) {
-	return (tmp);
-      }
-      tmp = tmp->next;
-    }
-  return NULL;
-}
 
 int add_vert(t_map *graph, char *line, bool start, bool end)
 {
@@ -138,10 +123,13 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
   if (start) {
     new->start = true;
     *(new->wt) = 0;
+    graph->start = new;
   }
-  if (end)
-    new->end = true;
+  if (end) {
 
+    graph->end = new;
+    new->end = true;
+  }
   if (add_vert_to_map(&(graph->vertices), new) == -1)
     return -1;
   return 1;
@@ -182,6 +170,20 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
   return 1;
 }
 
+int count_edge(t_vert *vert)
+{
+  int i;
+  t_edge *tmp;
+
+  i = 0;
+  tmp = vert->edges;
+  while(tmp != NULL)
+    {
+      i++;
+      tmp = tmp->next;
+    }
+  return i;
+}
 
 int parse_map(t_map *graph)
 {
@@ -189,9 +191,11 @@ int parse_map(t_map *graph)
   int ret;
   bool start;
   bool end;
+  int i;
 
   start = false;
   end = false;
+  i = 0;
 
   printf("%d\n", INT_MAX);
 
@@ -215,16 +219,20 @@ int parse_map(t_map *graph)
     }
   if (end || start) 
     {
-      error("manque le vertice start ou end\n");
-    }
 
-  while (ft_dijkstra(graph->vertices, find_small_vertice(graph->vertices), 1) != 0) 
+      error("manque le vertice start ou end\n");
+      return -1;
+    }
+  graph->maxpath = count_edge(graph->end);
+  printf("graph->maxpath = %d\n", graph->maxpath);
+  print_map(graph);
+  while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < 1)//graph->maxpath) 
     {
       printf("ok\n");
-      print_path(find_end(graph->vertices));
+      create_path(graph, graph->end);
+      print_path(graph->path);
       clean_vertices(graph->vertices);
+      i++;
     }
-
-  //print_map(graph);
   return 1;
 }

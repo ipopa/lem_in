@@ -13,7 +13,7 @@ int init_vert(t_vert *vert)
   vert->edges = NULL;
   //  if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == NULL)
   //  return 0;
-  // vert->orig = NULL;
+  //  vert->orig = NULL;
   vert->next = NULL;
   vert->x = 0;
   vert->y = 0;
@@ -27,6 +27,9 @@ int init_map(t_map *graph)
     return 0;
   graph->vertices = NULL;
   graph->ants = 0;
+  graph->maxpath = 0;
+  graph->end = NULL;
+  graph->start = NULL;
   return 1;
 }
 
@@ -35,14 +38,11 @@ int main(int ac, char **av)
   char *line;
   t_map *graph;
   int fd;
-  int i;
   int ret;
   int ants;
 
-  i = 0;
-
   fd = 0;
-
+  ants = 0;
   if ((ret = get_next_line(fd, &line)) == -1)
     return 0;
   if ((ants = ft_atoi(line)) == 0 && !ft_strequ(line, "0"))

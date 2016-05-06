@@ -25,20 +25,16 @@ int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb)
 {
   t_edge *edgeP;
   int tmpNb;
-
-       
  
   if (startP == NULL) 
     {
       return 0;
     }
 
-  printf("name = [%s] with wt = [%d]\n", startP->name, *(startP->wt));
   startP->visited = true;
 
   if (startP->end)
     {
-      printf("end : %s\n", startP->name);
       return 1;
     }
 
@@ -58,19 +54,6 @@ int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb)
   }
   return 0;
 }
-
-void print_path(t_vert *vertices) 
-{
-  while (!vertices->start)
-    {
-      print_vertice(vertices);
-      if (!vertices->end)
-	vertices->occ = true;
-      vertices = vertices->orig;
-    }
-  print_vertice(vertices);
-}
-
 
 void clean_vertices(t_vert *vertices)
 {

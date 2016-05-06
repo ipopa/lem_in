@@ -12,14 +12,18 @@ typedef struct s_map t_map;
 typedef struct s_vert t_vert;
 typedef struct s_env t_env;
 typedef struct s_edge t_edge;
+typedef struct s_path t_path;
 
 # define INT_MAX 0x7FFFFFFF
 
 struct s_map
 {
   t_vert *vertices;
+  t_vert *start;
+  t_vert *end;
+  int maxpath;
   int ants;
-  char **edges;
+  struct s_path *path;
 };
 
 struct s_edge
@@ -27,6 +31,13 @@ struct s_edge
 
   struct s_vert *connectTo;
   struct s_edge *next;
+};
+
+struct s_path
+{
+  int nbelem;
+  struct s_vert *vertices;
+  struct s_path *next;
 };
 
 struct s_vert
@@ -64,7 +75,8 @@ void destroy_map(t_map *graph);
 int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb);
 void free_tab(char **tab);
 t_vert *find_small_vertice(t_vert *vertice);
-void print_path(t_vert *vertices);
+void print_path(t_path *path);
 void clean_vertices(t_vert *vertices);
+void create_path(t_map *graph, t_vert *vert);
 
 #endif
