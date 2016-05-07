@@ -13,6 +13,7 @@ typedef struct s_vert t_vert;
 typedef struct s_env t_env;
 typedef struct s_edge t_edge;
 typedef struct s_path t_path;
+typedef struct s_listpath t_listpath;
 
 # define INT_MAX 0x7FFFFFFF
 
@@ -23,7 +24,16 @@ struct s_map
   t_vert *end;
   int maxpath;
   int ants;
+  struct s_listpath *listpath;
+};
+
+struct s_listpath
+{
+  int nbelem;
   struct s_path *path;
+  struct s_path *cur;
+  struct s_listpath *next;
+
 };
 
 struct s_edge
@@ -35,7 +45,6 @@ struct s_edge
 
 struct s_path
 {
-  int nbelem;
   struct s_vert *vertices;
   struct s_path *next;
 };

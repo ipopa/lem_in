@@ -1,12 +1,18 @@
 #include "lem_in.h"
 
+
+
+
+
 void create_path(t_map *graph, t_vert *vert)
 {
   int nbelem;
-  t_path *new;
-
+  t_path *newnode;
+  t_listpath *newpath;
+  
   nbelem = 1;
-  graph->path = (t_path *)malloc(sizeof(t_path));
+  newpath = (t_listpath *)malloc(sizeof(t_listpath));
+  newnode = (t_path *)malloc(sizeof(t_path));
   graph->path = NULL;
   
   while (!vert->start)
@@ -27,5 +33,5 @@ void create_path(t_map *graph, t_vert *vert)
   new->vertices = vert;
   new->next = graph->path;
   graph->path = new;
-  graph->path->nbelem = nbelem;
+  graph->listpath->nbelem = nbelem;
 }
