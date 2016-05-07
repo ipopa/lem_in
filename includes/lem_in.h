@@ -88,5 +88,6 @@ t_vert *find_small_vertice(t_vert *vertice);
 void print_path(t_path *path);
 void clean_vertices(t_vert *vertices);
 void create_path(t_map *graph, t_vert *vert);
+void set_path(t_map *graph);
 
 #endif

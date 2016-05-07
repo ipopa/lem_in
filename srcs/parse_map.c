@@ -183,10 +183,6 @@ int count_edge(t_vert *vert)
   return i;
 }
 
-void set_path(t_map *graph)
-{
-}
-
 int parse_map(t_map *graph)
 {
   char *line;
@@ -235,12 +231,6 @@ int parse_map(t_map *graph)
 
       clean_vertices(graph->vertices);
       i++;
-    }
-  while (graph->listpath)
-    {
-      print_path(graph->listpath->path);
-      printf("nb elem = %d\n", graph->listpath->nbelem);
-      graph->listpath = graph->listpath->next;
     }
   set_path(graph);
   return 1;

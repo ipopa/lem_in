@@ -69,3 +69,19 @@ void clean_vertices(t_vert *vertices)
       tmp = tmp->next;
     }
 }
+
+void set_path(t_map *graph)
+{
+  int minNb;
+  t_listpath *tmpLP;
+
+  minNb = graph->listpath->nbelem;
+  tmpLP = graph->listpath->next;
+
+  while (tmpLP)
+    {
+      //print_path(graph->listpath->path);
+      printf("nb elem = %d\n", tmpLP->nbelem);
+      tmpLP = tmpLP->next;
+    }
+}
