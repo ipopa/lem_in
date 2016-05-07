@@ -23,29 +23,44 @@ size_t	ft_words(char const *s, char c)
   return (size);
 }
 
+void free_vertices(t_vert *vertices)
+{
+  while(vertices != NULL)
+    {
+      while(vertices->edges != NULL)
+	{
+	  free(vertices->edges);
+	  vertices->edges = vertices->edges->next;
+	}
+      free(vertices->name);
+      free(vertices->wt);
+      free(vertices);
+      vertices = vertices->next;
+    }
+}
+
 void destroy_map(t_map *graph)
 {
-  while(graph->vertices != NULL)
-    {
-      while(graph->vertices->edges != NULL)
-	{
-	  free(graph->vertices->edges);
-	  graph->vertices->edges = graph->vertices->edges->next;
-	}
-      free(graph->vertices->name);
-      free(graph->vertices->wt);
-      free(graph->vertices);
-      graph->vertices = graph->vertices->next;
-    }
+  free_vertices(graph->vertices);
+ 
   while(graph->listpath != NULL)
     {
-      free(graph->listpath->path);
+      if (graph->listpath->cur != NULL)
+	{
+	  //  free_vertices(graph->listpath->cur->vertices);
+	  free(graph->listpath->cur);
+	}
+      if (graph->listpath->path != NULL)
+	{
+	  //  free_vertices(graph->listpath->path->vertices);
+	  free(graph->listpath->path);
+	}
       free(graph->listpath);
       graph->listpath = graph->listpath->next;
     }
   free(graph);
-  //  while(42) {
-  // }
+  while(42) {
+  }
 }
 
 void free_tab(char **tab) {
