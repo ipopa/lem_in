@@ -229,15 +229,19 @@ int parse_map(t_map *graph)
   graph->maxpath = count_edge(graph->end);
   printf("graph->maxpath = %d\n", graph->maxpath);
   print_map(graph);
+  graph->nbpath = 0;
   while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath) 
     {
       printf("ok\n");
       nbelem = create_path(graph, graph->end);
       printf("%d\n", nbelem);
+      if (nbelem == nbelem)
+	{
+	  graph->nbpath++;
+	}
       clean_vertices(graph->vertices);
       i++;
     }
-  graph->nbpath = i;
   set_path(graph);
  
   while (graph->listpath)
