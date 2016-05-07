@@ -8,12 +8,8 @@ int init_vert(t_vert *vert)
   vert->occ = false;
   vert->wt = (int *)malloc(sizeof(int));
   *(vert->wt) = INT_MAX; 
-  if ((vert->edges = (t_edge *)malloc(sizeof(t_edge))) == NULL)
-    return 0;
   vert->edges = NULL;
-  //  if ((vert->orig = (t_vert *)malloc(sizeof(t_vert))) == NULL)
-  //  return 0;
-  //  vert->orig = NULL;
+  vert->orig = NULL;
   vert->next = NULL;
   vert->x = 0;
   vert->y = 0;
@@ -23,12 +19,8 @@ int init_vert(t_vert *vert)
 
 int init_map(t_map *graph)
 {
-  if ((graph->vertices = (t_vert *)malloc(sizeof(t_vert))) == NULL)
-    return 0;
   graph->vertices = NULL;
   graph->ants = 0;
-  if ((graph->listpath = (t_listpath *)malloc(sizeof(t_listpath))) == NULL)
-       return 0;
   graph->listpath = NULL;
   graph->maxpath = 0;
   graph->end = NULL;

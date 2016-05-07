@@ -54,7 +54,6 @@ t_edge *init_edge(t_vert *new)
   newedge->connectTo = new;
   newedge->next = NULL;
   return newedge;
-
 }
 
 int add_edge_to_map(t_edge **edge, t_vert *new)
@@ -142,7 +141,6 @@ int add_edge(t_map *graph, char *line)
   t_vert *v1;
   t_vert *v2;
 
-  
   tab = ft_strsplit(line, '-');
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
