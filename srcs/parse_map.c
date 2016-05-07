@@ -164,7 +164,8 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
     }
   else if (ft_searchchr(line, ' ') && ft_words(line, ' ') == 3)
     {
-      add_vert(graph, line, start, end);   
+      if (add_vert(graph, line, start, end) == -1)
+	return -1;   
     }
   else {
     return -1;
