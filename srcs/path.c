@@ -17,20 +17,21 @@ void create_path(t_map *graph, t_vert *vert)
   newpath->next = NULL;
   newpath->maxants = 0;
 
+  newnode = (t_path *)malloc(sizeof(t_path));
   while (!vert->start)
     {
-	newnode = (t_path *)malloc(sizeof(t_path));
-	newnode->vertices = vert;
-	newnode->next = newpath->path;
-	newpath->path = newnode;
-	if (!vert->end)
-	  {
-	    vert->occ = true;
-	  }
+
+      newnode->vertices = vert;
+      newnode->next = newpath->path;
+      newpath->path = newnode;
+      if (!vert->end)
+	{
+	  vert->occ = true;
+	}
       nbelem++;
       vert = vert->orig;
     }
-  newnode = (t_path *)malloc(sizeof(t_path));
+  //  newnode = (t_path *)malloc(sizeof(t_path));
   newnode->vertices = vert;
   newnode->next = newpath->path;
   newpath->path = newnode;
@@ -48,4 +49,5 @@ void create_path(t_map *graph, t_vert *vert)
 	}
       tmp->next = newpath;
     }
+  // free(newpath);
 }
