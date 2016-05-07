@@ -235,6 +235,7 @@ int parse_map(t_map *graph)
   while (graph->listpath)
     {
       print_path(graph->listpath->path);
+      printf("nb elem = %d\n", graph->listpath->nbelem);
       graph->listpath = graph->listpath->next;
     }
   return 1;
