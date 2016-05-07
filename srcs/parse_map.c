@@ -157,14 +157,21 @@ int add_edge(t_map *graph, char *line)
 
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
+  printf("hello1\n");
   if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
     {
+      printf("helloif\n");
       if (add_edge(graph, line) == -1)
 	return -1;
     }
   else {
+    if (line == NULL) {
+      printf("ok\n");
+    }
+    printf("line: %s\n", line);
     add_vert(graph, line, start, end);   
   }
+  printf("hello2\n");
   return 1;
 }
 
@@ -199,7 +206,6 @@ int parse_map(t_map *graph)
 
   while ((ret = get_next_line(0, &line)) >= 0) 
     {
-      printf("hello\n");
       if (ft_strequ(line, "##start"))
 	start = true;
       else if (ft_strequ(line, "##end"))
