@@ -113,10 +113,13 @@ int test_nbelem(int *tab, int total)
 
   i = 0;
 
-  while(i <= total)
+  if (i == 0)
+    return 1;
+  if (i == 1) 
     {
-      printf("%d\n", tab[i]);
-      i++;
+    }
+  else 
+    {
     }
   return 1;
 }

@@ -244,7 +244,7 @@ int parse_map(t_map *graph)
       i++;
     }
   free(tmpTab);
-  set_path(graph);
+  //  set_path(graph);
  
   while (graph->listpath)
     {
