@@ -39,6 +39,7 @@ void destroy_map(t_map *graph)
     }
   while(graph->listpath != NULL)
     {
+      free(graph->listpath->path);
       free(graph->listpath);
       graph->listpath = graph->listpath->next;
     }
