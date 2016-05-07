@@ -87,15 +87,15 @@ void set_path(t_map *graph)
     {
       sum = minNb + ants - 1;
       tmpNb = tmpLP->nbelem;
-      printf("nb elem = %d\n", tmpNb);
+      //printf("nb elem = %d\n", tmpNb);
       if (sum > tmpNb) 
 	{
 	  tmpLP->maxants = (sum - tmpNb) / 2;
 	  ants -= tmpLP->maxants; 
 	}
-      printf("maxants = %d\n", tmpLP->maxants);
+      //  printf("maxants = %d\n", tmpLP->maxants);
       tmpLP = tmpLP->next;
     }
   graph->listpath->maxants = ants;
-  printf("maxants = %d\n", graph->listpath->maxants);
+  //  printf("first maxants = %d\n", graph->listpath->maxants);
 }
