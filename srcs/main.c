@@ -27,7 +27,9 @@ int init_map(t_map *graph)
     return 0;
   graph->vertices = NULL;
   graph->ants = 0;
-  if ((graph->listpath = (listpath *)malloc(sizeof(listpath))
+  if ((graph->listpath = (t_listpath *)malloc(sizeof(t_listpath))) == NULL)
+       return 0;
+  graph->listpath = NULL;
   graph->maxpath = 0;
   graph->end = NULL;
   graph->start = NULL;

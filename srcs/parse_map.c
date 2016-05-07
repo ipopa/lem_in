@@ -226,11 +226,11 @@ int parse_map(t_map *graph)
   graph->maxpath = count_edge(graph->end);
   printf("graph->maxpath = %d\n", graph->maxpath);
   print_map(graph);
-  while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < 1)//graph->maxpath) 
+  while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath) 
     {
       printf("ok\n");
       create_path(graph, graph->end);
-      print_path(graph->listpath->path);
+      //      print_path(graph->listpath->path);
       clean_vertices(graph->vertices);
       i++;
     }
