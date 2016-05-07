@@ -41,7 +41,7 @@ void create_path(t_map *graph, t_vert *vert)
     graph->listpath = newpath;
   else
     {
-      while (tmp->next == NULL)
+      while (tmp->next != NULL)
 	{
 	  tmp = tmp->next;
 	}
