@@ -9,6 +9,7 @@ void create_path(t_map *graph, t_vert *vert)
   int nbelem;
   t_listpath *newpath;
   t_path *newnode;
+  t_listpath *tmp;
 
   nbelem = 1;
   newpath = (t_listpath *)malloc(sizeof(t_listpath));
@@ -34,6 +35,16 @@ void create_path(t_map *graph, t_vert *vert)
   newpath->path = newnode;
 
   newpath->nbelem = nbelem;
-  if (graph->listpath = NULL)
+
+  tmp = graph->listpath;
+  if (graph->listpath == NULL)
     graph->listpath = newpath;
+  else
+    {
+      while (tmp->next == NULL)
+	{
+	  tmp = tmp->next;
+	}
+      tmp->next = newpath;
+    }
 }

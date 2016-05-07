@@ -230,9 +230,14 @@ int parse_map(t_map *graph)
     {
       printf("ok\n");
       create_path(graph, graph->end);
-      //      print_path(graph->listpath->path);
+
       clean_vertices(graph->vertices);
       i++;
+    }
+  while (graph->listpath)
+    {
+      print_path(graph->listpath->path);
+      graph->listpath = graph->listpath->next;
     }
   return 1;
 }
