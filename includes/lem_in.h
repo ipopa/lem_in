@@ -24,6 +24,7 @@ struct s_map
   t_vert *end;
   int maxpath;
   int ants;
+  int nbpath;
   struct s_listpath *listpath;
 };
 

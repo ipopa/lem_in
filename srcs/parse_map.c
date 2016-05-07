@@ -237,6 +237,7 @@ int parse_map(t_map *graph)
       clean_vertices(graph->vertices);
       i++;
     }
+  graph->nbpath = i;
   set_path(graph);
  
   while (graph->listpath)

@@ -31,7 +31,6 @@ void create_path(t_map *graph, t_vert *vert)
       nbelem++;
       vert = vert->orig;
     }
-  //  newnode = (t_path *)malloc(sizeof(t_path));
   newnode->vertices = vert;
   newnode->next = newpath->path;
   newpath->path = newnode;
