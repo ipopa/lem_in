@@ -91,12 +91,10 @@ void set_path(t_map *graph)
     {
       sum = minNb + ants - 1;
       tmpNb = tmpLP->nbelem;
-      printf("nb elem = %d\n", tmpNb);
-      res = (sum - tmpNb) / tmpnbpath--;
-      printf("res = %d\n", res);
-      if (res >= tmpNb) 
+      //printf("nb elem = %d\n", tmpNb);
+      if (sum > tmpNb) 
 	{
-	  tmpLP->maxants = res;
+	  tmpLP->maxants = (sum - tmpNb) / tmpnbpath--;
 	  ants -= tmpLP->maxants; 
 	}
       else {
