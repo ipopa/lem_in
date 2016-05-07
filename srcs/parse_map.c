@@ -198,7 +198,6 @@ int parse_map(t_map *graph)
 
   start = false;
   end = false;
-  i = 0;
 
   printf("%d\n", INT_MAX);
 
@@ -229,17 +228,22 @@ int parse_map(t_map *graph)
   printf("graph->maxpath = %d\n", graph->maxpath);
   print_map(graph);
   graph->nbpath = 0;
+
+  int *tmpTab = (int *)malloc(sizeof(int) + graph->maxpath);
+
+  i = 0;
   while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath) 
     {
       printf("ok\n");
-      create_path(graph, graph->end);
-      if (test_nbelem(graph->listpath))
+      tmpTab[i] = create_path(graph, graph->end);
+      if (test_nbelem(tmpTab, i))
 	{
 	  graph->nbpath++;
 	}
       clean_vertices(graph->vertices);
       i++;
     }
+  free(tmpTab);
   set_path(graph);
  
   while (graph->listpath)
