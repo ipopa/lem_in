@@ -15,6 +15,7 @@ void create_path(t_map *graph, t_vert *vert)
   newpath = (t_listpath *)malloc(sizeof(t_listpath));
   newpath->path = NULL;
   newpath->next = NULL;
+  newpath->maxants = 0;
 
   while (!vert->start)
     {

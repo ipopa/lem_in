@@ -30,6 +30,7 @@ struct s_map
 struct s_listpath
 {
   int nbelem;
+  int maxants;
   struct s_path *path;
   struct s_path *cur;
   struct s_listpath *next;
