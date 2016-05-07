@@ -77,7 +77,6 @@ void set_path(t_map *graph)
   t_listpath *tmpLP;
   int sum;
   int tmpNb;
-  int sumMaxAnts;
 
   tmpNb = 0;
   ants = graph->ants;
@@ -86,18 +85,17 @@ void set_path(t_map *graph)
 
   while (tmpLP)
     {
-      //print_path(tmpLP);
-      sum = minNb + ants - 1 - tmpNb;
+      sum = minNb + ants - 1;
       tmpNb = tmpLP->nbelem;
       printf("nb elem = %d\n", tmpNb);
       if (sum > tmpNb) 
 	{
 	  tmpLP->maxants = (sum - tmpNb) / 2;
+	  ants -= tmpLP->maxants; 
 	}
       printf("maxants = %d\n", tmpLP->maxants);
-      sumMaxAnts += tmpLP->maxants;
       tmpLP = tmpLP->next;
     }
-  graph->listpath->maxants = ants - sumMaxAnts;
+  graph->listpath->maxants = ants;
   printf("maxants = %d\n", graph->listpath->maxants);
 }
