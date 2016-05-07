@@ -199,6 +199,7 @@ int parse_map(t_map *graph)
 
   while ((ret = get_next_line(0, &line)) >= 0) 
     {
+      printf("hello\n");
       if (ft_strequ(line, "##start"))
 	start = true;
       else if (ft_strequ(line, "##end"))

@@ -43,8 +43,8 @@ void destroy_map(t_map *graph)
       graph->listpath = graph->listpath->next;
     }
   free(graph);
-  while(42) {
-  }
+  //  while(42) {
+  // }
 }
 
 void free_tab(char **tab) {
