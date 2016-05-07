@@ -157,21 +157,18 @@ int add_edge(t_map *graph, char *line)
 
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
-  printf("hello1\n");
   if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
     {
-      printf("helloif\n");
       if (add_edge(graph, line) == -1)
 	return -1;
     }
-  else {
-    if (line == NULL) {
-      printf("ok\n");
+  else if (ft_searchchr(line, ' ') && ft_words(line, ' ') == 3)
+    {
+      add_vert(graph, line, start, end);   
     }
-    printf("line: %s\n", line);
-    add_vert(graph, line, start, end);   
+  else {
+    return -1;
   }
-  printf("hello2\n");
   return 1;
 }
 
