@@ -1,10 +1,6 @@
 #include "lem_in.h"
 
-
-
-
-
-void create_path(t_map *graph, t_vert *vert)
+int create_path(t_map *graph, t_vert *vert)
 {
   int nbelem;
   t_listpath *newpath;
@@ -48,5 +44,5 @@ void create_path(t_map *graph, t_vert *vert)
 	}
       tmp->next = newpath;
     }
-  // free(newpath);
+  return nbelem;
 }
