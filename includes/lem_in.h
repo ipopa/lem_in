@@ -90,5 +90,6 @@ void print_path(t_path *path);
 void clean_vertices(t_vert *vertices);
 int create_path(t_map *graph, t_vert *vert);
 void set_path(t_map *graph);
+int test_nbelem(t_listpath *listpath);
 
 #endif

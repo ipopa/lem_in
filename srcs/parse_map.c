@@ -195,7 +195,6 @@ int parse_map(t_map *graph)
   bool start;
   bool end;
   int i;
-  int nbelem;
 
   start = false;
   end = false;
@@ -233,9 +232,8 @@ int parse_map(t_map *graph)
   while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath) 
     {
       printf("ok\n");
-      nbelem = create_path(graph, graph->end);
-      printf("%d\n", nbelem);
-      if (nbelem == nbelem)
+      create_path(graph, graph->end);
+      if (test_nbelem(graph->listpath))
 	{
 	  graph->nbpath++;
 	}
