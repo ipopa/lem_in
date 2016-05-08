@@ -238,7 +238,10 @@ int parse_map(t_map *graph)
       tmpTab[i] = (int *)malloc(sizeof(**tmpTab) * 2);
       tmpTab[i][0] = create_path(graph, graph->end);
       if (i != 0 && test_nbelem(tmpTab, i, graph) == -1)
-	break ;
+	{
+	  clean_vertices(graph->vertices);
+	  break ;
+	}
       clean_vertices(graph->vertices);
       i++;
     }
@@ -250,7 +253,7 @@ int parse_map(t_map *graph)
   while (graph->listpath && i < graph->nbpath)
     {
       printf("nombre de fourmies par ce chemin long de %d =  %d\n", graph->listpath->nbelem, tmpTab[i][1]);
-      //  print_path(graph->listpath->path);
+      //      print_path(graph->listpath->path);
       printf("\n");
       i++;
       graph->listpath = graph->listpath->next;
