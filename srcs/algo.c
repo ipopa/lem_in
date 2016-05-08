@@ -99,7 +99,7 @@ void set_path(int **tab, t_map *graph)
     }
   tab[0][1] = graph->ants - tmpTotal + tab[0][1];
   i = 0;
-  while (i < graph->nbpath)
+  while(i < graph->nbpath)
     {
       printf("tab1: %d\n", tab[i][1]);
       i++;
