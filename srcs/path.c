@@ -31,6 +31,8 @@ int create_path(t_map *graph, t_vert *vert)
   newnode->next = newpath->path;
   newpath->path = newnode;
 
+  print_path(newpath->path);
+  
   newpath->nbelem = nbelem;
 
   tmp = graph->listpath;

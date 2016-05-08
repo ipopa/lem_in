@@ -226,7 +226,7 @@ int parse_map(t_map *graph)
     }
   graph->maxpath = count_edge(graph->end);
   printf("graph->maxpath = %d\n", graph->maxpath);
-  print_map(graph);
+  //print_map(graph);
   graph->nbpath = 0;
 
   int **tmpTab = (int **)malloc(sizeof(*tmpTab) * graph->maxpath);
