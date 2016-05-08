@@ -132,4 +132,13 @@ void test_nbelem(int **tab, int total, t_map *graph)
   tab[0][1] = (int)tmp;
   printf("tmpFirst = %d\n", tmpFirst);
   printf("tab1 = %d\n", tab[0][1]);
+
+  if (tmpFirst)
+    {
+      i = 1;
+      while(i <= total)
+	{
+	  i++;
+	}
+    }
 }
