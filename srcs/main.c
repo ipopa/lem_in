@@ -25,7 +25,6 @@ int init_map(t_map *graph)
   graph->maxpath = 0;
   graph->end = NULL;
   graph->start = NULL;
-  graph->tabpath = (int **)malloc(sizeof(int *));
   return 1;
 }
 
