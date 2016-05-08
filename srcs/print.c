@@ -18,7 +18,8 @@ void print_path(t_path *path)
   tmp = path;
   while (path != NULL)
     {
-      print_vertice(path->vertices);
+      // print_vertice(path->vertices);
+      printf("L1-%s\n", path->vertices->name);
       path = path->next;
     }
 }

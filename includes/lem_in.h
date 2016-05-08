@@ -68,7 +68,6 @@ struct s_vert
 
 struct s_env
 {
-
   bool start;
   bool end;
   bool err;
