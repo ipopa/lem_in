@@ -88,7 +88,7 @@ void set_path(int **tab, t_map *graph)
   i = 0;
   while (i < graph->nbpath)
     {
-      tab[i][1] = (total - (2 * tab[i][0])) / graph->nbpath;
+      tab[i][1] = (total - (3 * tab[i][0])) / graph->nbpath;
       printf("tab1: %d\n", tab[i][1]);
       i++;
     }
