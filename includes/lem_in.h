@@ -25,6 +25,7 @@ struct s_map
   int maxpath;
   int ants;
   int nbpath;
+  int **tabpath;
   struct s_listpath *listpath;
 };
 
@@ -35,7 +36,6 @@ struct s_listpath
   struct s_path *path;
   struct s_path *cur;
   struct s_listpath *next;
-
 };
 
 struct s_edge
