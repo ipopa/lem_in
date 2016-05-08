@@ -116,11 +116,7 @@ int test_nbelem(int **tab, int total, t_map *graph)
 
   i = 1;
 
-  tmpFirst = graph->ants;
-  if (total > 0)
-    {
-      tmpFirst -= tab[0][0];
-    }
+  tmpFirst = graph->ants - tab[0][0];
   while (i <= total && total > 0)
     {
       tmpFirst += tab[i][0];
@@ -130,9 +126,8 @@ int test_nbelem(int **tab, int total, t_map *graph)
   if ((int)tmp < (int)(tmp + 0.5))
     tmp++;
   tmpFirst = (int)tmp;
-
   if (tmpFirst < tab[total][0])
     return -1;
-  graph->maxpath = total;
+  graph->nbpath = total + 1;
   return 1;
 }
