@@ -125,11 +125,12 @@ void test_nbelem(int **tab, int total, t_map *graph)
       i++;
     }
   tmp = (float)tmpFirst / (total + 1);
+  printf("tmpFloat = %f\n", tmp);
   if ((int)tmp < (int)(tmp + 0.5))
     tmp++;
   tmpFirst = (int)tmp;
   printf("tmpFirst = %d\n", tmpFirst);
-  printf("tabTotal = %d\n", tab[total][1]);
+  printf("tabTotal = %d\n", tab[total][0]);
 
   if (tmpFirst >= tab[total][0])
     {
