@@ -107,7 +107,7 @@ void set_path(t_map *graph)
   //  printf("first maxants = %d\n", graph->listpath->maxants);
 }
 
-int test_nbelem(int **tab, int total, t_map *graph)
+int test_nbelem(int **tab, int total, int ants)
 {
   int i;
   float tmp;
@@ -116,7 +116,7 @@ int test_nbelem(int **tab, int total, t_map *graph)
 
   i = 1;
 
-  tmpFirst = graph->ants;
+  tmpFirst = ants;
   if (total > 0)
     {
       tmpFirst -= tab[0][0];
