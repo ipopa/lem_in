@@ -20,7 +20,7 @@ int add_to_listpath(t_map *graph, t_path *newpath, int nbelem)
 	{
 	  tmp = tmp->next;
 	}
-      tmp->next = newpath;
+      tmp->next = path;
     }
 }
 
