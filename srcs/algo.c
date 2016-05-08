@@ -117,11 +117,8 @@ void test_nbelem(int **tab, int total, t_map *graph)
   i = 1;
 
   printf("total = %d\n", total);
-  // tmpFirst = tab[0][1];
   tmpFirst = graph->ants - tab[0][0];
-  printf("tmpFirst = %d\n", tmpFirst);
-  //  printf("tab1 = %d\n", tab[0][0]);
-  // printf("tab1 = %d\n", tab[0][1]);
+  printf("tab1 = %d\n", tab[0][1]);
   while (i <= total && total > 0)
     {
       tmpFirst += tab[i][0];
@@ -137,7 +134,9 @@ void test_nbelem(int **tab, int total, t_map *graph)
   if (tmpFirst > tab[total][0])
     {
       cof = tab[0][1] - tmpFirst;
+      tab[0][1] = tmpFirst;     
       i = 1;
+      printf("cof = %d\n", cof);
       while(i <= total)
 	{
 	  i++;
