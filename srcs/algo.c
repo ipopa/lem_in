@@ -91,14 +91,13 @@ void set_path(int **tab, t_map *graph)
   i = 0;
   //total += 1;
   tmpTotal = 0;
-  tmpNbPath = graph->nbpath;
   while (i < graph->nbpath)
     {
       // total -= 2 * tab[i][0];
       /// if (graph->nbpath > 2)
       //	tmp = (float)(total - (3 * tab[i][0])) / graph->nbpath;
       // else 
-      tmp = (float)(total - (tmpNbPath++ * tab[i][0])) / graph->nbpath;
+      tmp = (float)(total - (graph->nbpath * tab[i][0])) / graph->nbpath;
       tab[i][1] = (int)tmp;
       tmpTotal += tab[i][1];
       printf("tab1: %d\n", tab[i][1]);
