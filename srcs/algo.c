@@ -73,12 +73,23 @@ void clean_vertices(t_vert *vertices)
 void set_path(int **tab, t_map *graph)
 {
   int i;
+  int total;
 
   i = 0;
-
+  total = graph->ants;
   while (i < graph->nbpath)
     {
       printf("tab: %d\n", tab[i][0]);
+      total += tab[i][0];
+      i++;
+    }
+
+  printf("total: %d\n", total);
+  i = 0;
+  while (i < graph->nbpath)
+    {
+      tab[i][1] = (total - (2 * tab[i][0])) / graph->nbpath;
+      printf("tab1: %d\n", tab[i][1]);
       i++;
     }
 }
