@@ -16,7 +16,6 @@ void print_map(t_map *map)
 	{
 	  printf("\t Connect To %s\n", tmpE->connectTo->name);
 	  tmpE = tmpE->next;
-
 	}
       tmp = tmp->next;
     }

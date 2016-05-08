@@ -17,9 +17,7 @@ int add_to_listpath(t_map *graph, t_path *newpath, int nbelem)
   else
     {
       while (tmp->next != NULL)
-	{
 	  tmp = tmp->next;
-	}
       tmp->next = path;
     }
 }
@@ -60,7 +58,6 @@ int create_path(t_map *graph, t_vert *vert)
       newnode2->next = newnode;
       newnode = newnode2;
     }
-  //  print_path(newnode);
   add_to_listpath(graph, newnode, nbelem);
   return nbelem;
 }
