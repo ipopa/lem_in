@@ -242,7 +242,7 @@ int parse_map(t_map *graph)
       clean_vertices(graph->vertices);
       i++;
     }
-  printf("coups: %d\n", i);
+  printf("coups: %d\n", graph->nbpath);
   free(tmpTab);
   //  set_path(graph);
  
