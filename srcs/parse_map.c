@@ -241,8 +241,7 @@ int parse_map(t_map *graph)
 	  clean_vertices(graph->vertices);
 	  break ;
 	}
-      if (i == 0)
-	graph->nbpath = 1;
+      graph->nbpath++;
       clean_vertices(graph->vertices);
       i++;
     }
