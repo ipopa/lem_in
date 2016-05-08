@@ -238,7 +238,8 @@ int parse_map(t_map *graph)
       tmpTab[i] = (int *)malloc(sizeof(**tmpTab) * 2);
       tmpTab[i][0] = create_path(graph, graph->end);
       tmpTab[i][1] = 0;
-      test_nbelem(tmpTab, i, graph);
+      if (test_nbelem(tmpTab, i, graph) == -1)
+	break ;
       clean_vertices(graph->vertices);
       i++;
     }
