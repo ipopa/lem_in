@@ -13,6 +13,9 @@ void print_vertice(t_vert *vert)
 
 void print_path(t_path *path)
 {
+  t_path *tmp;
+
+  tmp = path;
   while (path != NULL)
     {
       print_vertice(path->vertices);
