@@ -45,9 +45,9 @@ void print_mypath(char **ants, t_path *path)
 	      ft_putstr(" ");
 	      if (!ants[i])
 		tmpBool = 0;
+	      else 
+		ft_putstr(ants[i]);
 	      ants[i] = ft_strdup(tmp->vertices->name);
-	      //	      if (tmp->next == NULL)
-	      //tmpBool = 0;
 	      break;
 	    }
 	  tmp = tmp->next;
@@ -73,8 +73,6 @@ void print_graph(t_map *graph, int **tab)
   while(42)
     {
       print_mypath(ants, tmpLP->path);
-      
-      // print_path(tmpLP->path);
       ft_putstr(" \n");
       tmpLP = tmpLP->next;
       j++;
