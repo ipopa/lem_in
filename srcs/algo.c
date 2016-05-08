@@ -149,5 +149,7 @@ int test_nbelem(int **tab, int total, t_map *graph)
 	  i++;
 	}
     }
+  else 
+    tab[0][1] = tmpFirst;
   return 1;
 }
