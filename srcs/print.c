@@ -23,3 +23,19 @@ void print_path(t_path *path)
       path = path->next;
     }
 }
+
+void print_graph(t_map *graph, int **tab)
+{
+  int i;
+
+  i = 0;
+  while (graph->listpath && i < graph->nbpath)
+    {
+      printf("nombre de fourmies par ce chemin long de %d =  %d\n", graph->listpath->\
+	     nbelem, tab[i][1]);
+      print_path(graph->listpath->path);
+      printf("\n");
+      i++;
+      graph->listpath = graph->listpath->next;
+    }
+}

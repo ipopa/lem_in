@@ -248,16 +248,7 @@ int parse_map(t_map *graph)
   printf("coups: %d\n", graph->nbpath);
   
   set_path(tmpTab, graph);
-
-  i = 0;
-  while (graph->listpath && i < graph->nbpath)
-    {
-      printf("nombre de fourmies par ce chemin long de %d =  %d\n", graph->listpath->nbelem, tmpTab[i][1]);
-      print_path(graph->listpath->path);
-      printf("\n");
-      i++;
-      graph->listpath = graph->listpath->next;
-    }
+  print_graph(graph, tmpTab);
   free(tmpTab);
   return 1;
 }
