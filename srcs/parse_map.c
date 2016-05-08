@@ -229,17 +229,15 @@ int parse_map(t_map *graph)
   print_map(graph);
   graph->nbpath = 0;
 
-  int *tmpTab = (int *)malloc(sizeof(int) + graph->maxpath);
+  int **tmpTab = (int **)malloc(sizeof(int *) + graph->maxpath);
 
   i = 0;
   while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath) 
     {
       printf("ok\n");
-      tmpTab[i] = create_path(graph, graph->end);
-      if (test_nbelem(tmpTab, i))
-	{
-	  graph->nbpath++;
-	}
+      tmpTab[i] = (int *)malloc(sizeof(int) + 2);
+      tmpTab[i][0] = create_path(graph, graph->end);
+      test_nbelem(tmpTab, i, graph);
       clean_vertices(graph->vertices);
       i++;
     }
