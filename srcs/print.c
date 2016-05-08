@@ -23,39 +23,44 @@ void print_path(t_path *path)
     }
 }
 
-void print_mypath(char **ants, t_path *path)
+void print_mypath(int *i, char **ants, t_path *path)
 {
-  int i;
+  int j;
   t_path *tmp;
   int tmpBool;
 
   tmpBool = 1;
-  i = 0;
+  j = *i;
   tmp = path->next;
   while(tmpBool != 0)
     {
-      while (tmp != NULL)
+      if (ants[j])
 	{
-	  if (!ants[i] || !ft_strcmp(tmp->vertices->name, ants[i]))
+	  while (tmp != NULL)
 	    {
-	      ft_putstr("L");
-	      ft_putnbr(i + 1);
-	      ft_putstr("-");
-	      ft_putstr(tmp->vertices->name);
-	      ft_putstr(" ");
-	      if (!ants[i])
-		tmpBool = 0;
-	      else 
-		ft_putstr(ants[i]);
-	      ants[i] = ft_strdup(tmp->vertices->name);
-	      break;
+	      if (ft_strequ(tmp->vertices->name, ants[j]))
+		{
+		  tmp = tmp->next;
+		  break ;
+		}
+	      tmp = tmp->next;
 	    }
-	  tmp = tmp->next;
 	}
+      else
+	{
+	  ants[j] = ft_strdup(tmp->vertices->name);
+	  tmpBool = 0;
+	}
+      if (!tmp)
+	break ;
+      ft_putstr("L");
+      ft_putnbr(j + 1);
+      ft_putstr("-");
+      ft_putstr(tmp->vertices->name);
+      ft_putstr(" ");
       tmp = path->next;
-      i++;
+      j++;
     }
-
 }
 
 void print_graph(t_map *graph, int **tab)
@@ -70,17 +75,24 @@ void print_graph(t_map *graph, int **tab)
   j = 0;
   tmpLP = graph->listpath;
   ants = (char **)malloc(sizeof(*ants) * (graph->ants + 1));
+  while(j <= graph->ants)
+    {
+      ants[j] = 0;
+      j++;
+    }
+  j = 0;
   while(42)
     {
-      print_mypath(ants, tmpLP->path);
-      ft_putstr(" \n");
+      print_mypath(&j, ants, tmpLP->path);
+      ft_putstr(".");
       tmpLP = tmpLP->next;
       j++;
       if (!tmpLP)
 	{
-	  if (i == 2)
+	  ft_putstr(",\n");
+	  j = 0;
+	  if (i == 3)
 	    break ;
-	  ft_putstr("\n");
 	  i++;
 	  tmpLP = graph->listpath;
 	}
