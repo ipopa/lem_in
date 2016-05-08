@@ -94,7 +94,7 @@ void set_path(int **tab, t_map *graph)
       if (graph->nbpath > 2)
 	tmp = (float)(total - (3 * tab[i][0])) / graph->nbpath;
       else 
-	tmp = (float)(total - (3 * tab[i][0])) / graph->nbpath;
+	tmp = (float)(total - (2 * tab[i][0])) / graph->nbpath;
       tab[i][1] = (int)tmp;
       printf("tab1: %d\n", tab[i][1]);
       printf("total: %d\n", total);
