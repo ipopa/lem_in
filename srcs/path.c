@@ -44,5 +44,6 @@ int create_path(t_map *graph, t_vert *vert)
 	}
       tmp->next = newpath;
     }
+  printf("nbelem = %d\n", nbelem);
   return nbelem;
 }
