@@ -70,41 +70,17 @@ void clean_vertices(t_vert *vertices)
     }
 }
 
-void set_path(t_map *graph)
+void set_path(int **tab, t_map *graph)
 {
-  int minNb;
-  int ants;
-  t_listpath *tmpLP;
-  int sum;
-  int tmpNb;
-  int tmpnbpath;
-  int res;
+  int i;
 
-  tmpNb = 0;
-  ants = graph->ants;
-  minNb = graph->listpath->nbelem;
-  tmpLP = graph->listpath->next;
+  i = 0;
 
-  printf("%d\n", graph->nbpath);
-  tmpnbpath = graph->nbpath;
-  while (tmpLP)
+  while (i < graph->nbpath)
     {
-      sum = minNb + ants - 1;
-      tmpNb = tmpLP->nbelem;
-      //printf("nb elem = %d\n", tmpNb);
-      if (sum > tmpNb) 
-	{
-	  tmpLP->maxants = (sum - tmpNb) / tmpnbpath--;
-	  ants -= tmpLP->maxants; 
-	}
-      else {
-	break ;     
-      }
-      //  printf("maxants = %d\n", tmpLP->maxants);
-      tmpLP = tmpLP->next;
+      printf("tab: %d\n", tab[i][0]);
+      i++;
     }
-  graph->listpath->maxants = ants;
-  //  printf("first maxants = %d\n", graph->listpath->maxants);
 }
 
 int test_nbelem(int **tab, int total, t_map *graph)
