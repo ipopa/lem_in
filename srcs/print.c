@@ -27,15 +27,22 @@ void print_path(t_path *path)
 void print_graph(t_map *graph, int **tab)
 {
   int i;
+  int j;
+  t_listpath *tmpLP;
 
   i = 0;
-  while (graph->listpath && i < graph->nbpath)
+  while (i < tab[0][1])
     {
-      printf("nombre de fourmies par ce chemin long de %d =  %d\n", graph->listpath->\
-	     nbelem, tab[i][1]);
-      print_path(graph->listpath->path);
-      printf("\n");
+      j = 0;
+      tmpLP = graph->listpath;
+      while (tmpLP && j < graph->nbpath)
+	{
+	  printf("nb ants %d =  %d\n", tmpLP->nbelem, tab[j][1]);
+	  print_path(tmpLP->path);
+	  printf("\n");
+	  j++;
+	  tmpLP = tmpLP->next;
+	}
       i++;
-      graph->listpath = graph->listpath->next;
     }
 }
