@@ -49,7 +49,7 @@ void print_mypath(int *i, char **ants, t_path *path)
       else
 	{
 	  ants[j] = ft_strdup(tmp->vertices->name);
-	  tmpBool = 0;
+	  //tmpBool = 0;
 	}
       if (!tmp)
 	break ;
