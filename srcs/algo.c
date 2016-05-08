@@ -87,15 +87,15 @@ void set_path(int **tab, t_map *graph)
 
   printf("total: %d\n", total);
   i = 0;
-  total += 1;
+  //total += 1;
   while (i < graph->nbpath)
     {
-      total -= 2 * tab[i][0];
-      tmp = (float)total / graph->nbpath;
+      // total -= 2 * tab[i][0];
+      tmp = (float)(total - (2 * tab[i][0])) / graph->nbpath;
       if ((int)tmp < (int)(tmp + 0.5))
 	tmp++;
       tab[i][1] = (int)tmp;
-      total += tab[i][0];
+      //  total += tab[i][0];
       printf("tab1: %d\n", tab[i][1]);
       printf("total: %d\n", total);
       i++;
