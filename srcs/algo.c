@@ -127,6 +127,5 @@ int test_nbelem(int **tab, int total, t_map *graph)
   tmpFirst = (int)tmp;
   if (tmpFirst < tab[total][0])
     return -1;
-  graph->nbpath = total + 1;
   return 1;
 }
