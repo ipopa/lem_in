@@ -114,19 +114,19 @@ void print_graph(t_map *graph, int **tab)
   int i;
   int j;
   t_listpath *tmpLP;
-  char **ants;
+  char **tabAnts;
   int *antsLP;
 
   printf("total: %d\n", tab[0][1]);
   i = 1;
   j = 0;
   tmpLP = graph->listpath;
-  ants = (char **)malloc(sizeof(char *) * (graph->ants + 1));
+  tabAnts = (char **)malloc(sizeof(char *) * (graph->ants + 1));
   antsLP = (int *)malloc(sizeof(int) * (graph->nbpath + 1));
 
   while(j <= graph->ants)
     {
-      ants[j] = 0;
+      tabAnts[j] = 0;
       j++;
     }
   j = 0;
@@ -138,7 +138,7 @@ void print_graph(t_map *graph, int **tab)
 	{
 	  antsLP[j] = i;
 	}
-      j = print_ant(j, ants, tmpLP->path);
+      j = print_ant(j, tabAnts, tmpLP->path);
       i++;
       tmpLP = tmpLP->next;
       if (j == graph->ants && i == graph->nbpath - 1)
