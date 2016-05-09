@@ -148,8 +148,14 @@ void print_graph(t_map *graph, int **tab)
 	    }
 	  else
 	    {
-
-
+	      tmpLP = tmpLP->next;
+	      if (!tmpLP)
+		{
+		  i = 0;
+		  tmpLP = graph->listpath;
+		}
+	      i++:
+	      continue ;
 	    }
 	}
       if (nbPath[nb] == i)
