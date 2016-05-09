@@ -143,6 +143,7 @@ void print_graph(t_map *graph, int **tab)
       tmpLP = tmpLP->next;
       if (!tmpLP)
 	{
+          i = 0;
 	  if (j == tmpJ)
 	    j = 0;
 	  ft_putstr("\n");
@@ -150,7 +151,7 @@ void print_graph(t_map *graph, int **tab)
 	}
       else
 	j++;
-      if (i == 10)
+      if (j == graph->ants && i == graph->nbpath)
 	break ;
     }
 }
