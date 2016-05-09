@@ -139,13 +139,15 @@ void print_graph(t_map *graph, int **tab)
       tmpJ = nb;
 
       printf("\nhello\n");
+      printf("nb %d\n", nb);
+      printf("nb coups %d\n", i);
       // on affecte un chemin a la fourmie nb
       if (!nbPath[nb])
 	{
-	  if (tab[i][1])
+	  if (tab[i - 1][1])
 	    {
 	      nbPath[nb] = i;
-	      tab[i][1] -= 1;
+	      tab[i - 1][1] -= 1;
 	    }
 	  else
 	    {
@@ -159,8 +161,7 @@ void print_graph(t_map *graph, int **tab)
 	      continue ;
 	    }
 	}
-      printf("nb coups %d\n", i);
-      printf("nb %d\n", nb);
+	
       if (nbPath[nb] == i)
 	{
 	  print_ant(tabAnts, tmpLP->path, nb);
