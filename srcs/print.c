@@ -176,7 +176,7 @@ void print_graph(t_map *graph, int **tab)
       tmpLP = tmpLP->next;
 
       // on arrete l'affichage lorque toutes les fourmies ont atteint la salle end
-      if (nb == graph->ants && tabAnts[nb] == "9")
+      if (nb == graph->ants && tabAnts[nb] == "9\0")
 	break ;
       
       // tous les chemins ont ete explore
