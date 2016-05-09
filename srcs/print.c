@@ -136,26 +136,35 @@ void print_graph(t_map *graph, int **tab)
     {
 
       // sauvegarde le numero de la fourmie
-      tmpJ = nb;
+      //tmpJ = nb;
 
       // on affecte un chemin a la fourmie nb
       if (!nbPath[nb])
 	  nbPath[nb] = i;
       
       nb = print_ant(nb, tabAnts, tmpLP->path);
+
+      // on explore le chemin suivant
       tmpLP = tmpLP->next;
-      i++;
+
+      // on arrete l'affichage lorque toutes les fourmies ont atteint la salle end
       if (nb == graph->ants && i == graph->nbpath - 1)
 	break ;
+      
+      // tous les chemins ont ete explore
       if (!tmpLP)
 	{
-          i = 1;
+          i = 0;
 	  if (nb == tmpJ)
 	    nb = 0;
 	  ft_putstr("\n");
+
+	  // on reinitialise le pointeur sur le premier chemin
 	  tmpLP = graph->listpath;
 	}
+      // on passe a la fourmie suivante
       else
 	nb++;
+      i++;
     }
 }
