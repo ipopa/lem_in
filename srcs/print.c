@@ -134,6 +134,7 @@ void print_graph(t_map *graph, int **tab)
   int tmpTest = 1;
   int k = graph->nbpath;
   nb = 0;
+  char *fin = ft_strdup("9");
 
   while(42)
     {
@@ -153,6 +154,7 @@ void print_graph(t_map *graph, int **tab)
 	    }
 	  else
 	    {
+	      printf("ca marche pas\n");
 	      tmpLP = tmpLP->next;
 	      if (!tmpLP)
 		{
@@ -176,7 +178,8 @@ void print_graph(t_map *graph, int **tab)
       tmpLP = tmpLP->next;
 
       // on arrete l'affichage lorque toutes les fourmies ont atteint la salle end
-      if (nb == graph->ants && tabAnts[nb] == "9\0")
+      //printf("nb, graph->ants %d %d\n", nb, graph->ants);
+      if (nb == graph->ants)// && ft_strequ(tabAnts[nb], fin))
 	break ;
       
       // tous les chemins ont ete explore
@@ -185,6 +188,7 @@ void print_graph(t_map *graph, int **tab)
 	  test++;	
 	  if (test == tmpTest)
 	    {
+	      // printf("ok%d\n", test);
 	      test = 0;
 	      tmpTest *= 2;
 	      nb = 0;
