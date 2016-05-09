@@ -142,8 +142,11 @@ void print_graph(t_map *graph, int **tab)
       if (!nbPath[nb])
 	  nbPath[nb] = i;
       
-      nb = print_ant(nb, tabAnts, tmpLP->path);
-
+      if (nbPath[nb] == i)
+	{
+	  print_ant(nb, tabAnts, tmpLP->path);
+	  nb++;
+	}
       // on explore le chemin suivant
       tmpLP = tmpLP->next;
 
@@ -163,8 +166,8 @@ void print_graph(t_map *graph, int **tab)
 	  tmpLP = graph->listpath;
 	}
       // on passe a la fourmie suivante
-      else
-	nb++;
+      //else
+      //nb++;
       i++;
     }
 }
