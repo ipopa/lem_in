@@ -72,14 +72,14 @@ void print_print(int i, char *str)
   ft_putstr(" ");
 }
 
-void print_ant(int *i, char **ants, t_path *path)
+int print_ant(int i, char **ants, t_path *path)
 {
   int j;
   t_path *tmp;
   int tmpBool;
 
   tmpBool = 1;
-  j = *i;
+  j = i;
   tmp = path->next;
   if (ants[j])
     {
@@ -90,6 +90,7 @@ void print_ant(int *i, char **ants, t_path *path)
 	      tmp = tmp->next;
 	      break ;
 	    }
+	  j++;
 	  tmp = tmp->next;
 	}
       if (tmp)
@@ -103,6 +104,9 @@ void print_ant(int *i, char **ants, t_path *path)
       ants[j] = ft_strdup(tmp->vertices->name);
       print_print(j + 1, ants[j]);
     }
+  if (j > i)
+    i++;
+  return i;
 }
 
 void print_graph(t_map *graph, int **tab)
@@ -126,22 +130,26 @@ void print_graph(t_map *graph, int **tab)
       j++;
     }
   j = 0;
+  int tmpJ;
   while(42)
     {
+      tmpJ = j;
       if (!antsLP[j])
 	{
 	  antsLP[j] = i;
 	}
-      print_ant(&j, ants, tmpLP->path);
-      j++;
+      j = print_ant(j, ants, tmpLP->path);
       i++;
       tmpLP = tmpLP->next;
       if (!tmpLP)
 	{
-	  j = 0;
+	  if (j == tmpJ)
+	    j = 0;
 	  ft_putstr("\n");
 	  tmpLP = graph->listpath;
 	}
+      else
+	j++;
       if (i == 10)
 	break ;
     }
