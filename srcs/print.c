@@ -136,7 +136,7 @@ void print_graph(t_map *graph, int **tab)
     {
 
       // sauvegarde le numero de la fourmie
-      //tmpJ = nb;
+      tmpJ = nb;
 
       // on affecte un chemin a la fourmie nb
       if (!nbPath[nb])
