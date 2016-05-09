@@ -115,33 +115,33 @@ void print_graph(t_map *graph, int **tab)
   int nb;
   t_listpath *tmpLP;
   char **tabAnts;
-  int *antsLP;
-
+  int *nbPath;
+  int tmpJ;
+  
   i = 1;
   nb = 0;
   tmpLP = graph->listpath;
-  tabAnts = (char **)malloc(sizeof(char *) * (graph->ants + 1));
-  antsLP = (int *)malloc(sizeof(int) * (graph->nbpath + 1));
+  tabAnts = (char **)malloc(sizeof(char *) * (graph->ants));
+  nbPath = (int *)malloc(sizeof(int) * (graph->nbpath));
 
   // initialise la position de chaques fourmies dans la salle start
-  while(nb <= graph->ants)
+  while(nb < graph->ants)
     {
       tabAnts[nb] = 0;
       nb++;
     }
-  printf("nb = %d\n", nb);
+
   nb = 0;
-  int tmpJ;
+  
   while(42)
     {
       tmpJ = nb;
-      if (!antsLP[nb])
-	{
-	  antsLP[nb] = i;
-	}
+      if (!nbPath[nb])
+	  nbPath[nb] = i;
+      
       nb = print_ant(nb, tabAnts, tmpLP->path);
-      i++;
       tmpLP = tmpLP->next;
+      i++;
       if (nb == graph->ants && i == graph->nbpath - 1)
 	break ;
       if (!tmpLP)
