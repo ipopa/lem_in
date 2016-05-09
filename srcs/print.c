@@ -130,15 +130,15 @@ void print_graph(t_map *graph, int **tab)
       tabAnts[nb] = 0;
       nb++;
     }
-  float test = 0;
-  float tmpTest = 0;
+  int test = 0;
+  int tmpTest = 1;
   int k = graph->nbpath;
   nb = 0;
 
   while(42)
     {
-      if (!test || (tmpTest / k > test && tmpTest / k != test))
-	tmpTest++;
+      //  if (!test || (tmpTest / k > test && tmpTest / k != test))
+      //	tmpTest++;
 
       // sauvegarde le numero de la fourmie
       tmpJ = nb;
@@ -156,9 +156,9 @@ void print_graph(t_map *graph, int **tab)
 	      tmpLP = tmpLP->next;
 	      if (!tmpLP)
 		{
-		  test++;
-		  if (test == tmpTest)
-		    nb = 0;
+		  //  test++;
+		  // if (test == tmpTest)
+		  // nb = 0;
 		  i = 0;
 		  tmpLP = graph->listpath;
 		}
@@ -184,9 +184,13 @@ void print_graph(t_map *graph, int **tab)
 	{
 	  test++;	
 	  if (test == tmpTest)
-	    nb = 0;
-	  //	  ft_putstr("\n");
-	  // on reinitialise le pointeur sur le premier chemin
+	    {
+	      test = 0;
+	      tmpTest *= 2;
+	      nb = 0;
+	      ft_putstr("\n");
+	    }
+       	  // on reinitialise le pointeur sur le premier chemin
 	  i = 0;
 	  tmpLP = graph->listpath;
 	}
