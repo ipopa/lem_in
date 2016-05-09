@@ -122,7 +122,7 @@ void print_graph(t_map *graph, int **tab)
   j = 0;
   tmpLP = graph->listpath;
   ants = (char **)malloc(sizeof(char *) * (graph->ants + 1));
-  antsLP = (int *)malloc(sizeof(int *) * (graph->nbpath + 1));
+  antsLP = (int *)malloc(sizeof(int) * (graph->nbpath + 1));
 
   while(j <= graph->ants)
     {
@@ -145,7 +145,7 @@ void print_graph(t_map *graph, int **tab)
 	break ;
       if (!tmpLP)
 	{
-          i = 0;
+          i = 1;
 	  if (j == tmpJ)
 	    j = 0;
 	  ft_putstr("\n");
