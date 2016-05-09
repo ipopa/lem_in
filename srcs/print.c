@@ -131,11 +131,14 @@ void print_graph(t_map *graph, int **tab)
       nb++;
     }
 
-  nb = 0;
-  
+  nb = 0;  
   while(42)
     {
+
+      // sauvegarde le numero de la fourmie
       tmpJ = nb;
+
+      // on affecte un chemin a la fourmie nb
       if (!nbPath[nb])
 	  nbPath[nb] = i;
       
