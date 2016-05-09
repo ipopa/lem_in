@@ -140,8 +140,18 @@ void print_graph(t_map *graph, int **tab)
 
       // on affecte un chemin a la fourmie nb
       if (!nbPath[nb])
-	  nbPath[nb] = i;
-      
+	{
+	  if (tab[i][1])
+	    {
+	      nbPath[nb] = i;
+	      tab[i][1] -= 1;
+	    }
+	  else
+	    {
+
+
+	    }
+	}
       if (nbPath[nb] == i)
 	{
 	  print_ant(nb, tabAnts, tmpLP->path);
