@@ -239,8 +239,11 @@ int parse_map(t_map *graph)
       clean_vertices(graph->vertices);
       i++;
     }
-  
+
   set_path(tmpTab, graph);
+  
+  printf("\n- RESULTAT -\n\n");
+
   print_graph(graph, tmpTab);
   free(tmpTab);
   return 1;
