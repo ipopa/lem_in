@@ -138,6 +138,7 @@ void print_graph(t_map *graph, int **tab)
       // sauvegarde le numero de la fourmie
       tmpJ = nb;
 
+      printf("\nhello\n");
       // on affecte un chemin a la fourmie nb
       if (!nbPath[nb])
 	{
@@ -154,10 +155,12 @@ void print_graph(t_map *graph, int **tab)
 		  i = 0;
 		  tmpLP = graph->listpath;
 		}
-	      i++:
+	      i++;
 	      continue ;
 	    }
 	}
+      printf("nb coups %d\n", i);
+      printf("nb %d\n", nb);
       if (nbPath[nb] == i)
 	{
 	  print_ant(tabAnts, tmpLP->path, nb);
@@ -177,13 +180,9 @@ void print_graph(t_map *graph, int **tab)
 	  if (nb == tmpJ)
 	    nb = 0;
 	  ft_putstr("\n");
-
 	  // on reinitialise le pointeur sur le premier chemin
 	  tmpLP = graph->listpath;
 	}
-      // on passe a la fourmie suivante
-      //else
-      //nb++;
       i++;
     }
 }
