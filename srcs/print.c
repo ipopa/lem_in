@@ -63,18 +63,63 @@ void print_mypath(int *i, char **ants, t_path *path)
     }
 }
 
+void print_print(int i, char *str)
+{
+  ft_putstr("L");
+  ft_putnbr(i);
+  ft_putstr("-");
+  ft_putstr(str);
+  ft_putstr(" ");
+}
+
+void print_ant(int *i, char **ants, t_path *path)
+{
+  int j;
+  t_path *tmp;
+  int tmpBool;
+
+  tmpBool = 1;
+  j = *i;
+  tmp = path->next;
+  if (ants[j])
+    {
+      while (tmp != NULL)
+	{
+	  if (ft_strequ(tmp->vertices->name, ants[j]))
+	    {
+	      tmp = tmp->next;
+	      break ;
+	    }
+	  tmp = tmp->next;
+	}
+      if (tmp)
+	{
+	  ants[j] = ft_strdup(tmp->vertices->name);
+	  print_print(j + 1, ants[j]);
+	}
+    }
+  else
+    {
+      ants[j] = ft_strdup(tmp->vertices->name);
+      print_print(j + 1, ants[j]);
+    }
+}
+
 void print_graph(t_map *graph, int **tab)
 {
   int i;
   int j;
   t_listpath *tmpLP;
   char **ants;
+  int *antsLP;
 
   printf("total: %d\n", tab[0][1]);
   i = 1;
   j = 0;
   tmpLP = graph->listpath;
   ants = (char **)malloc(sizeof(*ants) * (graph->ants + 1));
+  antsLP = (int *)malloc(sizeof(antsLP) * (graph->nbpath + 1));
+
   while(j <= graph->ants)
     {
       ants[j] = 0;
@@ -83,18 +128,21 @@ void print_graph(t_map *graph, int **tab)
   j = 0;
   while(42)
     {
-      print_mypath(&j, ants, tmpLP->path);
-      ft_putstr(".");
-      tmpLP = tmpLP->next;
+      if (!antsLP[j])
+	{
+	  antsLP[j] = i;
+	}
+      print_ant(&j, ants, tmpLP->path);
       j++;
+      i++;
+      tmpLP = tmpLP->next;
       if (!tmpLP)
 	{
-	  ft_putstr(",\n");
 	  j = 0;
-	  if (i == 3)
-	    break ;
-	  i++;
+	  ft_putstr("\n");
 	  tmpLP = graph->listpath;
 	}
+      if (i == 10)
+	break ;
     }
 }
