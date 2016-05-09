@@ -130,17 +130,16 @@ void print_graph(t_map *graph, int **tab)
       tabAnts[nb] = 0;
       nb++;
     }
-
+  float test = 0;
+  float tmpTest = 0;
+  float k;
   nb = 0;  
   while(42)
     {
-
+      tmpTest++;
       // sauvegarde le numero de la fourmie
       tmpJ = nb;
 
-      printf("\nhello\n");
-      printf("nb %d\n", nb);
-      printf("nb coups %d\n", i);
       // on affecte un chemin a la fourmie nb
       if (!nbPath[nb])
 	{
@@ -171,15 +170,21 @@ void print_graph(t_map *graph, int **tab)
       tmpLP = tmpLP->next;
 
       // on arrete l'affichage lorque toutes les fourmies ont atteint la salle end
-      if (nb == graph->ants && i == graph->nbpath - 1)
+      if (nb == (graph->ants - 1) && i == graph->nbpath)
 	break ;
       
       // tous les chemins ont ete explore
       if (!tmpLP)
 	{
-          i = 0;
-	  if (nb == tmpJ)
+	
+	  if (!k)
+	    k = tmpTest - test;
+	  test++;	
+	  i = 0;
+	  if (test == tmpTest)
 	    nb = 0;
+	 
+	  //	  tmpTest++;
 	  ft_putstr("\n");
 	  // on reinitialise le pointeur sur le premier chemin
 	  tmpLP = graph->listpath;
