@@ -141,6 +141,8 @@ void print_graph(t_map *graph, int **tab)
       j = print_ant(j, ants, tmpLP->path);
       i++;
       tmpLP = tmpLP->next;
+      if (j == graph->ants && i == graph->nbpath - 1)
+	break ;
       if (!tmpLP)
 	{
           i = 0;
@@ -151,7 +153,5 @@ void print_graph(t_map *graph, int **tab)
 	}
       else
 	j++;
-      if (j == graph->ants && i == graph->nbpath)
-	break ;
     }
 }
