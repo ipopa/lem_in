@@ -121,8 +121,8 @@ void print_graph(t_map *graph, int **tab)
   i = 1;
   j = 0;
   tmpLP = graph->listpath;
-  ants = (char **)malloc(sizeof(*ants) * (graph->ants + 1));
-  antsLP = (int *)malloc(sizeof(antsLP) * (graph->nbpath + 1));
+  ants = (char **)malloc(sizeof(char *) * (graph->ants + 1));
+  antsLP = (int *)malloc(sizeof(int *) * (graph->nbpath + 1));
 
   while(j <= graph->ants)
     {
