@@ -82,12 +82,10 @@ void set_path(int **tab, t_map *graph)
   total = graph->ants;
   while (i < graph->nbpath)
     {
-      printf("tab: %d\n", tab[i][0]);
       total += tab[i][0];
       i++;
     }
 
-  printf("total: %d\n\n", total);
   i = 0;
   tmpTotal = 0;
   while (i < graph->nbpath)
@@ -101,7 +99,7 @@ void set_path(int **tab, t_map *graph)
   i = 0;
   while(i < graph->nbpath)
     {
-      printf("tab1: %d\n", tab[i][1]);
+      printf("nombre de fourmie par ce chemin: %d\n", tab[i][1]);
       i++;
     }
 }

@@ -197,9 +197,6 @@ int parse_map(t_map *graph)
 
   start = false;
   end = false;
-
-  printf("%d\n", INT_MAX);
-
   while ((ret = get_next_line(0, &line)) >= 0) 
     {
       if (ft_strequ(line, "##start"))
@@ -224,16 +221,13 @@ int parse_map(t_map *graph)
       return -1;
     }
   graph->maxpath = count_edge(graph->end);
-  printf("graph->maxpath = %d\n", graph->maxpath);
   //print_map(graph);
-  graph->nbpath = 0;
 
   int **tmpTab = (int **)malloc(sizeof(*tmpTab) * graph->maxpath);
 
   i = 0;
   while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath) 
     {
-      printf("\nok: %d\n", i);
       tmpTab[i] = (int *)malloc(sizeof(**tmpTab) * 2);
       tmpTab[i][0] = create_path(graph, graph->end);
       if (i != 0 && test_nbelem(tmpTab, i, graph) == -1)
@@ -245,7 +239,6 @@ int parse_map(t_map *graph)
       clean_vertices(graph->vertices);
       i++;
     }
-  printf("coups: %d\n", graph->nbpath);
   
   set_path(tmpTab, graph);
   print_graph(graph, tmpTab);

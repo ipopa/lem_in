@@ -23,6 +23,7 @@ int init_map(t_map *graph)
   graph->ants = 0;
   graph->listpath = NULL;
   graph->maxpath = 0;
+  graph->nbpath = 0;
   graph->end = NULL;
   graph->start = NULL;
   return 1;
