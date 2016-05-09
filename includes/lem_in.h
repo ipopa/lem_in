@@ -91,5 +91,6 @@ int create_path(t_map *graph, t_vert *vert);
 void set_path(int **tab, t_map *graph);
 int test_nbelem(int **tab, int total, t_map *graph);
 void print_graph(t_map *graph, int **tab);
+void test(t_map *graph);
 
 #endif
