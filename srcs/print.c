@@ -72,7 +72,7 @@ void print_print(int i, char *str)
   ft_putstr(" ");
 }
 
-int print_ant(int i, char **ants, t_path *path)
+int print_ant(char **ants, t_path *path, int i)
 {
   int j;
   t_path *tmp;
@@ -154,7 +154,7 @@ void print_graph(t_map *graph, int **tab)
 	}
       if (nbPath[nb] == i)
 	{
-	  print_ant(nb, tabAnts, tmpLP->path);
+	  print_ant(tabAnts, tmpLP->path, nb);
 	  nb++;
 	}
       // on explore le chemin suivant
