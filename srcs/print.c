@@ -61,7 +61,18 @@ void print_graph(t_map *graph)
   while (42)
     {
       if (!tab[ants])
-	tab[ants] = set_p(graph, nbpath - 1);
+	{
+	  if (graph->tabpath[nbpath - 1])
+	    {
+	      tab[ants] = set_p(graph, nbpath - 1);
+	      graph->tabpath[nbpath - 1]--;
+	    }
+	  else
+	    {
+	      nbpath++;
+	      continue ;
+	    }
+	}
       nbpath++;
       if (nbpath > graph->nbpath)
 	{
