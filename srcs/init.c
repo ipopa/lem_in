@@ -27,8 +27,11 @@ t_edge *init_edge(t_vert *new)
   return newedge;
 }
 
-int init_map(t_map *graph)
+t_map *init_map(void)
 {
+  t_map *graph;
+
+  graph = (t_map *)malloc(sizeof(t_map));
   graph->vertices = NULL;
   graph->ants = 0;
   graph->listpath = NULL;
@@ -36,5 +39,5 @@ int init_map(t_map *graph)
   graph->nbpath = 0;
   graph->end = NULL;
   graph->start = NULL;
-  return 1;
+  return graph;
 }
