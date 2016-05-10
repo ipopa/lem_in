@@ -62,10 +62,11 @@ void print_graph(t_map *graph)
     {
       if (!tab[ants])
 	{
-	  if (graph->tabpath[nbpath - 1])
+	  printf("nb = %d\n", graph->tabpath[nbpath - 1][1]);
+	  if (graph->tabpath[nbpath - 1][1])
 	    {
 	      tab[ants] = set_p(graph, nbpath - 1);
-	      graph->tabpath[nbpath - 1]--;
+	      graph->tabpath[nbpath - 1][1]--;
 	    }
 	  else
 	    {
