@@ -197,7 +197,10 @@ int parse_map(t_map *graph)
       else if (ft_strequ(line, "##end"))
 	end = true;
       else if(line[0] == '#')
-	continue ;
+	{
+	  free(line);
+	  continue ;
+	}
       else
 	{
 	  if (parse_line(graph, line, start, end) == -1)
