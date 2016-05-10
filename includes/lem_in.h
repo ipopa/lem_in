@@ -77,14 +77,14 @@ struct s_env
 
 
 int parse_map(t_map *graph);
-int init_vert(t_vert *vert);
-t_edge *init_edge(t_vert *new);
-t_map *init_map(void);
+t_vert	*init_vert(void);
+t_edge	*init_edge(t_vert *new);
+t_map	*init_map(void);
 int error(void);
 int check_vert(t_vert *vert, t_vert *new);
 size_t	ft_words(char const *s, char c);
 void destroy_map(t_map *graph);
-int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb);
+int ft_algo(t_map *graph);
 void free_tab(char **tab);
 t_vert *find_small_vertice(t_vert *vertice);
 void print_path(t_path *path);
@@ -93,5 +93,6 @@ int create_path(t_map *graph, t_vert *vert);
 void set_path(int **tab, t_map *graph);
 int test_nbelem(int **tab, int total, t_map *graph);
 void print_graph(t_map *graph);
+int count_edge(t_vert *vert);
 
 #endif

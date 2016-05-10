@@ -1,7 +1,10 @@
 #include "lem_in.h"
 
-int init_vert(t_vert *vert)
+t_vert		*init_vert(void)
 {
+  t_vert *vert;
+  
+  vert = (t_vert *)malloc(sizeof(t_vert));
   vert->start = false;
   vert->end = false;
   vert->occ = false;
@@ -13,7 +16,7 @@ int init_vert(t_vert *vert)
   vert->x = 0;
   vert->y = 0;
   vert->visited = false;
-  return 1;
+  return vert;
 }
 
 t_edge *init_edge(t_vert *new)

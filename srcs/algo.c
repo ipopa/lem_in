@@ -118,3 +118,29 @@ int test_nbelem(int **tab, int total, t_map *graph)
     return -1;
   return 1;
 }
+
+int ft_algo(t_map *graph)
+{
+  int i;
+
+  i = 0;
+  graph->maxpath = count_edge(graph->end);
+  graph->tabpath = (int **)malloc(sizeof(int *) * graph->maxpath);
+  while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath)
+    {
+      graph->tabpath[i] = (int *)malloc(sizeof(int) * 2);
+      graph->tabpath[i][0] = create_path(graph, graph->end);
+      if (i != 0 && test_nbelem(graph->tabpath, i, graph) == -1)
+	{
+	  reset_vertices(graph->vertices);
+	  break ;
+	}
+      graph->nbpath++;
+      reset_vertices(graph->vertices);
+      i++;
+    }
+  graph->maxpath = i;
+  set_path(graph->tabpath, graph);
+  print_graph(graph);
+  return 1;
+}

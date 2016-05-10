@@ -1,26 +1,25 @@
 #include "lem_in.h"
 
-
-void print_map(t_map *map)
-{
+/*void print_map(t_map *map)
+  {
   t_vert *tmp;
   t_edge *tmpE;
-  
+
   tmp = map->vertices;
   while (tmp != NULL)
-    {
-      tmpE = tmp->edges;
-      while (tmpE != NULL)
-	tmpE = tmpE->next;
-      tmp = tmp->next;
-    }
-}
+  {
+  tmpE = tmp->edges;
+  while (tmpE != NULL)
+  tmpE = tmpE->next;
+  tmp = tmp->next;
+  }
+  }*/
 
 int add_vert_to_map(t_vert **vert, t_vert *new)
 {
   int i;
   t_vert *tmpvert;
-  
+
   i = 0;
   tmpvert = *vert;
   if (*vert == NULL)
@@ -44,7 +43,7 @@ int add_edge_to_map(t_edge **edge, t_vert *new)
   int i;
   t_edge *tmpedge;
   t_edge *newedge;
-  
+
   i = 0;
   tmpedge = *edge;
   newedge = init_edge(new);
@@ -67,7 +66,6 @@ t_vert *find_vert(t_vert *vert, char *name)
   t_vert *tmp;
 
   tmp = vert;
-
   while (tmp != NULL)
     {
       if (ft_strequ(tmp->name, name))
@@ -77,19 +75,14 @@ t_vert *find_vert(t_vert *vert, char *name)
   return NULL;
 }
 
-
 int add_vert(t_map *graph, char *line, bool start, bool end)
 {
   t_vert *new;
   char **tab;
-  int j;
 
-  new = (t_vert *)malloc(sizeof(t_vert));
-  init_vert(new);
-
+  new = init_vert();
   tab = ft_strsplit(line, ' ');
-
-  if (tab[0] != 0) 
+  if (tab[0] != 0)
     new->name = ft_strdup(tab[0]);
   if (tab[1])
     {
@@ -97,23 +90,21 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
       if (tab[2])
 	new->y = ft_atoi(tab[2]);
     }
-
   free_tab(tab);
- 
-  if (start) {
-    new->start = true;
-    *(new->wt) = 0;
-    graph->start = new;
-  }
-  if (end) {
-
-    graph->end = new;
-    new->end = true;
-  }
+  if (start)
+    {
+      new->start = true;
+      *(new->wt) = 0;
+      graph->start = new;
+    }
+  if (end)
+    {
+      graph->end = new;
+      new->end = true;
+    }
   if (add_vert_to_map(&(graph->vertices), new) == -1)
     return -1;
   return 1;
-
 }
 
 int add_edge(t_map *graph, char *line)
@@ -125,13 +116,11 @@ int add_edge(t_map *graph, char *line)
   tab = ft_strsplit(line, '-');
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
- 
   free_tab(tab);
   if (add_edge_to_map(&(v1->edges), v2) == -1)
     return -1;
   if (add_edge_to_map(&(v2->edges), v1) == -1)
     return -1;
-    
   return 1;
 }
 
@@ -146,11 +135,12 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
   else if (ft_searchchr(line, ' ') && ft_words(line, ' ') == 3)
     {
       if (add_vert(graph, line, start, end) == -1)
-	return -1;   
+	return -1;
     }
-  else {
-    return -1;
-  }
+  else
+    {
+      return -1;
+    }
   return 1;
 }
 
@@ -175,11 +165,10 @@ int parse_map(t_map *graph)
   int ret;
   bool start;
   bool end;
-  int i;
 
   start = false;
   end = false;
-  while ((ret = get_next_line(0, &line)) >= 0) 
+  while ((ret = get_next_line(0, &line)) >= 0)
     {
       if (ft_strequ(line, "##start"))
 	start = true;
@@ -203,31 +192,11 @@ int parse_map(t_map *graph)
     }
   if (line)
     free(line);
-  if (end || start) 
+  if (end || start)
     {
       error();
       return -1;
     }
-
-  graph->maxpath = count_edge(graph->end);
-  graph->tabpath = (int **)malloc(sizeof(int *) * graph->maxpath);
-
-  i = 0;
-  while (ft_dijkstra(graph->vertices, graph->start, 1) != 0 && i < graph->maxpath) 
-    {
-      graph->tabpath[i] = (int *)malloc(sizeof(int) * 2);
-      graph->tabpath[i][0] = create_path(graph, graph->end);
-      if (i != 0 && test_nbelem(graph->tabpath, i, graph) == -1)
-	{
-	  reset_vertices(graph->vertices);
-	  break ;
-	}
-      graph->nbpath++;
-      reset_vertices(graph->vertices);
-      i++;
-    }
-  graph->maxpath = i;
-  set_path(graph->tabpath, graph);
-  print_graph(graph);
+  ft_algo(graph);
   return 1;
 }
