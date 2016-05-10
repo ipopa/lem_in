@@ -4,16 +4,11 @@
 t_path *set_p(t_map *graph, int nbpath)
 {
   t_listpath *tmp;
-  int  i;
   
   tmp = graph->listpath;
-  i = 1;
 
-  while (i < nbpath)
-    {
-      tmp = tmp->next;
-      i++;
-    }
+  while (nbpath--)
+    tmp = tmp->next;
   return tmp->path;
 }
 
@@ -66,7 +61,7 @@ void test(t_map *graph)
   while (42)
     {
       if (!tab[ants])
-	tab[ants] = set_p(graph, nbpath);
+	tab[ants] = set_p(graph, nbpath - 1);
       nbpath++;
       if (nbpath > graph->nbpath)
 	{
