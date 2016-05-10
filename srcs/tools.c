@@ -72,8 +72,8 @@ void destroy_map(t_map *graph)
     }
   free(graph->tabpath);
   free(graph);
-  while(42) {
-  }
+  //  while(42) {
+  //}
 }
 
 void free_tab(char **tab) {
