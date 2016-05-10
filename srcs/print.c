@@ -60,17 +60,22 @@ void print_graph(t_map *graph)
   int tmpCoups = 0;
   while (42)
     {
+      // printf("hello0\n");
       if (!tab[ants])
 	{
-	  printf("nb = %d\n", graph->tabpath[nbpath - 1][1]);
+	  //  printf("nb = %d\n", graph->tabpath[nbpath - 1][1]);
 	  if (graph->tabpath[nbpath - 1][1])
 	    {
+	      //   printf("hello1\n");
 	      tab[ants] = set_p(graph, nbpath - 1);
 	      graph->tabpath[nbpath - 1][1]--;
 	    }
 	  else
 	    {
+	      // printf("hello2\n");
 	      nbpath++;
+	      if (nbpath > graph->nbpath)
+		nbpath = 1;
 	      continue ;
 	    }
 	}
