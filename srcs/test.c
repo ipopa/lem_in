@@ -41,7 +41,7 @@ void print_tab(t_path **tab, int max)
       if (tab[i])
 	{
 	  ft_putchar('L');
-	  ft_putnbr(i);
+	  ft_putnbr(i + 1);
 	  ft_putchar('-');
 	  ft_putstr((tab[i])->vertices->name);
 	  ft_putchar(' ');
@@ -56,19 +56,19 @@ void test(t_map *graph)
   t_path **tab;
   int ants;
   int nbpath;
-  int maxants;
 
-  maxants = graph->ants;
-  ants = 1;
   nbpath = 1;
-  tab = (t_path **)malloc(sizeof(t_path) * graph->ants);
-  int y = 0;
-  while (y < graph->ants)
-    tab[y++] = NULL;
-  while (ants <= maxants)
+  tab = (t_path **)malloc(sizeof(t_path *) * (graph->ants + 1));
+  ants = 0;
+  while (ants < graph->ants)
+    tab[ants++] = NULL;
+  ants = 0;
+  while (42)
     {
-      tab[ants] = set_p(graph, nbpath);
-      
+      //  printf("ant = %d\n", ants);
+      if (!tab[ants])
+	tab[ants] = set_p(graph, nbpath);
+ 
       nbpath++;
       if (nbpath > graph->nbpath)
 	{
@@ -77,7 +77,10 @@ void test(t_map *graph)
 	  ft_putchar('\n');
 	  nbpath = 1;
 	}
-      ants++;
+      if (ants < (graph->ants - 1))
+	ants++;
+      if (ants == (graph->ants - 1) && tab[ants] && ft_strequ((tab[ants])->vertices->name, "9"))
+	break ;
     }
   free(tab);
 }
