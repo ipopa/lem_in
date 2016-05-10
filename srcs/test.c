@@ -17,7 +17,7 @@ t_path *set_p(t_map *graph, int nbpath)
   return tmp->path;
 }
 
-int next(t_path **tab, int max)
+void next(t_path **tab, int max)
 {
   int i;
   
@@ -28,7 +28,6 @@ int next(t_path **tab, int max)
 	tab[i] = tab[i]->next;
       i++;
     }
-  return (1);
 }
 
 
@@ -40,7 +39,13 @@ void print_tab(t_path **tab, int max)
   while (i < max)
     {
       if (tab[i])
-	printf("L%d-%s\n", i, (tab[i])->vertices->name);
+	{
+	  ft_putchar('L');
+	  ft_putnbr(i);
+	  ft_putchar('-');
+	  ft_putstr((tab[i])->vertices->name);
+	  ft_putchar(' ');
+	}
       i++;
     }
 
@@ -60,19 +65,19 @@ void test(t_map *graph)
   int y = 0;
   while (y < graph->ants)
     tab[y++] = NULL;
-  while (maxants)
+  while (ants <= maxants)
     {
-       tab[ants] = set_p(graph, nbpath);
+      tab[ants] = set_p(graph, nbpath);
       
       nbpath++;
       if (nbpath > graph->nbpath)
 	{
 	  next(tab, graph->ants);
 	  print_tab(tab, graph->ants);
-	  printf("FIN DE TOUR\n\n");
+	  ft_putchar('\n');
 	  nbpath = 1;
 	}
-      maxants -= 1;
-      ants += 1;
+      ants++;
     }
+  free(tab);
 }
