@@ -76,7 +76,6 @@ void set_path(int **tab, t_map *graph)
       total += tab[i][0];
       i++;
     }
-
   i = 0;
   tmpTotal = 0;
   while (i < graph->nbpath)
@@ -103,7 +102,6 @@ int test_nbelem(int **tab, int total, t_map *graph)
   int cof;
 
   i = 1;
-
   tmpFirst = graph->ants - tab[0][0];
   while (i <= total && total > 0)
     {
@@ -113,8 +111,9 @@ int test_nbelem(int **tab, int total, t_map *graph)
   tmp = (float)tmpFirst / (total + 1);
   if ((int)tmp < (int)(tmp + 0.5))
     tmp++;
+
   tmpFirst = (int)tmp;
-  if (tmpFirst < tab[total][0])
+  if (tmpFirst < tab[total][0] - 1)
     return -1;
   return 1;
 }
