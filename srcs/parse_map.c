@@ -7,7 +7,6 @@ void print_map(t_map *map)
   t_edge *tmpE;
   
   tmp = map->vertices;
-  printf("\n- MAP -\n");
   while (tmp != NULL)
     {
       tmpE = tmp->edges;
@@ -67,8 +66,6 @@ int add_edge_to_map(t_edge **edge, t_vert *new)
     }
   while (tmpedge->next != NULL)
     {
-      //if (check_vert(tmpedge, new) == -1)
-      //return -1;
       tmpedge = tmpedge->next;
       i++;
     }
@@ -217,8 +214,6 @@ int parse_map(t_map *graph)
       return -1;
     }
   graph->maxpath = count_edge(graph->end);
-  //print_map(graph);
-
   graph->tabpath = (int **)malloc(sizeof(int *) * graph->maxpath);
 
   i = 0;
@@ -235,11 +230,7 @@ int parse_map(t_map *graph)
       clean_vertices(graph->vertices);
       i++;
     }
-
   set_path(graph->tabpath, graph);
-  
-  ft_putstr("\n- RESULTAT -\n\n");
-
   print_graph(graph);
   return 1;
 }

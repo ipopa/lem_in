@@ -57,6 +57,7 @@ void print_graph(t_map *graph)
   while (ants < graph->ants)
     tab[ants++] = NULL;
   ants = 0;
+  int tmpCoups = 0;
   while (42)
     {
       if (!tab[ants])
@@ -68,11 +69,23 @@ void print_graph(t_map *graph)
 	  print_tab(tab, graph->ants);
 	  ft_putchar('\n');
 	  nbpath = 1;
+	  tmpCoups++;
 	}
       if (ants < (graph->ants - 1))
 	ants++;
       if (ants == (graph->ants - 1) && tab[ants] && (tab[ants])->vertices->end)
 	break ;
     }
+  ft_putnbr(graph->listpath->nbelem);
+  ft_putchar('\n');
+  ft_putnbr(tmpCoups);
+  ft_putchar('\n');
+  while (graph->listpath->path)
+    {
+      ft_putstr(graph->listpath->path->vertices->name);
+      ft_putchar('-');
+      graph->listpath->path = graph->listpath->path->next;
+    }
+  ft_putchar('\n');
   free(tab);
 }
