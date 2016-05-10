@@ -1,8 +1,8 @@
 #include "lem_in.h"
 
 
-int error(char *err)
+int error(void)
 {
-  ft_putstr(err);
+  ft_putstr_fd("ERROR\n", 2);
   return 1;
 }

@@ -78,7 +78,7 @@ struct s_env
 
 int parse_map(t_map *graph);
 int init_vert(t_vert *vert);
-int error(char *err);
+int error(void);
 int check_vert(t_vert *vert, t_vert *new);
 size_t	ft_words(char const *s, char c);
 void destroy_map(t_map *graph);
