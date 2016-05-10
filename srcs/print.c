@@ -63,7 +63,7 @@ void print_graph(t_map *graph)
       // printf("hello0\n");
       if (!tab[ants])
 	{
-	  //  printf("nb = %d\n", graph->tabpath[nbpath - 1][1]);
+	  printf("nbpath %d = %d\n", nbpath, graph->tabpath[nbpath - 1][1]);
 	  if (graph->tabpath[nbpath - 1][1])
 	    {
 	      //   printf("hello1\n");
