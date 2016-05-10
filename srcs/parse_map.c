@@ -39,17 +39,6 @@ int add_vert_to_map(t_vert **vert, t_vert *new)
   return 1;
 }
 
-t_edge *init_edge(t_vert *new)
-{
-  t_edge *newedge;
-
-  if ((newedge = (t_edge *)malloc(sizeof(t_edge))) == NULL)
-    return NULL;
-  newedge->connectTo = new;
-  newedge->next = NULL;
-  return newedge;
-}
-
 int add_edge_to_map(t_edge **edge, t_vert *new)
 {
   int i;

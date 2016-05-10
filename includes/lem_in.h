@@ -78,6 +78,8 @@ struct s_env
 
 int parse_map(t_map *graph);
 int init_vert(t_vert *vert);
+t_edge *init_edge(t_vert *new);
+int init_map(t_map *graph);
 int error(void);
 int check_vert(t_vert *vert, t_vert *new);
 size_t	ft_words(char const *s, char c);
