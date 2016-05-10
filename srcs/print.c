@@ -119,13 +119,19 @@ void print_graph(t_map *graph, int **tab)
   i = 1;
   nb = 0;
   tmpLP = graph->listpath;
-  tabAnts = (char **)malloc(sizeof(char *) * (graph->ants));
-  nbPath = (int *)malloc(sizeof(int) * (graph->nbpath));
+  tabAnts = (char **)malloc(sizeof(char *) * (graph->ants + 1));
+  nbPath = (int *)malloc(sizeof(int) * (graph->ants + 1));
 
   // initialise la position de chaques fourmies dans la salle start
   while(nb < graph->ants)
     {
       tabAnts[nb] = 0;
+      nb++;
+    }
+  nb = 0;
+  while (nb < graph->ants)
+    {
+      nbPath[nb] = 0;
       nb++;
     }
   int test = 0;
@@ -140,8 +146,10 @@ void print_graph(t_map *graph, int **tab)
       //	tmpTest++;
 
       // on affecte un chemin a la fourmie nb
+      //  printf("%d = %d\n", nb, nbPath[nb]);
       if (!nbPath[nb])
 	{
+	  //  printf("\n%d = %d\n", i - 1, tab[i - 1][1]);
 	  if (tab[i - 1][1])
 	    {
 	      nbPath[nb] = i;
@@ -166,21 +174,39 @@ void print_graph(t_map *graph, int **tab)
 	
       if (nbPath[nb] == i)
 	{
-	  print_ant(tabAnts, tmpLP->path, nb);
-	  nb++;
+	  //	  printf("hello\n");
+	  if (!ft_strequ(tabAnts[nb], fin))
+	    {
+	      print_ant(tabAnts, tmpLP->path, nb);
+	      if (nb < graph->ants - 1)
+		nb++;
+	    }
 	}
+      else 
+	{
+	  if (ft_strequ(tabAnts[nb], fin))
+	    {
+	      if (nb < graph->ants - 1)
+		nb++;
+	    }
+	}
+
       tmpLP = tmpLP->next;
 
-      if (nb == (graph->ants - 1) && ft_strequ(tabAnts[nb - 1], fin))
+      if (nb == (graph->ants - 1) && ft_strequ(tabAnts[nb], fin))
 	break ;
       
       // tous les chemins ont ete explore
       if (!tmpLP)
 	{
-	  test++;	
+	  // printf("tab %s\n", tabAnts[nb - 1]);
+	
+	  //	  if (!ft_strequ(tabAnts[nb - 1], fin))
+	  test++;
+	  // printf("ok%d %d\n", test, nb);	
 	  if (test == tmpTest)
 	    {
-	      // printf("ok%d\n", test);
+	    
 	      test = 0;
 	      tmpTest *= 2;
 	      nb = 0;
