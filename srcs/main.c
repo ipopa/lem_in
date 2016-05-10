@@ -41,7 +41,7 @@ int main(int ac, char **av)
   ants = 0;
   if ((ret = get_next_line(fd, &line)) == -1)
     return 0;
-  
+  free(line);
   if ((ants = ft_atoi(line)) == 0 && !ft_strequ(line, "0"))
     return 0;
   graph = (t_map *)malloc(sizeof(t_map));
@@ -50,6 +50,5 @@ int main(int ac, char **av)
   printf("nb ants = %d\n", graph->ants);
   parse_map(graph);
   destroy_map(graph);
-  free(line);
   return 0;
 }
