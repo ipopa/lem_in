@@ -27,19 +27,11 @@ int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb)
   int tmpNb;
  
   if (startP == NULL) 
-    {
       return 0;
-    }
-
   startP->visited = true;
-
   if (startP->end)
-    {
       return 1;
-    }
-
   edgeP = startP->edges;
-
   while (edgeP != NULL)
     {
       if (!edgeP->connectTo->occ && !edgeP->connectTo->visited && (*(edgeP->connectTo->wt) > (nb + *(startP->wt))))
@@ -49,9 +41,8 @@ int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb)
 	}
       edgeP = edgeP->next;
     } 
-  if (ft_dijkstra(vertices, find_small_vertice(vertices), nb)) {
+  if (ft_dijkstra(vertices, find_small_vertice(vertices), nb))
     return 1;
-  }
   return 0;
 }
 
