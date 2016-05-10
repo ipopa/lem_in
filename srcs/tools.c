@@ -65,7 +65,7 @@ void destroy_map(t_map *graph)
       free(tmpL);
     }
   i = 0;
-  while(i <= graph->maxpath)
+  while(i < graph->maxpath)
     {
       free(graph->tabpath[i]);
       i++;
@@ -73,7 +73,7 @@ void destroy_map(t_map *graph)
   free(graph->tabpath);
   free(graph);
   // while(42) {
-  //  }
+  // }
 }
 
 void free_tab(char **tab) {
