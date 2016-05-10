@@ -75,7 +75,12 @@ void print_graph(t_map *graph)
 	      // printf("hello2\n");
 	      nbpath++;
 	      if (nbpath > graph->nbpath)
-		nbpath = 1;
+		{
+		  next(tab, graph->ants);
+		  print_tab(tab, graph->ants);
+		  nbpath = 1;
+		  tmpCoups++;
+		}
 	      continue ;
 	    }
 	}
