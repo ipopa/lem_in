@@ -142,14 +142,8 @@ void print_graph(t_map *graph, int **tab)
 
   while(42)
     {
-      //  if (!test || (tmpTest / k > test && tmpTest / k != test))
-      //	tmpTest++;
-
-      // on affecte un chemin a la fourmie nb
-      //  printf("%d = %d\n", nb, nbPath[nb]);
       if (!nbPath[nb])
 	{
-	  //  printf("\n%d = %d\n", i - 1, tab[i - 1][1]);
 	  if (tab[i - 1][1])
 	    {
 	      nbPath[nb] = i;
@@ -157,13 +151,10 @@ void print_graph(t_map *graph, int **tab)
 	    }
 	  else
 	    {
-	      printf("ca marche pas\n");
+	      //	      printf("ca marche pas\n");
 	      tmpLP = tmpLP->next;
 	      if (!tmpLP)
 		{
-		  //  test++;
-		  // if (test == tmpTest)
-		  // nb = 0;
 		  i = 0;
 		  tmpLP = graph->listpath;
 		}
@@ -174,7 +165,6 @@ void print_graph(t_map *graph, int **tab)
 	
       if (nbPath[nb] == i)
 	{
-	  //	  printf("hello\n");
 	  if (!ft_strequ(tabAnts[nb], fin))
 	    {
 	      print_ant(tabAnts, tmpLP->path, nb);
@@ -194,16 +184,14 @@ void print_graph(t_map *graph, int **tab)
       tmpLP = tmpLP->next;
 
       if (nb == (graph->ants - 1) && ft_strequ(tabAnts[nb], fin))
-	break ;
-      
+	{
+	  ft_putstr("\n");
+	  break ;
+	}      
       // tous les chemins ont ete explore
       if (!tmpLP)
 	{
-	  // printf("tab %s\n", tabAnts[nb - 1]);
-	
-	  //	  if (!ft_strequ(tabAnts[nb - 1], fin))
 	  test++;
-	  // printf("ok%d %d\n", test, nb);	
 	  if (test == tmpTest)
 	    {
 	    
