@@ -46,7 +46,7 @@ int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb)
   return 0;
 }
 
-void clean_vertices(t_vert *vertices)
+void reset_vertices(t_vert *vertices)
 {
   t_vert *tmp;
 

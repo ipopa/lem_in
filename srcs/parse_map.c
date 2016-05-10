@@ -219,11 +219,11 @@ int parse_map(t_map *graph)
       graph->tabpath[i][0] = create_path(graph, graph->end);
       if (i != 0 && test_nbelem(graph->tabpath, i, graph) == -1)
 	{
-	  clean_vertices(graph->vertices);
+	  reset_vertices(graph->vertices);
 	  break ;
 	}
       graph->nbpath++;
-      clean_vertices(graph->vertices);
+      reset_vertices(graph->vertices);
       i++;
     }
   graph->maxpath = i;

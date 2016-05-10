@@ -88,7 +88,7 @@ int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb);
 void free_tab(char **tab);
 t_vert *find_small_vertice(t_vert *vertice);
 void print_path(t_path *path);
-void clean_vertices(t_vert *vertices);
+void reset_vertices(t_vert *vertices);
 int create_path(t_map *graph, t_vert *vert);
 void set_path(int **tab, t_map *graph);
 int test_nbelem(int **tab, int total, t_map *graph);
