@@ -20,7 +20,7 @@ void add_to_tab(char **tab, int i, int nb, t_path *path, t_map *graph)
 
   tmp = path->next;
 
-  //il faut ft_itoa [ 
+  //il faut ft_itoa [
   ant[0] = 'L';
   ant[1] = nb + 48 + 1;
   ant[2] = '-';
@@ -76,8 +76,8 @@ void print_graph(t_map *graph, int **tab)
 	    }
 	  if (tmpLP)
 	    {
-	      add_to_tab(tabAll, i, nb, tmpLP->path, graph);
 	      tab[wpath - 1][1]--;
+	      add_to_tab(tabAll, i, nb, tmpLP->path, graph);
 	    }
 	}
       wpath++;
