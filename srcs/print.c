@@ -60,19 +60,15 @@ void print_graph(t_map *graph)
   int tmpCoups = 0;
   while (42)
     {
-      // printf("hello0\n");
       if (!tab[ants])
 	{
-	  //	  printf("nbpath %d = %d\n", nbpath, graph->tabpath[nbpath - 1][1]);
 	  if (graph->tabpath[nbpath - 1][1])
 	    {
-	      //   printf("hello1\n");
 	      tab[ants] = set_p(graph, nbpath - 1);
 	      graph->tabpath[nbpath - 1][1]--;
 	    }
 	  else
 	    {
-	      // printf("hello2\n");
 	      nbpath++;
 	      if (nbpath > graph->nbpath)
 		{
@@ -99,16 +95,5 @@ void print_graph(t_map *graph)
       if (ants == (graph->ants - 1) && tab[ants] && (tab[ants])->vertices->end)
 	break ;
     }
-  ft_putnbr(graph->listpath->nbelem);
-  ft_putchar('\n');
-  ft_putnbr(tmpCoups);
-  ft_putchar('\n');
-  while (graph->listpath->path)
-    {
-      ft_putstr(graph->listpath->path->vertices->name);
-      ft_putchar('-');
-      graph->listpath->path = graph->listpath->path->next;
-    }
-  ft_putchar('\n');
   free(tab);
 }
