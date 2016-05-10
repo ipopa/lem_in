@@ -108,10 +108,9 @@ void print_graph(t_map *graph, int **tab)
   i = 1;
   nb = 0;
   tmpLP = graph->listpath;
-  tabAnts = (char **)malloc(sizeof(char *) * (graph->ants + 1));
+  /*  tabAnts = (char **)malloc(sizeof(char *) * (graph->ants + 1));
   nbPath = (int *)malloc(sizeof(int) * (graph->ants + 1));
 
-  // initialise la position de chaques fourmies dans la salle start
   while(nb < graph->ants)
     {
       tabAnts[nb] = 0;
@@ -126,13 +125,14 @@ void print_graph(t_map *graph, int **tab)
   int test = 0;
   int tmpTest = 1;
   int k = graph->nbpath;
-  nb = 0;
+ 
   char *fin = ft_strdup("9");
-
+  */
   char **tabAll = (char **)malloc(sizeof(char *) * (graph->ants + 1));
   int wpath = 1;
   int j;
 
+  nb = 0;
   while(nb < graph->ants)
     {
       if (tab[wpath - 1][1] > 0)
@@ -162,70 +162,70 @@ void print_graph(t_map *graph, int **tab)
       j++;
     }
 
-  nb = 0;
-  while(42 == 2)
-    {
+  /*  nb = 0;
+      while(42 == 2)
+      {
       if (!nbPath[nb])
-	{
-	  if (tab[i - 1][1])
-	    {
-	      nbPath[nb] = i;
-	      tab[i - 1][1]--;
-	    }
-	  else
-	    {
-	      //	      printf("ca marche pas\n");
-	      tmpLP = tmpLP->next;
-	      if (!tmpLP)
-		{
-		  i = 0;
-		  tmpLP = graph->listpath;
-		}
-	      i++;
-	      continue ;
-	    }
-	}
+      {
+      if (tab[i - 1][1])
+      {
+      nbPath[nb] = i;
+      tab[i - 1][1]--;
+      }
+      else
+      {
+      //	      printf("ca marche pas\n");
+      tmpLP = tmpLP->next;
+      if (!tmpLP)
+      {
+      i = 0;
+      tmpLP = graph->listpath;
+      }
+      i++;
+      continue ;
+      }
+      }
 	
       if (nbPath[nb] == i)
-	{
-	  if (!ft_strequ(tabAnts[nb], fin))
-	    {
-	      print_ant(tabAnts, tmpLP->path, nb);
-	      if (nb < graph->ants - 1)
-		nb++;
-	    }
-	}
+      {
+      if (!ft_strequ(tabAnts[nb], fin))
+      {
+      print_ant(tabAnts, tmpLP->path, nb);
+      if (nb < graph->ants - 1)
+      nb++;
+      }
+      }
       else 
-	{
-	  if (ft_strequ(tabAnts[nb], fin))
-	    {
-	      if (nb < graph->ants - 1)
-		nb++;
-	    }
-	}
+      {
+      if (ft_strequ(tabAnts[nb], fin))
+      {
+      if (nb < graph->ants - 1)
+      nb++;
+      }
+      }
 
       tmpLP = tmpLP->next;
 
       if (nb == (graph->ants - 1) && ft_strequ(tabAnts[nb], fin))
-	{
-	  ft_putstr("\n");
-	  break ;
-	}      
+      {
+      ft_putstr("\n");
+      break ;
+      }      
       // tous les chemins ont ete explore
       if (!tmpLP)
-	{
-	  test++;
-	  if (test == tmpTest)
-	    {
+      {
+      test++;
+      if (test == tmpTest)
+      {
 	    
-	      test = 0;
-	      tmpTest *= 2;
-	      nb = 0;
-	      ft_putstr("\n");
-	    }
-	  i = 0;
-	  tmpLP = graph->listpath;
-	}
+      test = 0;
+      tmpTest *= 2;
+      nb = 0;
+      ft_putstr("\n");
+      }
+      i = 0;
+      tmpLP = graph->listpath;
+      }
       i++;
-    }
+      }*/
 }
