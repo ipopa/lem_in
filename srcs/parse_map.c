@@ -244,7 +244,7 @@ int parse_map(t_map *graph)
   
   printf("\n- RESULTAT -\n\n");
 
-  test(graph);
-  //print_graph(graph, graph->tabpath);
+  //  test(graph);
+  print_graph(graph, graph->tabpath);
   return 1;
 }
