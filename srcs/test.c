@@ -65,10 +65,8 @@ void test(t_map *graph)
   ants = 0;
   while (42)
     {
-      //  printf("ant = %d\n", ants);
       if (!tab[ants])
 	tab[ants] = set_p(graph, nbpath);
- 
       nbpath++;
       if (nbpath > graph->nbpath)
 	{
@@ -79,7 +77,7 @@ void test(t_map *graph)
 	}
       if (ants < (graph->ants - 1))
 	ants++;
-      if (ants == (graph->ants - 1) && tab[ants] && ft_strequ((tab[ants])->vertices->name, "9"))
+      if (ants == (graph->ants - 1) && tab[ants] && (tab[ants])->vertices->end)
 	break ;
     }
   free(tab);
