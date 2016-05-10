@@ -25,9 +25,9 @@ size_t	ft_words(char const *s, char c)
 
 void free_vertices(t_vert *vertices)
 {
-  while(vertices != NULL)
+  while(vertices)
     {
-      while(vertices->edges != NULL)
+      while(vertices->edges)
 	{
 	  free(vertices->edges);
 	  vertices->edges = vertices->edges->next;
@@ -41,25 +41,31 @@ void free_vertices(t_vert *vertices)
 
 void destroy_map(t_map *graph)
 {
+  int i;
+
   free_vertices(graph->vertices);
  
-  while(graph->listpath != NULL)
+  while(graph->listpath)
     {
-      if (graph->listpath->cur != NULL)
+      if (graph->listpath->cur)
+	free(graph->listpath->cur);
+      while (graph->listpath->path)
 	{
-	  //  free_vertices(graph->listpath->cur->vertices);
-	  free(graph->listpath->cur);
-	}
-      if (graph->listpath->path != NULL)
-	{
-	  //  free_vertices(graph->listpath->path->vertices);
 	  free(graph->listpath->path);
+	  graph->listpath->path = graph->listpath->path->next;
 	}
       free(graph->listpath);
       graph->listpath = graph->listpath->next;
     }
+  i = 0;
+  while(i <= graph->maxpath)
+    {
+      free(graph->tabpath[i]);
+      i++;
+    }
+  free(graph->tabpath);
   free(graph);
-  //  while(42) {
+  // while(42) {
   // }
 }
 

@@ -231,6 +231,7 @@ int parse_map(t_map *graph)
       clean_vertices(graph->vertices);
       i++;
     }
+  graph->maxpath = i;
   set_path(graph->tabpath, graph);
   print_graph(graph);
   return 1;
