@@ -26,6 +26,7 @@ struct s_map
   int ants;
   int nbpath;
   int **tabpath;
+  char **map;
   struct s_listpath *listpath;
 };
 

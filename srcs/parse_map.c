@@ -213,6 +213,7 @@ int parse_map(t_map *graph)
       error("manque le vertice start ou end\n");
       return -1;
     }
+
   graph->maxpath = count_edge(graph->end);
   graph->tabpath = (int **)malloc(sizeof(int *) * graph->maxpath);
 
