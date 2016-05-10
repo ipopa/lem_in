@@ -48,6 +48,6 @@ int main(int ac, char **av)
   graph->ants = ants;
   printf("nb ants = %d\n", graph->ants);
   parse_map(graph);
-  destroy_map(graph);
+  //  destroy_map(graph);
   return 0;
 }
