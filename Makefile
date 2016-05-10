@@ -15,7 +15,7 @@ FLAGS = -g -Wall -Werror -Wextra
 IDIR = includes/
 SDIR = srcs/
 ODIR = objects/
-SRC = $(SDIR)main.c $(SDIR)get_next_line.c $(SDIR)parse_map.c $(SDIR)error.c $(SDIR)check.c $(SDIR)tools.c $(SDIR)algo.c $(SDIR)path.c $(SDIR)print.c $(SDIR)test.c
+SRC = $(SDIR)main.c $(SDIR)get_next_line.c $(SDIR)parse_map.c $(SDIR)error.c $(SDIR)check.c $(SDIR)tools.c $(SDIR)algo.c $(SDIR)path.c $(SDIR)print.c
 LIB = libft/
 OBJ = $(SRC:.c=.o)
 LFILES = $(addprefix $(LIB), $(shell ls $(LIB) | grep .c))

@@ -10,13 +10,9 @@ void print_map(t_map *map)
   printf("\n- MAP -\n");
   while (tmp != NULL)
     {
-      print_vertice(tmp);
       tmpE = tmp->edges;
       while (tmpE != NULL)
-	{
-	  printf("\t Connect To %s\n", tmpE->connectTo->name);
-	  tmpE = tmpE->next;
-	}
+	tmpE = tmpE->next;
       tmp = tmp->next;
     }
 }
@@ -242,9 +238,8 @@ int parse_map(t_map *graph)
 
   set_path(graph->tabpath, graph);
   
-  printf("\n- RESULTAT -\n\n");
+  ft_putstr("\n- RESULTAT -\n\n");
 
-  test(graph);
-  // print_graph(graph, graph->tabpath);
+  print_graph(graph);
   return 1;
 }

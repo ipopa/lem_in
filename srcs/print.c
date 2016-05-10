@@ -1,98 +1,78 @@
 #include "lem_in.h"
 
-void print_vertice(t_vert *vert)
+t_path *set_p(t_map *graph, int nbpath)
 {
-  if (vert->end)
-    printf("- vertice end -\n");
-  if (vert->start)
-    printf("- vertice start -\n");
-  printf("name = %s; wt = %d; x = %d; y = %d\n", vert->name, *(vert->wt), vert->x, vert->y);
-  if (vert->occ)
-    printf("- vertice occuped -\n");
+  t_listpath *tmp;
+  
+  tmp = graph->listpath;
+
+  while (nbpath--)
+    tmp = tmp->next;
+  return tmp->path;
 }
 
-void add_to_tab(char **tab, int i, int nb, t_path *path, t_map *graph)
-{
-  char *tmpStr;
-  t_path *tmp;
-  char ant[4];
-  char *str;
-
-  tmp = path->next;
-
-  //il faut ft_itoa [
-  ant[0] = 'L';
-  ant[1] = nb + 48 + 1;
-  ant[2] = '-';
-  ant[3] = 0;
-  // ]
-
-  while (tmp)
-    {
-      str = ft_strjoin(ant, tmp->vertices->name);
-      tmpStr = ft_strjoin(str, " ");
-      free(str);
-      if (tab[i])
-	{
-	  str = ft_strjoin(tab[i], tmpStr);
-	  free(tmpStr);
-	  free(tab[i]);
-	  tab[i] = ft_strdup(str);
-	  free(str);
-	}
-      else
-	{
-	  tab[i] = ft_strdup(tmpStr);
-	  free(tmpStr);
-	}
-      i++;
-      tmp = tmp->next;
-    }
-}
-
-void print_graph(t_map *graph, int **tab)
+void next(t_path **tab, int max)
 {
   int i;
-  int nb;
-  t_listpath *tmpLP;
-  char **tabAll;
-  int wpath;
-  int j;
-
-  tabAll = (char **)malloc(sizeof(char *) * (graph->ants + 1));
-  wpath = 1;
+  
   i = 0;
-  nb = 0;
-  while(nb < graph->ants)
+  while (i < max)
     {
-      if (tab[wpath - 1][1] > 0)
+      if (tab[i])
+	tab[i] = tab[i]->next;
+      i++;
+    }
+}
+
+
+void print_tab(t_path **tab, int max)
+{
+  int i;
+  
+  i = 0;
+  while (i < max)
+    {
+      if (tab[i])
 	{
-	  tmpLP = graph->listpath;
-	  j = 0;
-	  while (j < wpath - 1)
-	    {
-	      tmpLP = tmpLP->next;
-	      j++;
-	    }
-	  if (tmpLP)
-	    {
-	      tab[wpath - 1][1]--;
-	      add_to_tab(tabAll, i, nb, tmpLP->path, graph);
-	    }
+	  ft_putchar('L');
+	  ft_putnbr(i + 1);
+	  ft_putchar('-');
+	  ft_putstr((tab[i])->vertices->name);
+	  ft_putchar(' ');
 	}
-      wpath++;
-      if (wpath > graph->nbpath)
-	{
-	  wpath = 1;
-	  i++;
-	}
-      nb++;
+      i++;
     }
 
-  j = 0;
-  while(j < graph->ants && tabAll[j])
+}
+
+void print_graph(t_map *graph)
+{
+  t_path **tab;
+  int ants;
+  int nbpath;
+
+  nbpath = 1;
+  tab = (t_path **)malloc(sizeof(t_path *) * (graph->ants + 1));
+  ants = 0;
+  while (ants < graph->ants)
+    tab[ants++] = NULL;
+  ants = 0;
+  while (42)
     {
-      ft_putendl(tabAll[j]);
-      j++;
+      if (!tab[ants])
+	tab[ants] = set_p(graph, nbpath - 1);
+      nbpath++;
+      if (nbpath > graph->nbpath)
+	{
+	  next(tab, graph->ants);
+	  print_tab(tab, graph->ants);
+	  ft_putchar('\n');
+	  nbpath = 1;
+	}
+      if (ants < (graph->ants - 1))
+	ants++;
+      if (ants == (graph->ants - 1) && tab[ants] && (tab[ants])->vertices->end)
+	break ;
     }
+  free(tab);
 }
