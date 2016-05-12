@@ -138,6 +138,8 @@ int ft_algo(t_map *graph)
       reset_vertices(graph->vertices);
       i++;
     }
+  if (i == 0)
+    return -1;
   graph->maxpath = i;
   set_path(graph->tabpath, graph);
   print_graph(graph);

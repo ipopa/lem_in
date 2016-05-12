@@ -88,6 +88,10 @@ int parse_map(t_map *graph)
       error();
       return -1;
     }
-  ft_algo(graph);
+  if (ft_algo(graph) == -1)
+    {
+      error();
+      return -1;
+    }
   return 1;
 }
