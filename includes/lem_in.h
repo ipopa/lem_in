@@ -29,6 +29,7 @@ struct s_map
   char **map;
   bool startB;
   bool endB;
+  bool error;
   struct s_listpath *listpath;
 };
 

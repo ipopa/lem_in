@@ -24,7 +24,10 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
   else if (ft_searchchr(line, ' ') && ft_words(line, ' ') == 3)
     {
       if (add_vert(graph, line, start, end) == -1)
-	return -1;
+	{
+	  graph->error = true;
+	  return -1;
+	}
     }
   else
     {
@@ -78,8 +81,9 @@ int parse_map(t_map *graph)
 {
   graph->startB = false;
   graph->endB = false;
+  graph->error = false;
   get_map(graph);
-  if (graph->endB || graph->startB || !graph->start || !graph->end)
+  if (graph->endB || graph->startB || !graph->start || !graph->end || graph->error)
     {
       error();
       return -1;
