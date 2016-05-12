@@ -79,7 +79,7 @@ int parse_map(t_map *graph)
   graph->startB = false;
   graph->endB = false;
   get_map(graph);
-  if (graph->endB || graph->startB)
+  if (graph->endB || graph->startB || !graph->start || !graph->end)
     {
       error();
       return -1;
