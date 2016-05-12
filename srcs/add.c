@@ -88,11 +88,11 @@ int add_edge(t_map *graph, char *line)
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
   free_tab(tab);
-  if (v1)
-    if (add_edge_to_map(&(v1->edges), v2) == -1)
-      return -1;
-  if (v2)
-    if (add_edge_to_map(&(v2->edges), v1) == -1)
-      return -1;
+  if (v1 || v2)
+    return -1;
+  if (add_edge_to_map(&(v1->edges), v2) == -1)
+    return -1;
+  if (add_edge_to_map(&(v2->edges), v1) == -1)
+    return -1;
   return 1;
 }
