@@ -14,8 +14,8 @@ int add_vert_to_map(t_vert **vert, t_vert *new)
     }
   while (tmpvert->next != NULL)
     {
-      if (check_vert(tmpvert, new) == -1)
-        return -1;
+      if (ft_strequ(tmpvert->name, new->name))
+	return -1;
       tmpvert = tmpvert->next;
       i++;
     }
