@@ -29,8 +29,10 @@ int add_edge_to_map(t_edge **edge, t_vert *new)
   t_edge *tmpedge;
   t_edge *newedge;
 
+  printf("ok1\n");
   i = 0;
   tmpedge = *edge;
+  printf("ok2\n");
   newedge = init_edge(new);
   if (*edge == NULL)
     {
@@ -84,9 +86,11 @@ int add_edge(t_map *graph, char *line)
   t_vert *v1;
   t_vert *v2;
 
+  printf("ok %s\n", line);
   tab = ft_strsplit(line, '-');
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
+  printf("ok %s\n", v2->name);
   free_tab(tab);
   if (add_edge_to_map(&(v1->edges), v2) == -1)
     return -1;

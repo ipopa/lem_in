@@ -7,10 +7,13 @@ t_vert *find_vert(t_vert *vert, char *name)
   tmp = vert;
   while (tmp != NULL)
     {
+      printf("name = %s\n", tmp->name);
+      printf("name2 = %s\n", name);
       if (ft_strequ(tmp->name, name))
         return (tmp);
       tmp = tmp->next;
     }
+  printf("null\n");
   return NULL;
 }
 
@@ -70,6 +73,7 @@ int get_map(t_map *graph)
 	}
       if (ret == 0)
 	break;
+      free(line);
     }
   return 1;
 }
