@@ -27,6 +27,8 @@ struct s_map
   int nbpath;
   int **tabpath;
   char **map;
+  bool startB;
+  bool endB;
   struct s_listpath *listpath;
 };
 
@@ -74,8 +76,6 @@ struct s_env
   bool err;
 };
 
-
-
 int parse_map(t_map *graph);
 t_vert	*init_vert(void);
 t_edge	*init_edge(t_vert *new);
@@ -94,5 +94,10 @@ void set_path(int **tab, t_map *graph);
 int test_nbelem(int **tab, int total, t_map *graph);
 void print_graph(t_map *graph);
 int count_edge(t_vert *vert);
+int add_vert_to_map(t_vert **vert, t_vert *new);
+int add_edge_to_map(t_edge **edge, t_vert *new);
+int add_vert(t_map *graph, char *line, bool start, bool end);
+int add_edge(t_map *graph, char *line);
+t_vert *find_vert(t_vert *vert, char *name);
 
 #endif
