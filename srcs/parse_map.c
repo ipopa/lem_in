@@ -64,15 +64,20 @@ void get_map(t_map *graph)
 	graph->endB = true;
       else if(line[0] == '#')
 	continue ;
+      else if(line[0] == 'L')
+	{
+	  graph->error = true;
+	  break ;
+	}
       else
 	{
 	  if (parse_line(graph, line, graph->startB, graph->endB) == -1)
-	    break;
+	    break ;
 	  graph->startB = false;
 	  graph->endB = false;
 	}
       if (ret == 0)
-	break;
+	break ;
       free(line);
     }
 }
