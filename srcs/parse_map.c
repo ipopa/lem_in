@@ -48,7 +48,7 @@ int count_edge(t_vert *vert)
   return i;
 }
 
-int get_map(t_map *graph)
+void get_map(t_map *graph)
 {
   char *line;
   int ret;
@@ -64,7 +64,7 @@ int get_map(t_map *graph)
       else
 	{
 	  if (parse_line(graph, line, graph->startB, graph->endB) == -1)
-	    return 0;
+	    break;
 	  graph->startB = false;
 	  graph->endB = false;
 	}
@@ -72,15 +72,13 @@ int get_map(t_map *graph)
 	break;
       free(line);
     }
-  return 1;
 }
 
 int parse_map(t_map *graph)
 {
   graph->startB = false;
   graph->endB = false;
-  if (get_map(graph) == 0)
-    return -1;
+  get_map(graph);
   if (graph->endB || graph->startB)
     {
       error();
