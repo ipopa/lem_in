@@ -15,10 +15,10 @@ FLAGS = -g -Wall -Werror -Wextra
 IDIR = includes/
 SDIR = srcs/
 ODIR = objects/
-SRC = $(SDIR)main.c $(SDIR)get_next_line.c $(SDIR)parse_map.c $(SDIR)error.c $(SDIR)check.c $(SDIR)tools.c $(SDIR)algo.c $(SDIR)path.c $(SDIR)print.c $(SDIR)init.c $(SDIR)add.c
+SRC = $(shell find $(SDIR) -type f | grep -e \.c$$)
 LIB = libft/
 OBJ = $(SRC:.c=.o)
-LFILES = $(addprefix $(LIB), $(shell ls $(LIB) | grep .c))
+LFILES = $(shell find $(LIB) -type f | grep -e \.c$$)
 LOBJ = $(LFILES:.c=.o)
 
 all : $(NAME)

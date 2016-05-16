@@ -86,12 +86,6 @@ void set_path(int **tab, t_map *graph)
       i++;
     }
   tab[0][1] = graph->ants - tmpTotal + tab[0][1];
-  i = 0;
-  while(i < graph->nbpath)
-    {
-      printf("nombre de fourmie par ce chemin: %d\n", tab[i][1]);
-      i++;
-    }
 }
 
 int test_nbelem(int **tab, int total, t_map *graph)
@@ -111,7 +105,6 @@ int test_nbelem(int **tab, int total, t_map *graph)
   tmp = (float)tmpFirst / (total + 1);
   if ((int)tmp < (int)(tmp + 0.5))
     tmp++;
-
   tmpFirst = (int)tmp;
   if (tmpFirst < tab[total][0] - 1)
     return -1;

@@ -63,7 +63,10 @@ void get_map(t_map *graph)
       else if (ft_strequ(line, "##end"))
 	graph->endB = true;
       else if(line[0] == '#')
-	continue ;
+	{
+	  free(line);
+	  continue ;
+	}
       else if(line[0] == 'L')
 	{
 	  graph->error = true;
@@ -76,10 +79,13 @@ void get_map(t_map *graph)
 	  graph->startB = false;
 	  graph->endB = false;
 	}
+      free(line);
+      line = NULL;
       if (ret == 0)
 	break ;
-      free(line);
     }
+  if (line)
+    free(line);
 }
 
 int parse_map(t_map *graph)
