@@ -5,9 +5,9 @@ void free_vertices(t_vert *vertices)
   t_vert *tmpV;
   t_edge *tmpE;
 
-  while(vertices)
+  while (vertices)
     {
-      while(vertices->edges)
+      while (vertices->edges)
 	{
 	  tmpE = vertices->edges;
 	  vertices->edges = vertices->edges->next;
@@ -28,8 +28,7 @@ void destroy_map(t_map *graph)
   t_path *tmpP;
 
   free_vertices(graph->vertices);
- 
-  while(graph->listpath)
+  while (graph->listpath)
     {
       while (graph->listpath->path)
 	{
@@ -42,27 +41,14 @@ void destroy_map(t_map *graph)
       free(tmpL);
     }
   i = 0;
-  while(i < graph->maxpath)
+  while (i < graph->maxpath)
     {
       free(graph->tabpath[i]);
       i++;
     }
   free(graph->tabpath);
+  ft_free_tab(graph->map);
   free(graph);
   //  while(42) {
   //}
-}
-
-void free_tab(char **tab) {
-  int j;
-
-  j = 0;
-
-  if (tab) {
-    while (tab[j]) {
-      free(tab[j]);
-      j++;
-    }
-    free(tab);
-  }
 }

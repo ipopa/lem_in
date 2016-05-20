@@ -85,7 +85,6 @@ int error(void);
 int check_vert(t_vert *vert, t_vert *new);
 void destroy_map(t_map *graph);
 int ft_algo(t_map *graph);
-void free_tab(char **tab);
 t_vert *find_small_vertice(t_vert *vertice);
 void print_path(t_path *path);
 void reset_vertices(t_vert *vertices);

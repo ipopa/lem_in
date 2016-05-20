@@ -10,14 +10,13 @@ int add_to_listpath(t_map *graph, t_path *newpath, int nbelem)
   path->next = NULL;
   path->maxants = 0;
   path->nbelem = nbelem;
-
   tmp = graph->listpath;
   if (graph->listpath == NULL)
     graph->listpath = path;
   else
     {
       while (tmp->next != NULL)
-	  tmp = tmp->next;
+	tmp = tmp->next;
       tmp->next = path;
     }
 }
@@ -29,8 +28,7 @@ t_path *add_newnode(t_path *path, t_vert *vert)
   newnode = (t_path *)malloc(sizeof(t_path));	
   newnode->vertices = vert;
   newnode->next = path;
-
-  return newnode;
+  return (newnode);
 }
 
 int create_path(t_map *graph, t_vert *vert)
@@ -47,9 +45,9 @@ int create_path(t_map *graph, t_vert *vert)
       if (newnode->vertices == NULL)
 	newnode->vertices = vert;
       else
-	  newnode = add_newnode(newnode, vert);
+	newnode = add_newnode(newnode, vert);
       if (!vert->end)
-	  vert->occ = true;
+	vert->occ = true;
       nbelem++;
       vert = vert->orig;
     }

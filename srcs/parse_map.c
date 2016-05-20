@@ -30,9 +30,7 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
 	return -1;
     }
   else
-    {
-      return -1;
-    }
+    return -1;
   return 1;
 }
 
@@ -95,14 +93,8 @@ int parse_map(t_map *graph)
   graph->error = false;
   get_map(graph);
   if (graph->endB || graph->startB || !graph->start || !graph->end || graph->error)
-    {
-      error();
-      return -1;
-    }
+    return -1;
   if (ft_algo(graph) == -1)
-    {
-      error();
-      return -1;
-    }
+    return -1;
   return 1;
 }

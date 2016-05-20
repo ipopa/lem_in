@@ -61,7 +61,7 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
       if (tab[2])
         new->y = ft_atoi(tab[2]);
     }
-  free_tab(tab);
+  ft_free_tab(tab);
   if (start)
     {
       new->start = true;
@@ -94,7 +94,7 @@ int add_edge(t_map *graph, char *line)
   tab = ft_strsplit(line, &my_isline);
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
-  free_tab(tab);
+  ft_free_tab(tab);
   if (!v1 || !v2)
     return -1;
   if (add_edge_to_map(&(v1->edges), v2) == -1)
