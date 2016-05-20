@@ -88,10 +88,7 @@ void get_map(t_map *graph)
 	  continue ;
 	}
       else if(line[0] == 'L')
-	{
-	  graph->error = true;
 	  break ;
-	}
       else
 	{
 	  if (parse_line(graph, line, graph->startB, graph->endB) == -1)
