@@ -16,11 +16,14 @@ t_vert *find_vert(t_vert *vert, char *name)
 
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
+  int ret;
+
   if (ft_searchchr(line, &ft_isspace) && ft_words(line, &ft_isspace) == 3)
     {
-      if (add_vert(graph, line, start, end) == -1)
+      if ((ret = add_vert(graph, line, start, end)) != 1)
 	{
-	  graph->error = true;
+	  if (ret == -1)
+	    graph->error = true;
 	  return -1;
 	}
     }
@@ -54,7 +57,6 @@ void join_to_map(t_map *graph, char *line)
   char **tmp;
   int i;
 
-  //  printf("hop = %s\n", line);
   tmp = (char **)malloc(sizeof(char *) * (graph->mapcount + 2));
   i = 0;
   while (i < graph->mapcount)

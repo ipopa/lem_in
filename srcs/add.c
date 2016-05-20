@@ -50,16 +50,29 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
 {
   t_vert *new;
   char **tab;
+  char *tmp;
+  int ret;
 
   new = init_vert();
-  tab = ft_strsplit(line, &ft_isspace);
-  if (tab[0] != 0)
+  if ((tab = ft_strsplit(line, &ft_isspace)) == NULL)
+    return (-1);
+  if (tab[0])
     new->name = ft_strdup(tab[0]);
   if (tab[1])
     {
-      new->x = ft_atoi(tab[1]);
+      tmp = ft_strtrim(tab[1]);
+      ret = ft_strequ(tmp, "0");
+      if ((new->x = ft_atoi(tab[1])) == 0 && ret == 0)
+	return (0);
+      free(tmp);
       if (tab[2])
-        new->y = ft_atoi(tab[2]);
+	{
+	  tmp = ft_strtrim(tab[2]);
+	  ret = ft_strequ(tmp, "0");
+	  if ((new->y = ft_atoi(tab[2])) == 0 && ret == 0)
+	    return (0);
+	  free(tmp);
+	}
     }
   ft_free_tab(tab);
   if (start)
