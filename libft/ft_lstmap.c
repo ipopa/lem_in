@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/01/26 18:15:45 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/01/26 19:50:59 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	t_list	*map;
+	t_list	*tmp;
+	t_list	*link;
 
-	dest = 0;
-	if (s1 != '\0')
+	if (!lst || !f)
+		return (NULL);
+	link = f(lst);
+	if ((map = ft_lstnew(link->content, link->content_size)))
 	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
+		tmp = map;
+		lst = lst->next;
+		while (lst)
 		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
+			link = f(lst);
+			if (!(tmp->next = ft_lstnew(link->content, link->content_size)))
+				return (NULL);
+			tmp = tmp->next;
+			lst = lst->next;
 		}
 	}
-	return (dest);
+	return (map);
 }

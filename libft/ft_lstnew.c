@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/01/25 19:49:08 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/01/26 19:08:39 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	t_list	*new;
 
-	dest = 0;
-	if (s1 != '\0')
+	if ((new = (t_list *)malloc(sizeof(content_size))) == NULL)
+		return (NULL);
+	if (content == NULL)
 	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
-		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
-		}
+		new->content = NULL;
+		new->content_size = 0;
 	}
-	return (dest);
+	else
+	{
+		new->content = (void *)content;
+		new->content_size = content_size;
+	}
+	new->next = NULL;
+	return (new);
 }

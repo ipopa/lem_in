@@ -6,7 +6,7 @@
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 13:49:03 by sbeaufil          #+#    #+#             */
-/*   Updated: 2014/11/19 14:33:57 by sbeaufil         ###   ########.fr       */
+/*   Updated: 2015/06/02 15:27:06 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	y = 0;
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	join = (char*)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char*));
-	if (join == NULL)
+	if (!(join = (char*)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) *\
+			sizeof(char))))
 		return (NULL);
 	while (s1[i] != '\0')
 	{

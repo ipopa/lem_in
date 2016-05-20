@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ipopa <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/10 18:17:48 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/01/26 15:50:58 by sbeaufil         ###   ########.fr       */
+/*   Created: 2016/05/19 12:57:35 by ipopa             #+#    #+#             */
+/*   Updated: 2016/05/19 13:04:18 by ipopa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+char		*ft_strrev(char *str)
 {
-	ft_putstr(ft_itoa(n));
+	int		i;
+	int		len;
+	char	tmp;
+
+	i = 0;
+	len = ft_strlen(str) - 1;
+	while (i < len)
+	{
+		tmp = str[i];
+		str[i] = str[len];
+		str[len] = tmp;
+		i++;
+		len--;
+	}
+	return str;
 }

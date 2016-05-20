@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/01/26 17:35:43 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/01/26 18:14:11 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	t_list *tmp;
 
-	dest = 0;
-	if (s1 != '\0')
+	if ((tmp = (t_list *)malloc(sizeof(t_list))) == NULL)
+		return ;
+	if (lst && f)
 	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
+		tmp = lst;
+		while (tmp != NULL)
 		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
+			(*f)(tmp);
+			tmp = tmp->next;
 		}
 	}
-	return (dest);
 }

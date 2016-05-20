@@ -16,7 +16,7 @@ t_vert *find_vert(t_vert *vert, char *name)
 
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
-  if (ft_searchchr(line, ' ') && ft_words(line, ' ') == 3)
+  if (ft_searchchr(line, &ft_isspace) && ft_words(line, &ft_isspace) == 3)
     {
       if (add_vert(graph, line, start, end) == -1)
 	{
@@ -24,7 +24,7 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
 	  return -1;
 	}
     }
-  else if (ft_searchchr(line, '-') && ft_words(line, '-') == 2)
+  else if (ft_searchchr(line, &my_isline) && ft_words(line, &my_isline) == 2)
     {
       if (add_edge(graph, line) == -1)
 	return -1;

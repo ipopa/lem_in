@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_otoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/06/02 15:00:06 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/06/02 15:29:46 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char		*ft_otoa(unsigned long long int c)
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	char	octa[30];
+	char	*ret;
+	size_t	i;
+	size_t	j;
 
-	dest = 0;
-	if (s1 != '\0')
+	i = 0;
+	j = 0;
+	while (c > 7)
 	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
-		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
-		}
+		octa[i++] = (char)((c % 8) + '0');
+		c = c / 8;
 	}
-	return (dest);
+	octa[i++] = (char)(c + '0');
+	if (!(ret = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	while (i--)
+		ret[j++] = octa[i];
+	ret[j] = '\0';
+	return (ret);
 }

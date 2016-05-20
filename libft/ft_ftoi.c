@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_ftoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/06/04 13:32:26 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/06/05 13:57:56 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strdup(const char *s1)
+int		ft_ftoi(float c)
 {
-	int		count1;
-	int		count2;
-	char	*dest;
-
-	dest = 0;
-	if (s1 != '\0')
-	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
-		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
-		}
-	}
-	return (dest);
+	return ((int)(c));
 }

@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_addfirstchar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/06/04 13:33:59 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/06/04 14:04:32 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+void		ft_addfirstchar(char **str, char c)
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	char	*tmp;
+	char	*tmp2;
+	int		index;
+	int		cp;
 
-	dest = 0;
-	if (s1 != '\0')
-	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
-		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
-		}
-	}
-	return (dest);
+	index = 0;
+	cp = 0;
+	if (*str)
+		tmp = ft_strdup(*str);
+	else
+		tmp = ft_strdup("");
+	ft_strdel(str);
+	tmp2 = malloc(sizeof(char) * (ft_strlen(tmp) + 2));
+	tmp2[cp++] = c;
+	while (tmp[index])
+		tmp2[cp++] = tmp[index++];
+	tmp2[cp] = '\0';
+	*str = ft_strdup(tmp2);
+	ft_strdel(&tmp);
+	ft_strdel(&tmp2);
 }

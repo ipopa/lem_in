@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/01/10 17:50:36 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/01/10 17:50:42 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_itoa(int n)
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	char	ret[11];
+	char	*r;
+	int		neg;
+	int		i;
+	int		j;
 
-	dest = 0;
-	if (s1 != '\0')
+	j = 0;
+	i = 0;
+	neg = n < 0 ? -1 : 1;
+	while (neg * n > 9 || neg * n < 0)
 	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
-		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
-		}
+		ret[i++] = '0' + neg * (n % 10);
+		n = n / 10;
 	}
-	return (dest);
+	ret[i++] = '0' + neg * n;
+	if (neg < 0)
+		ret[i++] = '-';
+	if ((r = (char *)malloc(sizeof(char) * i)) == NULL)
+		return (NULL);
+	r[i] = '\0';
+	while (i--)
+		r[i] = ret[j++];
+	return (r);
 }

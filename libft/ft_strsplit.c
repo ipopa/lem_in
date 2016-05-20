@@ -3,61 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipopa <ipopa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/07 15:47:18 by ipopa             #+#    #+#             */
-/*   Updated: 2015/05/05 15:08:56 by ipopa            ###   ########.fr       */
+/*   Created: 2015/01/10 17:51:29 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/05/29 15:25:53 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_words(char const *s, char c)
+char			**ft_strsplit(char const *s, int (*f)(char))
 {
-	int		i;
-	size_t	size;
+  char	**tab;
+  size_t	size;
+  int		i;
+  int		start;
 
-	i = 0;
-	size = 0;
-	while (s[i] && s[i] == c)
-		i++;
-	while (s[i])
+  if (!s || !(tab = (char **)malloc(sizeof(char *) * (ft_words(s, f) + 1))))
+    return (NULL);
+  i = 0;
+  size = 0;
+  while (s[i])
+    {
+      if ((*f)(s[i]))
+	i++;
+      else
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
-		{
-			while (s[i] && s[i] != c)
-				i++;
-			size++;
-		}
+	  start = i;
+	  while (s[i] && !(*f)(s[i]))
+	    i++;
+	  tab[size++] = ft_strsub(s, start, i - start);
 	}
-	return (size);
-}
-
-char			**ft_strsplit(char const *s, char c)
-{
-	char	**tab;
-	size_t	size;
-	int		i;
-	int		start;
-
-	if (!s || !(tab = (char **)malloc(sizeof(char *) * (ft_words(s, c) + 1))))
-		return (NULL);
-	i = 0;
-	size = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			i++;
-		else
-		{
-			start = i;
-			while (s[i] && s[i] != c)
-				i++;
-			tab[size++] = ft_strsub(s, start, i - start);
-		}
-	}
-	tab[size] = 0;
-	return (tab);
+    }
+  tab[size] = NULL;
+  return (tab);
 }

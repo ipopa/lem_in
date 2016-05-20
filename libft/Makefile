@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+         #
+#    By: ipopa <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/11/04 14:38:59 by sbeaufil          #+#    #+#              #
-#    Updated: 2015/02/12 15:06:35 by sbeaufil         ###   ########.fr        #
+#    Created: 2016/05/13 14:41:38 by ipopa             #+#    #+#              #
+#    Updated: 2016/05/19 13:01:09 by ipopa            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,31 +16,27 @@ FLAGS = -Wall -Werror -Wextra
 
 NAME = libft.a
 
-SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c ft_strcmp.c ft_strncmp.c ft_atoi.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c ft_tolower.c ft_memalloc.c ft_memdel.c ft_strnew.c ft_strdel.c ft_strclr.c ft_striter.c ft_striteri.c ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strsplit.c ft_searchchr.c
+IDIR = -I includes/
+
+SRC = $(shell find . -type f | grep -e \.c$$)
 
 NOM = $(basename $(SRC))
-
 OBJ = $(addsuffix .o, $(NOM))
 
 all : $(NAME)
 
-$(NAME) :
-	@echo -n 'libft:  compiling done...				'
-	@$(CC) -c $(SRC) $(FLAGS)
-	@echo "\033[32mOK\033[0m"
-	@echo -n 'libft:  Creating $(NAME) done...			'
-	@ar rc $(NAME) $(OBJ) libft.h
+$(NAME) : $(OBJ)
+	@ar rc $(NAME) $^
 	@ranlib $(NAME)
-	@echo "\033[32mOK\033[0m"
 
+%.o: %.c
+		@$(CC) $(FLAGS) -o $@ -c $< $(IDIR)
 
 clean :
-	@echo -n 'libft:  Removing objects...				'
-	@rm -f $(OBJ)
-	@echo "\033[32mOK\033[0m"
+	@rm -rf $(OBJ)
 
 fclean : clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 
 re : fclean all
 

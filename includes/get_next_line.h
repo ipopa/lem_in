@@ -19,11 +19,11 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "../libft/libft.h"
 # define BUFF_SIZE 8
 
 typedef struct s_get	t_get;
 typedef struct s_int	t_int;
-typedef struct s_list	t_list;
 typedef struct s_var	t_var;
 
 struct					s_get
@@ -45,13 +45,8 @@ struct					s_var
 	int j;
 };
 
-struct					s_list
-{
-	char				*str;
-	t_list				*next;
-};
 
-char					*ft_strdup(const char *s);
+
 int						get_next_line(int const ft, char **line);
 
 #endif

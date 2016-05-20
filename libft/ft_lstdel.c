@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/01/25 20:16:26 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/01/26 20:15:58 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	t_list *tmp;
+	t_list *next;
 
-	dest = 0;
-	if (s1 != '\0')
+	if (alst && del)
 	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
+		tmp = *alst;
+		while (tmp)
 		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
+			next = tmp->next;
+			del(tmp->content, tmp->content_size);
+			free(tmp);
+			tmp = next;
 		}
+		*alst = NULL;
 	}
-	return (dest);
 }

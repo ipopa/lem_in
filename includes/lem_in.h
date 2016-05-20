@@ -83,7 +83,6 @@ t_edge	*init_edge(t_vert *new);
 t_map	*init_map(void);
 int error(void);
 int check_vert(t_vert *vert, t_vert *new);
-size_t	ft_words(char const *s, char c);
 void destroy_map(t_map *graph);
 int ft_algo(t_map *graph);
 void free_tab(char **tab);
@@ -100,5 +99,6 @@ int add_edge_to_map(t_edge **edge, t_vert *new);
 int add_vert(t_map *graph, char *line, bool start, bool end);
 int add_edge(t_map *graph, char *line);
 t_vert *find_vert(t_vert *vert, char *name);
+int my_isline(char c);
 
 #endif

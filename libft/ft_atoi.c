@@ -11,26 +11,29 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
 int	ft_atoi(const char *str)
 {
   int	result;
   int sign;
+  unsigned int i;
+  char *tmpstr;
 
   result = 0;
-  while (((*str > 8 && *str < 14) || *str == ' ') && *str)
-    str++;
-  sign = (*str == '-') ? -1 : 1;
-  if (*str == '-' || *str == '+')
-    str++;
-  if ((ft_strcmp(str, INT_MAX_STR) > 0 && ft_strlen(str) == 10) || ft_strlen(str) > 10)
-    return 0;
-  while (*str && ft_isdigit(*str) == 1)
+  tmpstr = ft_strtrim(str);
+  i = 0;
+  sign = (tmpstr[i] == '-') ? -1 : 1;
+  if (tmpstr[i] == '-' || tmpstr[i] == '+')
+    i++;
+  if ((ft_strcmp(tmpstr, INT_MAX_STR) > 0 && ft_strlen(tmpstr) == (10 + i)) || ft_strlen(tmpstr) > (10 + i))
+    sign = 0;
+  while ((ft_isdigit(tmpstr[i]) == 1) && tmpstr[i])
     {
-      result = (result * 10) + (*str - '0');
-      str++;
+      result = (result * 10) + (tmpstr[i] - '0');
+      i++;
     }
-  if (*str)
-    return 0;
+  if (tmpstr[i])
+    sign = 0;
+  free(tmpstr);
   return sign * result;
 }

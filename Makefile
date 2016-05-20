@@ -24,20 +24,20 @@ LOBJ = $(LFILES:.c=.o)
 all : $(NAME)
 
 $(NAME): $(LOBJ) $(OBJ)
-		@echo -n 'ft_sh:    Creating $(NAME) done...		'
+		@echo -n '$(NAME):    Creating $(NAME) done...			'
 		@gcc -o $(NAME) $(OBJ) -L $(LIB) -lft -I $(IDIR)
 		@echo "\033[32mOK\033[0m"
 
 clean :
 		make clean -C libft
-		@echo -n 'ft_sh:	  Removing objects...				'
+		@echo -n '$(NAME):	  Removing objects...				'
 		@rm -f $(OBJ)
 		@echo "\033[32mOK\033[0m"
 
 $(LIB)%.o:	$(LIB)%.c
 					@make -C $(LIB)
 %.o:%.c
-		@echo -n 'ft_sh:    Compiling done...				'
+		@echo -n '$(NAME):    Compiling done...				'
 		@gcc -c $< -o $@ -I $(IDIR)
 		@echo "\033[32mOK\033[0m"
 
@@ -45,7 +45,7 @@ fclean:	clean
 		@echo -n 'libft:    Removing libft.a...				'
 		@rm -f $(LIB)libft.a
 		@echo "\033[32mOK\033[0m"
-		@echo -n 'ft_sh:	  Removing ft_sh...				'
+		@echo -n '$(NAME):	  Removing $(NAME)...				'
 		@rm -f $(NAME)
 		@echo "\033[32mOK\033[0m"
 

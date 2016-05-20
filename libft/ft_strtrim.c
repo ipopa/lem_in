@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 13:13:30 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/10/29 20:15:04 by sbeaufil         ###   ########.fr       */
+/*   Created: 2015/01/10 17:51:02 by sbeaufil          #+#    #+#             */
+/*   Updated: 2015/10/29 20:13:01 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strtrim(char const *s)
 {
-	int		count1;
-	int		count2;
-	char	*dest;
+	int len;
 
-	dest = 0;
-	if (s1 != '\0')
-	{
-		count1 = 0;
-		while (s1[count1] != '\0')
-			count1++;
-		dest = malloc((count1 + 1) * sizeof(*dest));
-		if (dest != '\0')
-		{
-			count2 = -1;
-			while (s1[++count2] != 0)
-				dest[count2] = s1[count2];
-			dest[count2] = 0;
-			return (dest);
-		}
-	}
-	return (dest);
+	if (!s)
+		return (NULL);
+	while (*s && ft_isspace(*s))
+		s++;
+	len = ft_strlen(s) - 1;
+	while (len > 0 && s[len] && ft_isspace(s[len]))
+		len--;
+	return (ft_strsub(s, 0, len + 1));
 }

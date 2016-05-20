@@ -52,7 +52,7 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
   char **tab;
 
   new = init_vert();
-  tab = ft_strsplit(line, ' ');
+  tab = ft_strsplit(line, &ft_isspace);
   if (tab[0] != 0)
     new->name = ft_strdup(tab[0]);
   if (tab[1])
@@ -78,13 +78,20 @@ int add_vert(t_map *graph, char *line, bool start, bool end)
   return 1;
 }
 
+int my_isline(char c)
+{
+  if (c == '-')
+    return (1);
+  return (0);
+}
+
 int add_edge(t_map *graph, char *line)
 {
   char **tab;
   t_vert *v1;
   t_vert *v2;
 
-  tab = ft_strsplit(line, '-');
+  tab = ft_strsplit(line, &my_isline);
   v1 = find_vert(graph->vertices, tab[0]);
   v2 = find_vert(graph->vertices, tab[1]);
   free_tab(tab);

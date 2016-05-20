@@ -6,16 +6,18 @@
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 18:30:20 by sbeaufil          #+#    #+#             */
-/*   Updated: 2014/11/13 21:34:54 by sbeaufil         ###   ########.fr       */
+/*   Updated: 2015/06/01 11:37:17 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strlen(const char *str)
+size_t		ft_strlen(const char *str)
 {
 	int i;
 
+	if (str == NULL)
+		return (0);
 	i = 0;
 	while (str[i] != '\0')
 		i++;
