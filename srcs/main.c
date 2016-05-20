@@ -12,7 +12,9 @@ int main(void)
     {
       graph = init_map();
       graph->ants = ants;
-      parse_map(graph);
+      join_to_map(graph, line);
+      if (parse_map(graph) == -1)
+	error();
       destroy_map(graph);
     }
   else

@@ -27,6 +27,7 @@ struct s_map
   int nbpath;
   int **tabpath;
   char **map;
+  int mapcount;
   bool startB;
   bool endB;
   bool error;
@@ -99,5 +100,6 @@ int add_vert(t_map *graph, char *line, bool start, bool end);
 int add_edge(t_map *graph, char *line);
 t_vert *find_vert(t_vert *vert, char *name);
 int my_isline(char c);
+void join_to_map(t_map *graph, char *line);
 
 #endif

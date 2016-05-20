@@ -42,5 +42,6 @@ t_map *init_map(void)
   graph->nbpath = 0;
   graph->end = NULL;
   graph->start = NULL;
+  graph->mapcount = 0;
   return graph;
 }

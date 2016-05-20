@@ -49,6 +49,26 @@ int count_edge(t_vert *vert)
   return i;
 }
 
+void join_to_map(t_map *graph, char *line)
+{
+  char **tmp;
+  int i;
+
+  //  printf("hop = %s\n", line);
+  tmp = (char **)malloc(sizeof(char *) * (graph->mapcount + 2));
+  i = 0;
+  while (i < graph->mapcount)
+    {
+      tmp[i] = graph->map[i];
+      i++;
+    }
+  tmp[i] = ft_strdup(line);
+  tmp[i + 1] = NULL;
+  free(graph->map);
+  graph->map = tmp;
+  graph->mapcount++;
+}
+
 void get_map(t_map *graph)
 {
   char *line;
@@ -77,6 +97,7 @@ void get_map(t_map *graph)
 	  graph->startB = false;
 	  graph->endB = false;
 	}
+      join_to_map(graph, line);
       free(line);
       line = NULL;
       if (ret == 0)

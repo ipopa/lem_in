@@ -28,21 +28,24 @@ void next(t_path **tab, int max)
 void print_tab(t_path **tab, int max)
 {
   int i;
-  
+  bool spacebool;
+
   i = 0;
+  spacebool = false;
   while (i < max)
     {
       if (tab[i])
 	{
+	  if (spacebool)
+	    ft_putchar(' ');
+	  spacebool = true;
 	  ft_putchar('L');
 	  ft_putnbr(i + 1);
 	  ft_putchar('-');
 	  ft_putstr((tab[i])->vertices->name);
-	  ft_putchar(' ');
 	}
       i++;
     }
-
 }
 
 void print_graph(t_map *graph)
@@ -50,6 +53,7 @@ void print_graph(t_map *graph)
   t_path **tab;
   int ants;
   int nbpath;
+  int nbcount;
 
   nbpath = 1;
   tab = (t_path **)malloc(sizeof(t_path *) * (graph->ants + 1));
@@ -57,7 +61,14 @@ void print_graph(t_map *graph)
   while (ants < graph->ants)
     tab[ants++] = NULL;
   ants = 0;
-  int tmpCoups = 0;
+  nbcount = 0;
+  while (graph->map[ants])
+    {
+      ft_putendl(graph->map[ants]);
+      ants++;
+    }
+  ft_putchar('\n');
+  ants = 0;
   while (42)
     {
       if (!tab[ants])
@@ -76,7 +87,7 @@ void print_graph(t_map *graph)
 		  print_tab(tab, graph->ants);
 		  ft_putchar('\n');
 		  nbpath = 1;
-		  tmpCoups++;
+		  nbcount++;
 		}
 	      continue ;
 	    }
@@ -88,7 +99,7 @@ void print_graph(t_map *graph)
 	  print_tab(tab, graph->ants);
 	  ft_putchar('\n');
 	  nbpath = 1;
-	  tmpCoups++;
+	  nbcount++;
 	}
       if (ants < (graph->ants - 1))
 	ants++;
