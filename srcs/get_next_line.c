@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/15 19:09:26 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/03/03 16:54:01 by sbeaufil         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 t_list		*ft_dellist(t_list *list)
@@ -80,8 +68,6 @@ int			read_file(t_get cp, t_list *list, char **rest, char **line)
   t_int		e;
   char		buf[BUFF_SIZE + 1];
 
-  e.ret = 0;
-  *rest = NULL;
   while ((e.ret = read(cp.fd, buf, BUFF_SIZE)))
     {
       if (e.ret == -1)
@@ -118,10 +104,9 @@ int			get_next_line(int const fd, char **line)
   if (rest[fd])
     {
       list = add_link(list, rest[fd]);
-      cp.len = -1;
-      while (rest[fd][++cp.len])
+      while (rest[fd][cp.len++] && cp.len < ft_strlen(rest[fd]))
 	if (rest[fd][cp.len] == '\n')
-	  {
+	  {	 
 	    transform_list_to_str(list, cp.len, line);
 	    tmp = ft_strdup(&(rest[fd][cp.len + 1]));
 	    free(rest[fd]);
@@ -130,7 +115,6 @@ int			get_next_line(int const fd, char **line)
 	  }
       free(rest[fd]);
     }
-  rest[fd] = NULL;
   cp.fd = fd;
   return (read_file (cp, list, &rest[fd], line));
 }

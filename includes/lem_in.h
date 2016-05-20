@@ -94,12 +94,11 @@ void set_path(int **tab, t_map *graph);
 int test_nbelem(int **tab, int total, t_map *graph);
 void print_graph(t_map *graph);
 int count_edge(t_vert *vert);
-int add_vert_to_map(t_vert **vert, t_vert *new);
-int add_edge_to_map(t_edge **edge, t_vert *new);
 int add_vert(t_map *graph, char *line, bool start, bool end);
 int add_edge(t_map *graph, char *line);
 t_vert *find_vert(t_vert *vert, char *name);
 int my_isline(char c);
 void join_to_map(t_map *graph, char *line);
+void print_tab(t_path **tab, int max);
 
 #endif

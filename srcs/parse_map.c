@@ -1,19 +1,5 @@
 #include "lem_in.h"
 
-t_vert *find_vert(t_vert *vert, char *name)
-{
-  t_vert *tmp;
-
-  tmp = vert;
-  while (tmp != NULL)
-    {
-      if (ft_strequ(tmp->name, name))
-        return (tmp);
-      tmp = tmp->next;
-    }
-  return NULL;
-}
-
 int parse_line(t_map *graph, char *line, bool start, bool end)
 {
   int ret;
@@ -24,32 +10,17 @@ int parse_line(t_map *graph, char *line, bool start, bool end)
 	{
 	  if (ret == -1)
 	    graph->error = true;
-	  return -1;
+	  return (-1);
 	}
     }
   else if (ft_searchchr(line, &my_isline) && ft_words(line, &my_isline) == 2)
     {
       if (add_edge(graph, line) == -1)
-	return -1;
+	return (-1);
     }
   else
-    return -1;
-  return 1;
-}
-
-int count_edge(t_vert *vert)
-{
-  int i;
-  t_edge *tmp;
-
-  i = 0;
-  tmp = vert->edges;
-  while(tmp != NULL)
-    {
-      i++;
-      tmp = tmp->next;
-    }
-  return i;
+    return (-1);
+  return (1);
 }
 
 void join_to_map(t_map *graph, char *line)
@@ -71,6 +42,15 @@ void join_to_map(t_map *graph, char *line)
   graph->mapcount++;
 }
 
+int test_parse_line(t_map *graph, char *line)
+{
+  if (line[0] == 'L' || parse_line(graph, line, graph->startB, graph->endB) == -1)
+    return (0);
+  graph->startB = false;
+  graph->endB = false;
+  return (1);
+}
+
 void get_map(t_map *graph)
 {
   char *line;
@@ -87,15 +67,9 @@ void get_map(t_map *graph)
 	  free(line);
 	  continue ;
 	}
-      else if(line[0] == 'L')
-	  break ;
       else
-	{
-	  if (parse_line(graph, line, graph->startB, graph->endB) == -1)
-	    break ;
-	  graph->startB = false;
-	  graph->endB = false;
-	}
+	if (!test_parse_line(graph, line))
+	  break ;
       join_to_map(graph, line);
       free(line);
       line = NULL;

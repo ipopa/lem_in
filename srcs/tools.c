@@ -1,5 +1,34 @@
 #include "lem_in.h"
 
+int count_edge(t_vert *vert)
+{
+  int i;
+  t_edge *tmp;
+
+  i = 0;
+  tmp = vert->edges;
+  while (tmp != NULL)
+    {
+      i++;
+      tmp = tmp->next;
+    }
+  return i;
+}
+
+t_vert *find_vert(t_vert *vert, char *name)
+{
+  t_vert *tmp;
+
+  tmp = vert;
+  while (tmp != NULL)
+    {
+      if (ft_strequ(tmp->name, name))
+        return (tmp);
+      tmp = tmp->next;
+    }
+  return NULL;
+}
+
 void free_vertices(t_vert *vertices)
 {
   t_vert *tmpV;
@@ -18,6 +47,22 @@ void free_vertices(t_vert *vertices)
       tmpV = vertices;
       vertices = vertices->next;
       free(tmpV);
+    }
+}
+
+void free_tabpath(t_map *graph)
+{
+  int i;
+
+  if (graph->tabpath)
+    {
+      i = 0;
+      while (i < graph->maxpath)
+	{
+	  free(graph->tabpath[i]);
+	  i++;
+	}
+      free(graph->tabpath);
     }
 }
 
@@ -40,13 +85,6 @@ void destroy_map(t_map *graph)
       graph->listpath = graph->listpath->next;
       free(tmpL);
     }
-  i = 0;
-  while (i < graph->maxpath)
-    {
-      free(graph->tabpath[i]);
-      i++;
-    }
-  free(graph->tabpath);
   ft_free_tab(graph->map);
   free(graph);
   //  while(42) {
