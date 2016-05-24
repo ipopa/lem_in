@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ipopa <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/17 16:06:47 by sbeaufil          #+#    #+#             */
-/*   Updated: 2016/05/24 14:38:14 by sbeaufil         ###   ########.fr       */
+/*   Created: 2016/05/24 16:17:50 by ipopa             #+#    #+#             */
+/*   Updated: 2016/05/24 16:17:51 by ipopa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
 # define BUFF_SIZE 8
 
 typedef struct s_get	t_get;
@@ -31,6 +31,7 @@ struct					s_get
 	int					i;
 	int					len;
 	int					fd;
+	char				*tmp;
 };
 
 struct					s_int

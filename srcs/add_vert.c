@@ -1,9 +1,9 @@
 #include "lem_in.h"
 
-static int		add_vert_to_map(t_vert **vert, t_vert *new)
+int		add_vert_to_map(t_vert **vert, t_vert *new)
 {
-	int i;
-	t_vert *tmpvert;
+	int		i;
+	t_vert	*tmpvert;
 
 	i = 0;
 	tmpvert = *vert;
@@ -23,10 +23,10 @@ static int		add_vert_to_map(t_vert **vert, t_vert *new)
 	return (1);
 }
 
-static int 		add_vert_coord(char **tab, t_vert *new)
+int		add_vert_coord(char **tab, t_vert *new)
 {
-	char *tmp;
-	int ret;
+	char	*tmp;
+	int		ret;
 
 	if (tab[1])
 	{
@@ -51,7 +51,7 @@ static int 		add_vert_coord(char **tab, t_vert *new)
 	return (1);
 }
 
-static void start_or_end(bool start, bool end, t_map *graph, t_vert *new)
+void	start_or_end(bool start, bool end, t_map *graph, t_vert *new)
 {
 	if (start)
 	{
@@ -63,13 +63,13 @@ static void start_or_end(bool start, bool end, t_map *graph, t_vert *new)
 	{
 		graph->end = new;
 		new->end = true;
-    }
+	}
 }
 
-int add_vert(t_map *graph, char *line, bool start, bool end)
+int		add_vert(t_map *graph, char *line, bool start, bool end)
 {
-	t_vert *new;
-	char **tab;
+	t_vert	*new;
+	char	**tab;
 
 	new = init_vert();
 	if ((tab = ft_strsplit(line, &ft_isspace)) == NULL)
