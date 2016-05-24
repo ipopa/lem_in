@@ -26,7 +26,7 @@ t_path	*add_newnode(t_path *path, t_vert *vert)
 {
 	t_path	*newnode;
 
-	newnode = (t_path *)malloc(sizeof(t_path));	
+	newnode = (t_path *)malloc(sizeof(t_path));
 	newnode->vertices = vert;
 	newnode->next = path;
 	return (newnode);
