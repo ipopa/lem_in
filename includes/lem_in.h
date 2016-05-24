@@ -6,7 +6,7 @@
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 13:58:29 by sbeaufil          #+#    #+#             */
-/*   Updated: 2016/05/24 16:19:03 by sbeaufil         ###   ########.fr       */
+/*   Updated: 2016/05/24 16:34:03 by ipopa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ struct						s_map
 	int			**tabpath;
 	char		**map;
 	int			mapcount;
-	bool		startB;
-	bool		endB;
+	bool		start_b;
+	bool		end_b;
 	bool		error;
 	t_listpath	*listpath;
 };
@@ -112,6 +112,7 @@ t_vert						*find_vert(t_vert *vert, char *name);
 int							my_isline(char c);
 void						join_to_map(t_map *graph, char *line);
 void						print_tab(t_path **tab, int max);
-int							ft_dijkstra(t_vert *vertices, t_vert *startP, int nb);
+int							ft_dijkstra(t_vert *vertices, t_vert *start_p,\
+										int nb);
 
 #endif
