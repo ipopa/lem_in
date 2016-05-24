@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_words.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ipopa <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/24 17:10:30 by ipopa             #+#    #+#             */
+/*   Updated: 2016/05/24 17:10:31 by ipopa            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-size_t  ft_words(char const *s, int (*f)(char))
+size_t	ft_words(char const *s, int (*f)(char))
 {
-  int   i;
-  size_t        size;
+	int		i;
+	size_t	size;
 
-  i = 0;
-  size = 0;
-  while (s[i] && (*f)(s[i]))
-    i++;
-  while (s[i])
-    {
-      while (s[i] && (*f)(s[i]))
-        i++;
-      if (s[i])
-        {
-          while (s[i] && !(*f)(s[i]))
-            i++;
-          size++;
-        }
-    }
-  return (size);
+	i = 0;
+	size = 0;
+	while (s[i] && (*f)(s[i]))
+		i++;
+	while (s[i])
+	{
+		while (s[i] && (*f)(s[i]))
+			i++;
+		if (s[i])
+		{
+			while (s[i] && !(*f)(s[i]))
+				i++;
+			size++;
+		}
+	}
+	return (size);
 }
