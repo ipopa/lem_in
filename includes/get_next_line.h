@@ -6,7 +6,7 @@
 /*   By: ipopa <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 16:17:50 by ipopa             #+#    #+#             */
-/*   Updated: 2016/05/24 16:17:51 by ipopa            ###   ########.fr       */
+/*   Updated: 2016/05/24 16:56:14 by ipopa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 # define BUFF_SIZE 8
 
 typedef struct s_get	t_get;
