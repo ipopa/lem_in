@@ -14,11 +14,11 @@ int		add_to_listpath(t_map *graph, t_path *newpath, int nbelem)
 	if (graph->listpath == NULL)
 		graph->listpath = path;
 	else
-    {
+	{
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = path;
-    }
+	}
 	return (1);
 }
 
@@ -42,7 +42,7 @@ int		create_path(t_map *graph, t_vert *vert)
 	newnode->next = NULL;
 	nbelem = 1;
 	while (!vert->start)
-    {
+	{
 		if (newnode->vertices == NULL)
 			newnode->vertices = vert;
 		else
@@ -51,7 +51,7 @@ int		create_path(t_map *graph, t_vert *vert)
 			vert->occ = true;
 		nbelem++;
 		vert = vert->orig;
-    }
+	}
 	if (newnode->vertices == NULL)
 		newnode->vertices = vert;
 	else
