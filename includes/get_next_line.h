@@ -6,7 +6,7 @@
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/17 16:06:47 by sbeaufil          #+#    #+#             */
-/*   Updated: 2015/02/11 12:56:42 by sbeaufil         ###   ########.fr       */
+/*   Updated: 2016/05/24 14:38:14 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ struct					s_var
 	int i;
 	int j;
 };
-
-
 
 int						get_next_line(int const ft, char **line);
 
