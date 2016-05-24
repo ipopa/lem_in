@@ -34,11 +34,11 @@ int ft_dijkstra(t_vert *vertices, t_vert *startP, int nb)
   edgeP = startP->edges;
   while (edgeP != NULL)
     {
-      if (!edgeP->connectTo->occ && !edgeP->connectTo->visited\
-	  && (*(edgeP->connectTo->wt) > (nb + *(startP->wt))))
+      if (!edgeP->bounds->occ && !edgeP->bounds->visited\
+	  && (*(edgeP->bounds->wt) > (nb + *(startP->wt))))
         {
-          *(edgeP->connectTo->wt) = *(startP->wt) + nb;
-          edgeP->connectTo->orig = startP;
+          *(edgeP->bounds->wt) = *(startP->wt) + nb;
+          edgeP->bounds->orig = startP;
         }
       edgeP = edgeP->next;
     }

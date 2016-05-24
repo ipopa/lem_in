@@ -31,9 +31,9 @@ int		main(void)
 	int		ants;
 
 	line = NULL;
-	ants = ft_atoi(line);
-	if ((ret = get_next_line(0, &line)) != -1 && (ants > 0))
+	if ((ret = get_next_line(0, &line)) != -1 && (ft_atoi(line) > 0))
 	{
+		ants = ft_atoi(line);
 		graph = init_map();
 		graph->ants = ants;
 		join_to_map(graph, line);

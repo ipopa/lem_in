@@ -21,13 +21,13 @@ t_vert		*init_vert(void)
 
 t_edge *init_edge(t_vert *new)
 {
-  t_edge *newedge;
+	t_edge *newedge;
 
-  if ((newedge = (t_edge *)malloc(sizeof(t_edge))) == NULL)
-    return NULL;
-  newedge->connectTo = new;
-  newedge->next = NULL;
-  return newedge;
+	if ((newedge = (t_edge *)malloc(sizeof(t_edge))) == NULL)
+		return NULL;
+	newedge->bounds = new;
+	newedge->next = NULL;
+	return newedge;
 }
 
 t_map *init_map(void)

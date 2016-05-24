@@ -6,7 +6,7 @@
 /*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 13:58:29 by sbeaufil          #+#    #+#             */
-/*   Updated: 2016/05/24 14:53:40 by sbeaufil         ###   ########.fr       */
+/*   Updated: 2016/05/24 15:58:23 by sbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ struct						s_map
 	int			**tabpath;
 	char		**map;
 	int			mapcount;
-	bool		start_b;
-	bool		end_b;
+	bool		startB;
+	bool		endB;
 	bool		error;
 	t_listpath	*listpath;
 };
@@ -57,7 +57,7 @@ struct						s_listpath
 
 struct						s_edge
 {
-	t_vert	*egded;
+	t_vert	*bounds;
 	t_edge	*next;
 };
 

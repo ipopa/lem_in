@@ -12,14 +12,14 @@ t_path *set_p(t_map *graph, int nbpath)
 
 static void next(t_path **tab, int max)
 {
-  int i;
+	int i;
   
-  i = 0;
-  while (i < max)
+	i = 0;
+	while (i < max)
     {
-      if (tab[i])
-	tab[i] = tab[i]->next;
-      i++;
+		if (tab[i])
+			tab[i] = tab[i]->next;
+		i++;
     }
 }
 
