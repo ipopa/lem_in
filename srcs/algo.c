@@ -75,12 +75,11 @@ int		ft_algo(t_map *graph)
   while (ft_dijkstra(graph->vertices, graph->start, 1) != 0\
 	 && i < graph->maxpath)
     {
+      graph->onesolution = true;	    
       graph->tabpath[i] = (int *)malloc(sizeof(int) * 2);
       graph->tabpath[i][0] = create_path(graph, graph->end);
       if ((i != 0 && test_nbelem(graph->tabpath, i, graph) == -1) || graph->tabpath[i][0] <= 2)
 	{
-	  if (graph->tabpath[i][0] <= 2)
-	    graph->onesolution = true;
 	  reset_vertices(graph->vertices);
 	  break ;
 	}
