@@ -43,5 +43,6 @@ t_map	*init_map(void)
 	graph->end = NULL;
 	graph->start = NULL;
 	graph->mapcount = 0;
+	graph->onesolution = false;
 	return (graph);
 }

@@ -32,6 +32,7 @@ struct						s_map
 	bool		end_b;
 	bool		error;
 	t_listpath	*listpath;
+  bool onesolution;
 };
 
 struct						s_listpath
