@@ -25,6 +25,7 @@ void	next(t_path **tab, int max)
 
 void	nb_path(int *nbpath, t_map *graph, t_path **tab, int ants)
 {
+  printf("nbpath = %d\n", graph->nbpath);
   if (graph->nbpath == 0)
     {
       if (ants == (graph->ants - 1))
