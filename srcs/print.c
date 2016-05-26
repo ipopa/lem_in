@@ -25,8 +25,7 @@ void	next(t_path **tab, int max)
 
 void	nb_path(int *nbpath, t_map *graph, t_path **tab, int ants)
 {
-  printf("nbpath = %d\n", graph->nbpath);
-  if (graph->nbpath == 0)
+  if (graph->tabpath[0][0] == 2)
     {
       if (ants == (graph->ants - 1))
 	{
@@ -50,29 +49,28 @@ void	nb_path(int *nbpath, t_map *graph, t_path **tab, int ants)
 
 void	print_graph2(t_map *graph, t_path **tab, int ants, int nbpath)
 {
-	while (42)
+  while (42)
+    {
+      if (!tab[ants])
 	{
-		if (!tab[ants])
-		{
-		  //		  printf("hello = %d\n", graph->tabpath[nbpath - 1][1]);
-			if (graph->tabpath[nbpath - 1][1])
-			{
-				tab[ants] = set_p(graph, nbpath - 1);
-				graph->tabpath[nbpath - 1][1]--;
-			}
-			else
-			{
-			  nb_path(&nbpath, graph, tab, ants);
-				continue ;
-			}
-		}
-		nb_path(&nbpath, graph, tab, ants);
-		if (ants < (graph->ants - 1))
-			ants++;
-		if (ants == (graph->ants - 1) && tab[ants] &&\
-				(tab[ants])->vertices->end)
-			break ;
+	  if (graph->tabpath[nbpath - 1][1])
+	    {
+	      tab[ants] = set_p(graph, nbpath - 1);
+	      graph->tabpath[nbpath - 1][1]--;
+	    }
+	  else
+	    {
+	      nb_path(&nbpath, graph, tab, ants);
+	      continue ;
+	    }
 	}
+      nb_path(&nbpath, graph, tab, ants);
+      if (ants < (graph->ants - 1))
+	ants++;
+      if (ants == (graph->ants - 1) && tab[ants] &&\
+	  (tab[ants])->vertices->end)
+	break ;
+    }
 }
 
 void	print_graph(t_map *graph)
