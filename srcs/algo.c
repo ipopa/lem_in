@@ -72,12 +72,14 @@ int		ft_algo(t_map *graph)
 	i = 0;
 	graph->maxpath = count_edge(graph->end);
 	graph->tabpath = (int **)malloc(sizeof(int *) * graph->maxpath);
+	if (graph->tabpath[i])
+	  printf("HELLO\n");
 	while (ft_dijkstra(graph->vertices, graph->start, 1) != 0\
 			&& i < graph->maxpath)
 	{
 		graph->tabpath[i] = (int *)malloc(sizeof(int) * 2);
 		graph->tabpath[i][0] = create_path(graph, graph->end);
-		if (i != 0 && test_nbelem(graph->tabpath, i, graph) == -1)
+		if ((i != 0 && test_nbelem(graph->tabpath, i, graph) == -1) || graph->tabpath[i][0] <= 2)
 		{
 			reset_vertices(graph->vertices);
 			break ;
@@ -86,7 +88,7 @@ int		ft_algo(t_map *graph)
 		reset_vertices(graph->vertices);
 		i++;
 	}
-	if (i == 0)
+	if (i == 0 && graph->tabpath[i] && graph->tabpath[i][0] > 2)
 		return (-1);
 	graph->maxpath = i;
 	set_path(graph->tabpath, graph);
