@@ -23,16 +23,28 @@ void	next(t_path **tab, int max)
 	}
 }
 
-void	nb_path(int *nbpath, t_map *graph, t_path **tab)
+void	nb_path(int *nbpath, t_map *graph, t_path **tab, int ants)
 {
-	*nbpath = *nbpath + 1;
-	if (*nbpath > graph->nbpath)
+  if (graph->nbpath == 0)
+    {
+      if (ants == (graph->ants - 1))
 	{
-		next(tab, graph->ants);
-		print_tab(tab, graph->ants);
-		ft_putchar('\n');
-		*nbpath = 1;
+	  next(tab, graph->ants);
+	  print_tab(tab, graph->ants);
+	  ft_putchar('\n');
 	}
+    }
+  else
+    {
+      *nbpath = *nbpath + 1;
+      if (*nbpath > graph->nbpath)
+	{
+	  next(tab, graph->ants);
+	  print_tab(tab, graph->ants);
+	  ft_putchar('\n');
+	  *nbpath = 1;
+	}
+    }
 }
 
 void	print_graph2(t_map *graph, t_path **tab, int ants, int nbpath)
@@ -41,6 +53,7 @@ void	print_graph2(t_map *graph, t_path **tab, int ants, int nbpath)
 	{
 		if (!tab[ants])
 		{
+		  //		  printf("hello = %d\n", graph->tabpath[nbpath - 1][1]);
 			if (graph->tabpath[nbpath - 1][1])
 			{
 				tab[ants] = set_p(graph, nbpath - 1);
@@ -48,11 +61,11 @@ void	print_graph2(t_map *graph, t_path **tab, int ants, int nbpath)
 			}
 			else
 			{
-				nb_path(&nbpath, graph, tab);
+			  nb_path(&nbpath, graph, tab, ants);
 				continue ;
 			}
 		}
-		nb_path(&nbpath, graph, tab);
+		nb_path(&nbpath, graph, tab, ants);
 		if (ants < (graph->ants - 1))
 			ants++;
 		if (ants == (graph->ants - 1) && tab[ants] &&\
