@@ -16,13 +16,14 @@ void	reset_vertices(t_vert *vertices)
 	}
 }
 
-void	set_path(int **tab, t_map *graph)
+void	set_path(int **tab, t_map *graph, int maxpath)
 {
 	int		i;
 	int		total;
 	int		tmp_total;
 	float	tmp;
 
+	graph->maxpath = maxpath;
 	i = 0;
 	total = graph->ants;
 	while (i < graph->nbpath)
@@ -67,30 +68,29 @@ int		test_nbelem(int **tab, int total, t_map *graph)
 
 int		ft_algo(t_map *graph)
 {
-  int i;
+	int i;
 
-  i = 0;
-  graph->maxpath = count_edge(graph->end);
-  graph->tabpath = (int **)malloc(sizeof(int *) * graph->maxpath);
-  while (ft_dijkstra(graph->vertices, graph->start, 1) != 0\
-	 && i < graph->maxpath)
-    {
-      graph->tabpath[i] = (int *)malloc(sizeof(int) * 2);
-      graph->tabpath[i][0] = create_path(graph, graph->end);
-      if ((i != 0) && (test_nbelem(graph->tabpath, i, graph) == -1))
+	i = 0;
+	graph->maxpath = count_edge(graph->end);
+	graph->tabpath = (int **)malloc(sizeof(int *) * graph->maxpath);
+	while (ft_dijkstra(graph->vertices, graph->start, 1) != 0\
+				&& i < graph->maxpath)
 	{
-	  reset_vertices(graph->vertices);
-	  break ;
+		graph->tabpath[i] = (int *)malloc(sizeof(int) * 2);
+		graph->tabpath[i][0] = create_path(graph, graph->end);
+		if ((i != 0) && (test_nbelem(graph->tabpath, i, graph) == -1))
+		{
+			reset_vertices(graph->vertices);
+			break ;
+		}
+		graph->nbpath++;
+		reset_vertices(graph->vertices);
+		if (graph->tabpath[i++][0] <= 2)
+			break ;
 	}
-      graph->nbpath++;
-      reset_vertices(graph->vertices);
-      if (graph->tabpath[i++][0] <= 2)
-	break ;
-    }
-  if (i == 0)
-    return (-1);
-  graph->maxpath = i;
-  set_path(graph->tabpath, graph);
-  print_graph(graph);
-  return (1);
+	if (i == 0)
+		return (-1);
+	set_path(graph->tabpath, graph, i);
+	print_graph(graph);
+	return (1);
 }

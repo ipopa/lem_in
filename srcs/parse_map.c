@@ -54,30 +54,30 @@ int		test_parse_line(t_map *graph, char *line)
 
 void	get_map(t_map *graph)
 {
-  char	*line;
-  int		ret;
+	char	*line;
+	int		ret;
 
-  while ((ret = get_next_line(0, &line)) >= 0)
-    {
-      if (ft_strequ(line, "##start"))
-	graph->start_b = true;
-      else if (ft_strequ(line, "##end"))
-	graph->end_b = true;
-      else if (line[0] == '#')
-	;
-      else
+	while ((ret = get_next_line(0, &line)) >= 0)
 	{
-	  if (!test_parse_line(graph, line))
-	    break ;
+		if (ft_strequ(line, "##start"))
+			graph->start_b = true;
+		else if (ft_strequ(line, "##end"))
+			graph->end_b = true;
+		else if (line[0] == '#')
+			;
+		else
+		{
+			if (!test_parse_line(graph, line))
+				break ;
+		}
+		join_to_map(graph, line);
+		free(line);
+		line = NULL;
+		if (ret == 0)
+			break ;
 	}
-      join_to_map(graph, line);
-      free(line);
-      line = NULL;
-      if (ret == 0)
-	break ;
-    }
-  if (line)
-    free(line);
+	if (line)
+		free(line);
 }
 
 int		parse_map(t_map *graph)

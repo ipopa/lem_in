@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sbeaufil <sbeaufil@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 16:50:26 by sbeaufil          #+#    #+#             */
-/*   Updated: 2016/05/19 12:59:51 by ipopa            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -24,7 +12,7 @@ typedef struct s_list	t_list;
 
 struct					s_list
 {
-  	char				*str;
+	char				*str;
 	void				*content;
 	size_t				content_size;
 	struct s_list		*next;
@@ -106,8 +94,8 @@ void					ft_addfirstchar(char **str, char c);
 float					ft_atof(const char *str);
 int						ft_ftoi(float c);
 size_t					ft_nbrlen(int nbr);
-size_t  ft_words(char const *s, int(*f)(char));
-void ft_free_tab(char **tab);
-char *ft_strrev(char *str);
+size_t					ft_words(char const *s, int(*f)(char));
+void					ft_free_tab(char **tab);
+char					*ft_strrev(char *str);
 
 #endif
