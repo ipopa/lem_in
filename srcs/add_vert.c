@@ -12,13 +12,15 @@ int		add_vert_to_map(t_vert **vert, t_vert *new)
 		*vert = new;
 		return (1);
 	}
-	while (tmpvert->next != NULL)
+	while (tmpvert->next)
 	{
 		if (ft_strequ(tmpvert->name, new->name))
 			return (-1);
 		tmpvert = tmpvert->next;
 		i++;
 	}
+	if (tmpvert && ft_strequ(tmpvert->name, new->name))
+		return (-1);
 	tmpvert->next = new;
 	return (1);
 }

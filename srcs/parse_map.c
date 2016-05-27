@@ -2,16 +2,10 @@
 
 int		parse_line(t_map *graph, char *line, bool start, bool end)
 {
-	int ret;
-
 	if (ft_searchchr(line, &ft_isspace) && ft_words(line, &ft_isspace) == 3)
 	{
-		if ((ret = add_vert(graph, line, start, end)) != 1)
-		{
-			if (ret == -1)
-				graph->error = true;
+		if (add_vert(graph, line, start, end) != 1)
 			return (-1);
-		}
 	}
 	else if (ft_searchchr(line, &my_isline) && ft_words(line, &my_isline) == 2)
 	{
@@ -52,6 +46,32 @@ int		test_parse_line(t_map *graph, char *line)
 	return (1);
 }
 
+int test_start(t_map *graph, char *line)
+{
+    int ret;
+
+    ret = 1;
+    if ((graph->start_b || graph->start) && ft_strequ(line, "##start"))
+        ret = -1;
+    else if (ft_strequ(line, "##start"))
+        graph->start_b = true;
+    free(line);
+    return (ret);
+}
+
+int test_end(t_map *graph, char *line)
+{
+    int ret;
+
+    ret = 1;
+    if ((graph->end_b || graph->end) && ft_strequ(line, "##end"))
+        ret = -1;
+    else if (ft_strequ(line, "##end"))
+        graph->end_b = true;
+    free(line);
+    return (ret);
+}
+
 void	get_map(t_map *graph)
 {
 	char	*line;
@@ -59,10 +79,10 @@ void	get_map(t_map *graph)
 
 	while ((ret = get_next_line(0, &line)) >= 0)
 	{
-		if (ft_strequ(line, "##start"))
-			graph->start_b = true;
-		else if (ft_strequ(line, "##end"))
-			graph->end_b = true;
+		if (test_start(graph, ft_strtrim(line)) == -1)
+			break ;
+		else if (test_end(graph, ft_strtrim(line)) == -1)
+			break ;
 		else if (line[0] == '#')
 			;
 		else

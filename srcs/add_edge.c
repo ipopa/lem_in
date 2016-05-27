@@ -14,11 +14,15 @@ static int		add_edge_to_map(t_edge **edge, t_vert *new)
 		*edge = newedge;
 		return (1);
 	}
-	while (tmpedge->next != NULL)
+	while (tmpedge->next)
 	{
+		if (ft_strequ(tmpedge->bounds->name, new->name))
+			return (-1);
 		tmpedge = tmpedge->next;
 		i++;
 	}
+	if (tmpedge && tmpedge->bounds && ft_strequ(tmpedge->bounds->name, new->name))
+		return (-1);
 	tmpedge->next = newedge;
 	return (1);
 }
