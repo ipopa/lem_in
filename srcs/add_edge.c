@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ipopa <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/27 11:42:05 by ipopa             #+#    #+#             */
+/*   Updated: 2016/05/27 11:43:30 by ipopa            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 static int		add_edge_to_map(t_edge **edge, t_vert *new)
@@ -21,7 +33,8 @@ static int		add_edge_to_map(t_edge **edge, t_vert *new)
 		tmpedge = tmpedge->next;
 		i++;
 	}
-	if (tmpedge && tmpedge->bounds && ft_strequ(tmpedge->bounds->name, new->name))
+	if (tmpedge && tmpedge->bounds &&\
+			ft_strequ(tmpedge->bounds->name, new->name))
 		return (-1);
 	tmpedge->next = newedge;
 	return (1);

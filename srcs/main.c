@@ -1,4 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ipopa <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/27 11:42:05 by ipopa             #+#    #+#             */
+/*   Updated: 2016/05/27 11:43:30 by ipopa            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
+
+int		test_start(t_map *graph, char *line)
+{
+	int ret;
+
+	ret = 1;
+	if ((graph->start_b || graph->start) && ft_strequ(line, "##start"))
+		ret = -1;
+	else if (ft_strequ(line, "##start"))
+		graph->start_b = true;
+	free(line);
+	return (ret);
+}
+
+int		test_end(t_map *graph, char *line)
+{
+	int ret;
+
+	ret = 1;
+	if ((graph->end_b || graph->end) && ft_strequ(line, "##end"))
+		ret = -1;
+	else if (ft_strequ(line, "##end"))
+		graph->end_b = true;
+	free(line);
+	return (ret);
+}
 
 void	print_tab(t_path **tab, int max)
 {

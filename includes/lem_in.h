@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ipopa <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/27 11:43:02 by ipopa             #+#    #+#             */
+/*   Updated: 2016/05/27 11:43:02 by ipopa            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
@@ -101,5 +113,6 @@ void						join_to_map(t_map *graph, char *line);
 void						print_tab(t_path **tab, int max);
 int							ft_dijkstra(t_vert *vertices, t_vert *start_p,\
 										int nb);
-
+int							test_start(t_map *graph, char *line);
+int							test_end(t_map *graph, char *line);
 #endif
